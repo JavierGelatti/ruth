@@ -18,3 +18,7 @@ export const createGetTemasThunk = () => (dispatch) => backend
   .getReunion()
   .then(createCargarReunionAction)
   .then(dispatch);
+
+export const createCerrarReunionThunk = () => (dispatch) => backend
+  .cerrarReunion()
+  .then(() => dispatch(createSetEstadoDeReunionAction(false)));

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { createGetTemasThunk } from './Reunion.actions';
+import { createCerrarReunionThunk, createGetTemasThunk } from './Reunion.actions';
 import Temario from '../temario/Temario';
 import { ReunionContainer } from './Reunion.styled';
+import { Button } from '../components/Button.styled';
 
 const Reunion = (props) => {
   const { indexTemaActual, temas } = props; // state
-  const { onInit } = props; // dispatch
+  const { onInit, onCerrarReunion } = props; // dispatch
 
   const onInitUseEffect = () => {
     onInit();
@@ -19,12 +20,14 @@ const Reunion = (props) => {
     <ReunionContainer>
       <Temario indexTemaActual={indexTemaActual} temario={temas}/>
       Tema actual: {temas[indexTemaActual].titulo}
+      <Button onClick={onCerrarReunion}> Cerrar reunion </Button>
     </ReunionContainer>);
 };
 
 const stateToProps = (state) => state.reunion;
 const dispatchToProps = (dispatch) => ({
   onInit: () => dispatch(createGetTemasThunk()),
+  onCerrarReunion: () => dispatch(createCerrarReunionThunk()),
 });
 
 export default connect(stateToProps, dispatchToProps)(Reunion);

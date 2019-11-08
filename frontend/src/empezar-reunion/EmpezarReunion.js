@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
+import { EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
 import { createEmpezarReunionThunk } from '../reunion/Reunion.actions';
+import { Button } from '../components/Button.styled';
 
 const EmpezarReunion = ({ onClickStart }) => (
     <EmpezarRootsContainer>

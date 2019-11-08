@@ -23,7 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 #idea
-.idea/*
+backend/.idea/*
+frontend/.idea/*
 
 # Base de datos en docker
 db-data/

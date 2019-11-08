@@ -36,7 +36,7 @@ const stateToProps = (state) => ({
 });
 const dispatchToProps = (dispatch) => ({
   onInit: () => {
-    backend.getEstadoDeReunion().then(createSetEstadoDeReunionAction).then(dispatch);
+    backend.reunionAbierta().then(createSetEstadoDeReunionAction).then(dispatch);
   },
 });
 

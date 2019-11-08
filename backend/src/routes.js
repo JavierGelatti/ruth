@@ -8,6 +8,6 @@ router.get('/', (req, res) => {
   res.status(200).send(new Date().toISOString());
 });
 
-router.use('/reuniones', reunionRouter);
+router.use('/reunion', reunionRouter);
 
 export default router;
