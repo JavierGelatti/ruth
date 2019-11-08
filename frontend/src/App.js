@@ -16,10 +16,10 @@ const App = ({location, reunionEnCurso, indexTemaActual, onInit}) => {
     <>
       <GlobalStyle/>
       <Switch location={location}>
-        <Route exact path="/" render={() => reunionEnCurso ? <Redirect to={`/reunion/temas/${indexTemaActual}`}/> :
+        <Route exact path="/" render={() => reunionEnCurso ? <Redirect to={`/reunion/temas`}/> :
           <EmpezarReunion/>}/>
-        <Route path="/reunion/temas/:temaId"
-               render={({match}) => reunionEnCurso ? <Reunion indexTemaActual={match.params.temaId}/> :
+        <Route exact path="/reunion/temas"
+               render={() => reunionEnCurso ? <Reunion /> :
                  <Redirect to='/'/>}/>
       </Switch>
     </>
