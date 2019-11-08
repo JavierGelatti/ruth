@@ -1,0 +1,22 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": "airbnb-base",
+  "plugins": [
+    "promise"
+  ],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "next"
+      }
+    ]
+  }
+}
