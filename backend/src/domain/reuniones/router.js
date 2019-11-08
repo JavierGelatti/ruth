@@ -8,8 +8,10 @@ const router = Router({ promise: true });
 
 const controller = ReunionController(context);
 
-router.get('/', asyncMiddleware(controller.reuniones));
+router.get('/', asyncMiddleware(controller.reunion));
+router.get('/temas', asyncMiddleware(controller.temas));
+router.get('/abierta', asyncMiddleware(controller.estadoDeReunion));
 router.post('/', asyncMiddleware(controller.crear));
-router.put('/:reunionId', asyncMiddleware(controller.actualizar));
+router.put('/', asyncMiddleware(controller.actualizar));
 
 export default router;
