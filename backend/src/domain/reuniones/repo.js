@@ -18,4 +18,8 @@ export default class ReunionesRepo {
   async save(reunion) {
     models.Reunion.update(reunion);
   }
+
+  async findLastCreated() {
+    return models.Reunion.findAll().then((reuniones) => reuniones[reuniones.length - 1]);
+  }
 }

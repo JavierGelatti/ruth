@@ -8,11 +8,15 @@ const Backend = {
   },
 
   empezarLaReunion() {
-    return requester.post('/reunion');
+    return requester.post('/reunion', {abierta: true});
   },
 
-  getEstadoDeReunion(){
-    return requester.get('/reunion/status');
+  reunionAbierta(){
+    return requester.get('/reunion/abierta');
+  },
+
+  cerrarReunion(){
+    return requester.put('/reunion', {abierta: false})
   }
 };
 
