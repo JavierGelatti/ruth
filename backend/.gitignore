@@ -59,6 +59,3 @@ typings/
 
 # next.js build output
 .next
-
-# Base de datos en docker
-db-data/

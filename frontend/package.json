@@ -20,7 +20,8 @@
     "start:dev": "PORT=8761 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint 'src/**/*.js' --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,6 +39,19 @@
     ]
   },
   "devDependencies": {
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "redux-devtools": "^3.5.0"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

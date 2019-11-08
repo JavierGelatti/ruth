@@ -1,19 +1,19 @@
-import Requester from "./requester";
+import Requester from './requester';
 
 const requester = Requester.createDefaultRequester();
 
 const Backend = {
   getReunion() {
-    return requester.get(`/reunion/temas`);
+    return requester.get('/reunion/temas');
   },
 
   empezarLaReunion() {
     return requester.post('/reunion');
   },
 
-  getEstadoDeReunion(){
+  getEstadoDeReunion() {
     return requester.get('/reunion/status');
-  }
+  },
 };
 
 export default Backend;

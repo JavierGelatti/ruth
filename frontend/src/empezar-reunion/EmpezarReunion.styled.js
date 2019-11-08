@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors, font} from "../styles/theme";
+import { colors, font } from '../styles/theme';
 
 export const EmpezarRootsContainer = styled.div`
   display: flex;

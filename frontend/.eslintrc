@@ -1,0 +1,27 @@
+{
+    "extends": [
+        "airbnb-base",
+        "react-app"
+    ],
+    "rules": {
+        "max-len": "warn",
+        "no-underscore-dangle": [
+            "error",
+            {
+                "allow": [
+                    "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
+                ]
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.styled.js"
+            ],
+            "rules": {
+                "import/prefer-default-export": "off"
+            }
+        }
+    ]
+}

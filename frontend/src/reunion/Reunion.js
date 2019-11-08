@@ -1,15 +1,15 @@
-import React, {useEffect} from "react";
-import {createGetTemasThunk} from "./Reunion.actions";
-import {connect} from "react-redux";
-import Temario from "../temario/Temario";
-import {ReunionContainer} from "./Reunion.styled";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createGetTemasThunk } from './Reunion.actions';
+import Temario from '../temario/Temario';
+import { ReunionContainer } from './Reunion.styled';
 
 const Reunion = (props) => {
-  const {indexTemaActual, temas} = props; //state
-  const {onInit} = props; //dispatch
+  const { indexTemaActual, temas } = props; // state
+  const { onInit } = props; // dispatch
 
   const onInitUseEffect = () => {
-    onInit()
+    onInit();
   };
   useEffect(onInitUseEffect, []);
 
@@ -22,9 +22,9 @@ const Reunion = (props) => {
     </ReunionContainer>);
 };
 
-const stateToProps = state => state.reunion;
-const dispatchToProps = dispatch => ({
-  onInit: () => dispatch(createGetTemasThunk())
+const stateToProps = (state) => state.reunion;
+const dispatchToProps = (dispatch) => ({
+  onInit: () => dispatch(createGetTemasThunk()),
 });
 
 export default connect(stateToProps, dispatchToProps)(Reunion);
