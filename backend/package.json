@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "echo 'a implementar'; exit 1",
+    "start": "nodemon --exec babel-node src/index.js",
     "lint": "eslint 'src/**/*.js' --fix",
     "sequelize": "sequelize",
     "start:dev": "nodemon --inspect=9529 --exec babel-node src/index.js"

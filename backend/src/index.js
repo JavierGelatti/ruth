@@ -9,7 +9,7 @@ import server from '~/server';
  * Obtener el puerto
  */
 
-const port = process.env.BACKEND_PORT || '3000';
+const port = process.env.PORT || '3000';
 
 server.listen(port, () => {
   // eslint-disable-next-line no-console
