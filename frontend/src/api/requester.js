@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-const backendUrl = process.env.BACKEND_URL || 'http://localhost:3000';
+const backendUrl = '/api';
 
 const extractResponse = response => response.data;
 

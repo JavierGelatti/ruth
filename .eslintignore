@@ -1,0 +1,5 @@
+backend/db-data
+backend/src/database
+
+.vscode
+node_modules

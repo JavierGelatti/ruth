@@ -61,4 +61,4 @@ typings/
 .next
 
 # Base de datos en docker
-mongo-volume/
+db-data/
