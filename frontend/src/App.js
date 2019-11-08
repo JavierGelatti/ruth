@@ -5,9 +5,7 @@ import EmpezarReunion from './empezar-reunion/EmpezarReunion';
 import GlobalStyle from './GlobalStyle.styled';
 import Reunion from './reunion/Reunion';
 import backend from './api/backend';
-import {
-  createSetEstadoDeReunionAction,
-} from './reunion/Reunion.actions';
+import { createSetEstadoDeReunionAction } from './reunion/Reunion.actions';
 
 const App = ({
   location, reunionEnCurso, indexTemaActual, onInit,
@@ -18,13 +16,13 @@ const App = ({
   useEffect(onInitUseEffect, []);
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyle/>
       <Switch location={location}>
-        <Route exact path="/" render={() => (reunionEnCurso ? <Redirect to={`/reunion/temas/${indexTemaActual}`} />
-          : <EmpezarReunion />)} />
-        <Route path="/reunion/temas/:temaId"
-          render={({ match }) => (reunionEnCurso ? <Reunion indexTemaActual={match.params.temaId} />
-            : <Redirect to='/' />)} />
+        <Route exact path="/" render={() => (reunionEnCurso ? <Redirect to={'/reunion/temas'}/>
+          : <EmpezarReunion/>)}/>
+        <Route exact path="/reunion/temas"
+               render={() => (reunionEnCurso ? <Reunion/>
+                 : <Redirect to='/'/>)}/>
       </Switch>
     </>
   );
