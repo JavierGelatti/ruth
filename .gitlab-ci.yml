@@ -40,6 +40,8 @@ test-frontend:
 deploy-frontend:  
    image: python:latest  
    stage: deploy
+   only:
+    - master
    script:    
       - cd frontend
       - pip install awscli
@@ -54,6 +56,8 @@ test-backend:
 deploy-backend:
    image: python:latest
    stage: deploy
+   only:
+    - master
    script:
       - cd backend
       - pip install awsebcli
