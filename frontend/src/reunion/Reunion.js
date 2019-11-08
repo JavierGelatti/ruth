@@ -1,16 +1,16 @@
-import React, {useEffect} from "react";
-import {createCerrarReunionThunk, createInicializarReunionThunk, createSeleccionarTemaAction} from "./Reunion.actions";
-import {connect} from "react-redux";
-import Temario from "../temario/Temario";
-import {ReunionContainer} from "./Reunion.styled";
-import {Button} from "../components/Button.styled";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createCerrarReunionThunk, createInicializarReunionThunk, createSeleccionarTemaAction } from './Reunion.actions';
+import Temario from '../temario/Temario';
+import { ReunionContainer } from './Reunion.styled';
+import { Button } from '../components/Button.styled';
 
 const Reunion = (props) => {
-  const {indexTemaActual, temas} = props; //state
-  const {onInit, onCerrarReunion, onChangeTemaActual} = props; //dispatch
+  const { indexTemaActual, temas } = props; // state
+  const { onInit, onCerrarReunion, onChangeTemaActual } = props; // dispatch
 
   const onInitUseEffect = () => {
-    onInit(indexTemaActual)
+    onInit(indexTemaActual);
   };
   useEffect(onInitUseEffect, []);
 
@@ -24,11 +24,11 @@ const Reunion = (props) => {
     </ReunionContainer>);
 };
 
-const stateToProps = state => state.reunion;
-const dispatchToProps = dispatch => ({
+const stateToProps = (state) => state.reunion;
+const dispatchToProps = (dispatch) => ({
   onInit: (indexTemaActual) => dispatch(createInicializarReunionThunk(indexTemaActual)),
   onCerrarReunion: () => dispatch(createCerrarReunionThunk()),
-  onChangeTemaActual: (indexTemaSeleccionado) => dispatch(createSeleccionarTemaAction(indexTemaSeleccionado))
+  onChangeTemaActual: (indexTemaSeleccionado) => dispatch(createSeleccionarTemaAction(indexTemaSeleccionado)),
 });
 
 export default connect(stateToProps, dispatchToProps)(Reunion);

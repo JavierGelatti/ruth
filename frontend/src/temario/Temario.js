@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import {Arrow, TemarioContainer, Temas, Titulo, TituloDeTema} from "./Temario.styled";
+import React, { useState } from 'react';
+import {
+  Arrow, TemarioContainer, Temas, Titulo, TituloDeTema,
+} from './Temario.styled';
 
-const Temario = ({temario, indexTemaActual, handleClickDeTema}) => {
-
+const Temario = ({ temario, indexTemaActual, handleClickDeTema }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -10,9 +11,8 @@ const Temario = ({temario, indexTemaActual, handleClickDeTema}) => {
       <Arrow onMouseEnter={() => setIsActive(true)}> + </Arrow>
       <Temas onMouseLeave={() => setIsActive(false)}>
         <Titulo> Temario </Titulo>
-        {temario.map((tema, temaIndex) =>
-          <TituloDeTema onClick={() => handleClickDeTema(temaIndex)} key={temaIndex} isSelected={temaIndex === indexTemaActual}>{tema.titulo}</TituloDeTema>
-        )}
+        {temario.map((tema, temaIndex) => <TituloDeTema onClick={() => handleClickDeTema(temaIndex)} key={temaIndex}
+                        isSelected={temaIndex === indexTemaActual}>{tema.titulo}</TituloDeTema>)}
       </Temas>
     </TemarioContainer>
   );

@@ -6,7 +6,7 @@
 1. Tener mongo (ver "base de datos en docker")
 1. Correr con `$ npm run start:dev`.
 
-`start:dev` corre el servidor en el puerto `3000`, y levanta un inspector en el puerto `9529`. Tiene hot reload.
+`start:dev` corre el servidor en el puerto `8760`, y levanta un inspector en el puerto `9529`. Tiene hot reload.
 
 ### Scafolding
 Como tenemos `sequalize-cli` podemos crear modelos _a la rails_:

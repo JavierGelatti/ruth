@@ -1,10 +1,11 @@
 import * as axios from 'axios';
 
-const backendUrl = process.env.BACKEND_URL || 'http://localhost:3000';
+const backendUrl = '/api';
 
-const extractResponse = response => response.data;
+const extractResponse = (response) => response.data;
 
-const handleError = error => {
+const handleError = (error) => {
+  // eslint-disable-next-line no-console
   console.error(error);
   return Promise.reject(error);
 };
@@ -15,17 +16,17 @@ const Requester = {
       baseURL: backendUrl,
       timeout: 7000,
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     defaultRequester.interceptors.response.use(
       extractResponse,
-      handleError
+      handleError,
     );
 
     return defaultRequester;
-  }
+  },
 };
 
 export default Requester;

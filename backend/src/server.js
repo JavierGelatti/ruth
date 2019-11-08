@@ -14,5 +14,9 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use(logger.errorHandler());
+app.get('*', (req, res) => {
+  logger.info(`Request not found ${req.url}`);
+  res.status(404).send('Not found');
+});
 
 export default app;

@@ -1,17 +1,16 @@
-import reunionReducer from "./Reunion.reducer";
+import reunionReducer from './Reunion.reducer';
 import {
   createCargarReunionAction,
   createSeleccionarTemaAction,
-  createSetEstadoDeReunionAction
-} from "./Reunion.actions";
+  createSetEstadoDeReunionAction,
+} from './Reunion.actions';
 
 const initialState = {
   indexTemaActual: 0,
-  temas: []
+  temas: [],
 };
 
 describe('El reductor de la reunion', () => {
-
   let action;
   let prevState;
   let expectedState;
@@ -20,7 +19,7 @@ describe('El reductor de la reunion', () => {
   describe('Al recibir una accion desconocida', () => {
     beforeEach(() => {
       prevState = initialState;
-      action = ({type: 'SARLANGA'})
+      action = ({ type: 'SARLANGA' });
     });
 
     it('No hace nada', () => {
@@ -32,8 +31,8 @@ describe('El reductor de la reunion', () => {
   describe('Al recibir la accion SET_ESTADO_DE_REUNION', () => {
     beforeEach(() => {
       prevState = initialState;
-      expectedState = {...prevState, reunionEnCurso: true};
-      action = createSetEstadoDeReunionAction(true)
+      expectedState = { ...prevState, reunionEnCurso: true };
+      action = createSetEstadoDeReunionAction(true);
     });
 
     it('Setea  los temas de la reunion', () => {
@@ -43,15 +42,14 @@ describe('El reductor de la reunion', () => {
 
 
   describe('Al recibir la accion GET_TEMAS', () => {
-
     beforeEach(() => {
       prevState = initialState;
-      const temas = [{titulo: 'Un titulo', descripcion: 'una descripcion'}, {
+      const temas = [{ titulo: 'Un titulo', descripcion: 'una descripcion' }, {
         titulo: 'Otro titulo',
-        descripcion: 'otra descripcion'
+        descripcion: 'otra descripcion',
       }];
-      expectedState = {...prevState, temas};
-      action = createCargarReunionAction(temas)
+      expectedState = { ...prevState, temas };
+      action = createCargarReunionAction(temas);
     });
 
     it('Setea  los temas de la reunion', () => {
@@ -62,18 +60,17 @@ describe('El reductor de la reunion', () => {
 
   describe('Al recibir la accion UPDATE_TEMA_ACTUAL', () => {
     beforeEach(() => {
-      const temas = [{titulo: 'Un titulo', descripcion: 'una descripcion'}, {
+      const temas = [{ titulo: 'Un titulo', descripcion: 'una descripcion' }, {
         titulo: 'Otro titulo',
-        descripcion: 'otra descripcion'
+        descripcion: 'otra descripcion',
       }];
-      prevState = { ...initialState, temas};
+      prevState = { ...initialState, temas };
     });
 
     describe('Cuando el index del tema es mayor a los temas que hay', () => {
-
       beforeEach(() => {
         const unIndexInvalido = 3;
-        action = createSeleccionarTemaAction(unIndexInvalido)
+        action = createSeleccionarTemaAction(unIndexInvalido);
       });
 
       it('Se queda con el estado anterior', () => {
@@ -84,7 +81,7 @@ describe('El reductor de la reunion', () => {
     describe('Cuando el index del tema es menor a los temas que hay', () => {
       beforeEach(() => {
         const unIndexInvalido = -1;
-        action = createSeleccionarTemaAction(unIndexInvalido)
+        action = createSeleccionarTemaAction(unIndexInvalido);
       });
 
       it('Se queda con el estado anterior', () => {
@@ -92,19 +89,16 @@ describe('El reductor de la reunion', () => {
       });
     });
 
-    describe('Cuando el index del tema esta dentro del rango', () =>{
+    describe('Cuando el index del tema esta dentro del rango', () => {
       beforeEach(() => {
         const unIndexValido = 1;
-        expectedState = {...prevState, indexTemaActual: unIndexValido};
-        action = createSeleccionarTemaAction(unIndexValido)
+        expectedState = { ...prevState, indexTemaActual: unIndexValido };
+        action = createSeleccionarTemaAction(unIndexValido);
       });
 
       it('Setea el index correspondiente', () => {
         expect(subject()).toEqual(expectedState);
       });
-
-    })
-
+    });
   });
-
 });

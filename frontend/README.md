@@ -1,9 +1,13 @@
-###Installation
-{ npm install } para las dependencias.
+# Frontend (web)
 
-Instalar plugins de `react-devtools`y `redux-devtools`
+## Desarollo
+1. Instalar `node`. Ver la versión en el archivo `.nvmrc` (o hacer directamente `$ nvm use` y seguir las instruncciones).
+2. Instalar las dependencias con `$ npm install`.
+3. Renombrar el archivo .env.development a .env
+4. Correr con `$ npm run start:dev`.  La app en `http://localhost:3215`. 
 
-###Start app
-{ npm start } sirve la app en `http://localhost:3215`
+Bonus:
+Instalar plugins de `react-devtools`y `redux-devtools` en el browser para más placer
+
 
 

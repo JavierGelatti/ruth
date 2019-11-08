@@ -1,0 +1,36 @@
+{
+  "name": "ruth",
+  "version": "1.0.0",
+  "description": "Presentacionse roots",
+  "main": "index.js",
+  "scripts": {
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "postinstall": "concurrently \"npm run install:backend\" \"npm run install:frontend\"",
+    "start:frontend:dev": "cd frontend && npm run start:dev",
+    "start:backend:dev": "cd backend && npm run start:dev",
+    "start:dev": "concurrently --kill-others \"npm run start:backend:dev\" \"npm run start:frontend:dev\"",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "cd backend && npm run test",
+    "test": "npm run test:frontend && npm run test:backend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "lint": "npm run lint:frontend && npm run lint:backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:10Pines/presentacion-reuniones-roots/app.git"
+  },
+  "keywords": [
+    "roots",
+    "presentacion",
+    "debate"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-promise": "^4.2.1"
+  }
+}

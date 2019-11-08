@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import {colors, font} from "../styles/theme";
+import { colors, font } from '../styles/theme';
 
-export const TemarioContainer = styled.div(({isActive}) =>`
+export const TemarioContainer = styled.div(({ isActive }) => `
   display: flex;
   flex-direction: row-reverse;
   transition: all 0.2s linear;
   position: relative;
-  left: ${isActive? `0` : `-14em`};
+  left: ${isActive ? '0' : '-14em'};
 `);
 
 export const Temas = styled.div`
@@ -29,15 +29,15 @@ export const Arrow = styled.div`
   background: ${colors.secondary};
 `;
 
-export const TituloDeTema = styled.div(({isSelected}) =>`
+export const TituloDeTema = styled.div(({ isSelected }) => `
   padding: 0.5em;
   font-family: ${font.family};
   font-size: 1.3rem;
   color: white;
-  opacity: ${isSelected? 1 : 0.2};
+  opacity: ${isSelected ? 1 : 0.2};
   cursor: pointer;
   &:hover{
-    ${!isSelected && `opacity: 0.4;`}
+    ${!isSelected && 'opacity: 0.4;'}
   }
 `);
 

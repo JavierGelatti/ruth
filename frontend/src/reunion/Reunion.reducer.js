@@ -1,4 +1,4 @@
-import {actionTypes} from "./Reunion.actions";
+import { actionTypes } from './Reunion.actions';
 
 const initialState = {
   indexTemaActual: 0,
@@ -6,21 +6,22 @@ const initialState = {
 
 export default (prevState = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_ESTADO_DE_REUNION:
-      return ({...prevState, reunionEnCurso: action.reunionEnCurso});
-
-    case actionTypes.GET_TEMAS:
-      return ({...prevState, temas: action.temas});
-
-    case actionTypes.UPDATE_TEMA_ACTUAL:
+    case actionTypes.SET_ESTADO_DE_REUNION: {
+      return ({ ...prevState, reunionEnCurso: action.reunionEnCurso });
+    }
+    case actionTypes.GET_TEMAS: {
+      return ({ ...prevState, temas: action.temas });
+    }
+    case actionTypes.UPDATE_TEMA_ACTUAL: {
       const esUnIndiceValido = action.indexTemaActual < prevState.temas.length && action.indexTemaActual >= 0;
       return ({
         ...prevState,
-        indexTemaActual: esUnIndiceValido ? action.indexTemaActual : prevState.indexTemaActual
+        indexTemaActual: esUnIndiceValido ? action.indexTemaActual : prevState.indexTemaActual,
       });
+    }
 
-    default:
+    default: {
       return prevState;
+    }
   }
-
-}
+};

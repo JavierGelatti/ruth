@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {colors, font} from "../styles/theme";
+import styled from 'styled-components';
+import { colors, font } from '../styles/theme';
 
 export const Button = styled.button`
   font-size: 1.2rem;
