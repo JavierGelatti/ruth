@@ -56,5 +56,6 @@ deploy-backend:
    stage: deploy
    script:
       - cd backend
-      - pip install awsebcli    
+      - pip install awsebcli
+      - yes n | eb init ruth --region us-west-2
       - eb deploy $BACKEND_EB_ENV_NAME
