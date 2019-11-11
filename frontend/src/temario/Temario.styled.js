@@ -30,10 +30,15 @@ export const Arrow = styled.div`
 `;
 
 export const TituloDeTema = styled.div(({ isSelected }) => `
+  padding: 0.5em;
   font-family: ${font.family};
   font-size: 1.3rem;
   color: white;
   opacity: ${isSelected ? 1 : 0.2};
+  cursor: pointer;
+  &:hover{
+    ${!isSelected && 'opacity: 0.4;'}
+  }
 `);
 
 export const Titulo = styled.div`
