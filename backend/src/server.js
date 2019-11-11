@@ -15,7 +15,6 @@ app.use(cookieParser());
 
 app.use('/api', indexRouter);
 if (process.env.NODE_ENV === 'production') {
-  console.log("dir", __dirname);
   app.use(express.static(path.join(__dirname, './frontend')));
 }
 
