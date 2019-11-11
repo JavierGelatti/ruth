@@ -2,6 +2,7 @@
     "addons": [
         "heroku-postgresql:hobby-dev"
     ],
+    "repository": "https://github.com/10PinesLabs/ruth",
     "environments": {
         "review": {
             "addons": [
