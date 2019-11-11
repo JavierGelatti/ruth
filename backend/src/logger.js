@@ -12,20 +12,23 @@ const logger = createLogger({
   ),
   defaultMeta: { service: 'ruth:backend' },
   transports: [
-    new transports.File({
-      dirname: 'logs', filename: 'error.log', level: 'error', options: { flags: 'w' },
-    }),
-    new transports.File({ dirname: 'logs', filename: 'combined.log' }),
+    new transports.Console({
+      format: format.combine(
+        format.colorize(),
+        format.simple(),
+      ),
+    })
   ],
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  logger.add(new transports.Console({
-    format: format.combine(
-      format.colorize(),
-      format.simple(),
-    ),
-  }));
+  logger.add(
+    new transports.File({
+      dirname: 'logs', filename: 'error.log', level: 'error', options: { flags: 'w' },
+    }));
+  logger.add(
+    new transports.File({ dirname: 'logs', filename: 'combined.log' })
+  );
 }
 
 logger.stream = {
