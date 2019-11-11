@@ -18,6 +18,7 @@ const Reunion = (props) => {
 
   return (
     <ReunionContainer>
+      <h1>Esto es una review app!</h1>
       <Temario indexTemaActual={indexTemaActual} temario={temas} handleClickDeTema={onChangeTemaActual}/>
       Tema actual: {temas[indexTemaActual].titulo}
       <Button onClick={onCerrarReunion}> Cerrar reunion </Button>
