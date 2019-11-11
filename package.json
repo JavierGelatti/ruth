@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "cd backend/build && node index.js",
+    "migrate": "cd backend && npm run sequelize db:migrate db:seed",
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
-    "postinstall": "concurrently \"npm run install:backend\" \"npm run install:frontend\"",
+    "postinstall": "concurrently \"npm run install:backend\" \"npm run install:frontend\" && npm run migrate",
     "start:frontend:dev": "cd frontend && npm run start:dev",
     "start:backend:dev": "cd backend && npm run start:dev",
     "start:dev": "concurrently --kill-others \"npm run start:backend:dev\" \"npm run start:frontend:dev\"",
