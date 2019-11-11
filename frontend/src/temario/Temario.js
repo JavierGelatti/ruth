@@ -12,7 +12,7 @@ const Temario = ({ temario, indexTemaActual, handleClickDeTema }) => {
       <Temas onMouseLeave={() => setIsActive(false)}>
         <Titulo> Temario </Titulo>
         {temario.map((tema, temaIndex) => <TituloDeTema onClick={() => handleClickDeTema(temaIndex)} key={temaIndex}
-                        isSelected={temaIndex === indexTemaActual}>{tema.titulo}</TituloDeTema>)}
+                                                        isSelected={temaIndex === indexTemaActual}>{tema.titulo}</TituloDeTema>)}
       </Temas>
     </TemarioContainer>
   );

@@ -1,34 +1,17 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { createCerrarReunionThunk, createInicializarReunionThunk, createSeleccionarTemaAction } from './Reunion.actions';
+import React from 'react';
 import Temario from '../temario/Temario';
 import { ReunionContainer } from './Reunion.styled';
 import { Button } from '../components/Button.styled';
 
-const Reunion = (props) => {
-  const { indexTemaActual, temas } = props; // state
-  const { onInit, onCerrarReunion, onChangeTemaActual } = props; // dispatch
-
-  const onInitUseEffect = () => {
-    onInit(indexTemaActual);
-  };
-  useEffect(onInitUseEffect, []);
-
+const Reunion = ({ temas = {}, indexTemaActual = 0 }) => {
   if (!temas) return null;
 
   return (
     <ReunionContainer>
-      <Temario indexTemaActual={indexTemaActual} temario={temas} handleClickDeTema={onChangeTemaActual}/>
+      <Temario indexTemaActual={indexTemaActual} temario={temas} handleClickDeTema={() => {}}/>
       Tema actual: {temas[indexTemaActual].titulo}
-      <Button onClick={onCerrarReunion}> Cerrar reunion </Button>
+      <Button onClick={() => {}}> Cerrar reunion </Button>
     </ReunionContainer>);
 };
 
-const stateToProps = (state) => state.reunion;
-const dispatchToProps = (dispatch) => ({
-  onInit: (indexTemaActual) => dispatch(createInicializarReunionThunk(indexTemaActual)),
-  onCerrarReunion: () => dispatch(createCerrarReunionThunk()),
-  onChangeTemaActual: (indexTemaSeleccionado) => dispatch(createSeleccionarTemaAction(indexTemaSeleccionado)),
-});
-
-export default connect(stateToProps, dispatchToProps)(Reunion);
+export default Reunion;
