@@ -2,6 +2,9 @@
     "addons": [
         "heroku-postgresql:hobby-dev"
     ],
+    "scripts": {
+        "postdeploy": "cd backend && npm run migrate"
+    },
     "repository": "https://github.com/10PinesLabs/ruth",
     "environments": {
         "review": {
