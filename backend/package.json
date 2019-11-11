@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "clean": "rimraf build frontend",
+    "build": "babel src --out-dir build",
     "lint": "eslint 'src/**/*.js' --fix",
     "sequelize": "sequelize",
     "start:dev": "nodemon --inspect=9529 --exec babel-node src/index.js"
@@ -15,6 +16,8 @@
     ]
   },
   "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/register": "^7.7.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -23,6 +26,7 @@
     "morgan": "~1.9.1",
     "node-uuid": "^1.4.8",
     "pg": "^7.12.1",
+    "rimraf": "^3.0.0",
     "sequelize": "^5.21.2",
     "winston": "^3.2.1"
   },

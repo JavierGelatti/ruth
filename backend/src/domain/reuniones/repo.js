@@ -3,23 +3,23 @@ import models from '~/database/models';
 
 
 export default class ReunionesRepo {
-  async findAll() {
+  findAll() {
     return models.Reunion.findAll();
   }
 
-  async findOneById(id) {
+  findOneById(id) {
     return models.Reunion.findByPk(id);
   }
 
-  async create({ abierta }) {
+  create({ abierta }) {
     return models.Reunion.create({ abierta });
   }
 
-  async save(reunion) {
+  save(reunion) {
     models.Reunion.update(reunion);
   }
 
-  async findLastCreated() {
+  findLastCreated() {
     return models.Reunion.findAll().then((reuniones) => reuniones[reuniones.length - 1]);
   }
 }
