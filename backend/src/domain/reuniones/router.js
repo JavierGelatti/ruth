@@ -11,7 +11,6 @@ const controller = ReunionController(context);
 router.get('/', asyncMiddleware(controller.reunion));
 router.post('/', asyncMiddleware(controller.crear));
 
-router.get('/:id/estadoActual', asyncMiddleware(controller.estadoDeReunion));
 router.put('/', asyncMiddleware(controller.actualizar));
 
 export default router;
