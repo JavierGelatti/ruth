@@ -5,6 +5,12 @@
     "scripts": {
         "postdeploy": "cd backend && npm run migrate"
     },
+    "env": {
+        "NPM_CONFIG_PRODUCTION": {
+            "description": "Para instalar dev dependencys",
+            "value": "false"
+        }
+    },
     "repository": "https://github.com/10PinesLabs/ruth",
     "environments": {
         "review": {
