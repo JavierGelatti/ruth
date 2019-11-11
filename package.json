@@ -31,9 +31,14 @@
     "presentacion",
     "debate"
   ],
+  "cacheDirectories": [
+    "node_modules",
+    "backend/node_modules",
+    "frontend/node_modules"
+  ],
   "engines": {
-      "node": "10.16.0",
-      "npm": "6.9.0"
+    "node": "10.16.0",
+    "npm": "6.9.0"
   },
   "author": "",
   "license": "MIT",

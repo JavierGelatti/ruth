@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
     "clean": "rimraf build frontend",
     "build": "babel src --out-dir build",
     "lint": "eslint 'src/**/*.js' --fix",
