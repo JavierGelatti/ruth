@@ -6,9 +6,6 @@ module.exports = function _proxy(app) {
     proxy({
       target: 'http://localhost:8760',
       changeOrigin: true,
-      pathRewrite: {
-        '^/api/': '/',
-      },
     }),
   );
 };
