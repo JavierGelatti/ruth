@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import models from '~/database/models';
-
+import {getLastElement} from "./helpers/listHelper";
 
 export default class ReunionesRepo {
   findAll() {
@@ -20,6 +20,6 @@ export default class ReunionesRepo {
   }
 
   findLastCreated() {
-    return models.Reunion.findAll().then((reuniones) => reuniones[reuniones.length - 1]);
+    return models.Reunion.findAll().then((reuniones) => getLastElement(reuniones));
   }
 }

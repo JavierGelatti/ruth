@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {
-  Arrow, TemarioContainer, Temas, Titulo, TituloDeTema,
+  Arrow, TemarioContainer, Temas, Titulo,
 } from './Temario.styled';
 
-const Temario = ({ temario = [] }) => {
+const Temario = () => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -11,7 +11,6 @@ const Temario = ({ temario = [] }) => {
       <Arrow onMouseEnter={() => setIsActive(true)}> + </Arrow>
       <Temas onMouseLeave={() => setIsActive(false)}>
         <Titulo> Temario </Titulo>
-        {temario.map((tema, temaIndex) => <TituloDeTema key={temaIndex}>{tema}</TituloDeTema>)}
       </Temas>
     </TemarioContainer>
   );

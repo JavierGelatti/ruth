@@ -14,6 +14,7 @@ const Reunion = () => {
   return (
     <ReunionContainer>
       <Temario/>
+      Tema actual
       <Button onClick={handleCerrarReunion}> Cerrar reunion </Button>
     </ReunionContainer>);
 };
