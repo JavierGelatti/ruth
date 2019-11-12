@@ -1,34 +1,22 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { createCerrarReunionThunk, createInicializarReunionThunk, createSeleccionarTemaAction } from './Reunion.actions';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Temario from '../temario/Temario';
 import { ReunionContainer } from './Reunion.styled';
 import { Button } from '../components/Button.styled';
+import backend from '../api/backend';
 
-const Reunion = (props) => {
-  const { indexTemaActual, temas } = props; // state
-  const { onInit, onCerrarReunion, onChangeTemaActual } = props; // dispatch
+const Reunion = () => {
+  const [redirect, setRedirect] = useState(false);
+  const handleCerrarReunion = () => backend.cerrarReunion().then(() => setRedirect(true));
 
-  const onInitUseEffect = () => {
-    onInit(indexTemaActual);
-  };
-  useEffect(onInitUseEffect, []);
-
-  if (!temas) return null;
+  if (redirect) return <Redirect to="/"/>;
 
   return (
     <ReunionContainer>
-      <Temario indexTemaActual={indexTemaActual} temario={temas} handleClickDeTema={onChangeTemaActual}/>
-      Tema actual: {temas[indexTemaActual].titulo}
-      <Button onClick={onCerrarReunion}> Cerrar reunion </Button>
+      <Temario/>
+      Tema actual
+      <Button onClick={handleCerrarReunion}> Cerrar reunion </Button>
     </ReunionContainer>);
 };
 
-const stateToProps = (state) => state.reunion;
-const dispatchToProps = (dispatch) => ({
-  onInit: (indexTemaActual) => dispatch(createInicializarReunionThunk(indexTemaActual)),
-  onCerrarReunion: () => dispatch(createCerrarReunionThunk()),
-  onChangeTemaActual: (indexTemaSeleccionado) => dispatch(createSeleccionarTemaAction(indexTemaSeleccionado)),
-});
-
-export default connect(stateToProps, dispatchToProps)(Reunion);
+export default Reunion;

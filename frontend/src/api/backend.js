@@ -4,19 +4,15 @@ const requester = Requester.createDefaultRequester();
 
 const Backend = {
   getReunion() {
-    return requester.get('/reunion/temas');
+    return requester.get('/reunionDeRoots');
   },
 
-  empezarLaReunion() {
-    return requester.post('/reunion', { abierta: true });
-  },
-
-  reunionAbierta() {
-    return requester.get('/reunion/abierta');
+  empezarReunion() {
+    return requester.post('/reunionDeRoots', { abierta: true });
   },
 
   cerrarReunion() {
-    return requester.put('/reunion', { abierta: false });
+    return requester.put('/reunionDeRoots', { abierta: false });
   },
 };
 

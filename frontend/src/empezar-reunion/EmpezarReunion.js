@@ -1,19 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
-import { createEmpezarReunionThunk } from '../reunion/Reunion.actions';
 import { Button } from '../components/Button.styled';
+import backend from '../api/backend';
 
-const EmpezarReunion = ({ onClickStart }) => (
+const EmpezarReunion = () => {
+  const [redirect, setRedirect] = useState(false);
+  const handleEmpezarReunion = () => backend.empezarReunion().then(() => setRedirect(true));
+
+  if (redirect) return <Redirect to="/reunionDeRoots" />;
+
+  return (
     <EmpezarRootsContainer>
       <Title> Aplicacion para moderar la Reunion de Roots</Title>
-      <Button onClick={onClickStart}> Empezar reunión </Button>
+      <Button onClick={handleEmpezarReunion}> Empezar reunión </Button>
     </EmpezarRootsContainer>
-);
+  );
+};
 
-const stateToProps = null;
-const dispatchToProps = (dispatch) => ({
-  onClickStart: () => dispatch(createEmpezarReunionThunk()),
-});
-
-export default connect(stateToProps, dispatchToProps)(EmpezarReunion);
+export default EmpezarReunion;
