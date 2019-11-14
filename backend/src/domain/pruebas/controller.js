@@ -1,6 +1,8 @@
-const PruebasController = () => ({
+const PruebasController = ({buscarTemasVotacionRoots}) => ({
   temas: (req, res) => {
-      res.status(200).send('Hola');
+    buscarTemasVotacionRoots().then(temas =>
+        res.status(200).send(temas)
+      );
   },
 
 });
