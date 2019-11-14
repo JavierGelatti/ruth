@@ -7,7 +7,8 @@
     "build": "babel src --out-dir build",
     "lint": "eslint 'src/**/*.js' --fix",
     "migrate": "sequelize db:migrate db:seed",
-    "start:dev": "nodemon --inspect=9529 --exec babel-node src/index.js"
+    "start:dev": "nodemon --inspect=9529 --exec babel-node src/index.js",
+    "test": "jest"
   },
   "lint-staged": {
     "**/*.js": [
@@ -23,7 +24,6 @@
     "dotenv": "^8.2.0",
     "eslint-plugin-promise": "^4.2.1",
     "express": "~4.16.1",
-    "jest": "^24.9.0",
     "morgan": "~1.9.1",
     "node-fetch": "^2.6.0",
     "node-uuid": "^1.4.8",
@@ -43,6 +43,7 @@
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-plugin-import": "^2.18.2",
     "husky": "^3.0.9",
+    "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "nodemon": "^1.19.4",
     "sequelize-cli": "^5.5.1"
