@@ -7,7 +7,7 @@ export const EmpezarRootsContainer = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.div`
-  font-size: 2rem;
-  font-family: ${font.title};
+export const Title = styled.h1`
+  font-size: ${font.sizeH1} ;
+  font-family: ${font.h1};
 `;

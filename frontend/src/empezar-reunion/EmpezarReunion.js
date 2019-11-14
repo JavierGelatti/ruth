@@ -12,8 +12,8 @@ const EmpezarReunion = () => {
 
   return (
     <EmpezarRootsContainer>
-      <Title> Aplicacion para moderar la Reunion de Roots</Title>
-      <Button onClick={handleEmpezarReunion}> Empezar reunión </Button>
+      <Title>No hay ninguna reunión activa</Title>
+      <Button onClick={handleEmpezarReunion}>Texto botón</Button>
     </EmpezarRootsContainer>
   );
 };
