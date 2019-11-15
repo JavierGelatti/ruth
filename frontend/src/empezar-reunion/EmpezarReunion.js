@@ -18,10 +18,9 @@ class EmpezarReunion extends React.Component {
   handleEmpezarReunion = () => {
     this.setState({ cargando: true });
     backend.empezarReunion().then(() => {
-      this.setState({ cargando: false, redirect: true });
+      this.setState({ redirect: true });
     });
   };
-
 
   iniciarReunion = () => {
     if (this.state.cargando) {
