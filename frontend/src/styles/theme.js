@@ -14,6 +14,6 @@ export const colors = {
   primary: '#68C9B2',
   secondary: '#448495',
   black50: '#7F7F7F',
-  black30: '#1E1E1E',
+  black30: '#DADADA',
   background: '#F2F2F2',
 };

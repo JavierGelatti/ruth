@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
+import {
+  EmpezarRootsContainer, Title, TitleAndButton, HomeImage,
+} from './EmpezarReunion.styled';
 import { Button } from '../components/Button.styled';
 import backend from '../api/backend';
+import RuthHeader from '../Header/Header';
 
 const EmpezarReunion = () => {
   const [redirect, setRedirect] = useState(false);
@@ -11,10 +14,16 @@ const EmpezarReunion = () => {
   if (redirect) return <Redirect to="/reunionDeRoots" />;
 
   return (
-    <EmpezarRootsContainer>
-      <Title>No hay ninguna reunión activa</Title>
-      <Button onClick={handleEmpezarReunion}>Texto botón</Button>
-    </EmpezarRootsContainer>
+    <>
+      <RuthHeader/>
+      <EmpezarRootsContainer>
+          <TitleAndButton>
+            <Title>No hay ninguna reunión activa</Title>
+            <Button onClick={handleEmpezarReunion}>Empezar Reunión</Button>
+          </TitleAndButton>
+          <HomeImage src="./home.svg" alt="Home"/>
+      </EmpezarRootsContainer>
+    </>
   );
 };
 
