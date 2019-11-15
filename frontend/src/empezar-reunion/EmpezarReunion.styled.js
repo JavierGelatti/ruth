@@ -1,11 +1,23 @@
 import styled from 'styled-components';
-import { font } from '../styles/theme';
+import { font, variables } from '../styles/theme';
 
 export const EmpezarRootsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 9rem 8rem;
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+export const HomeImage = styled.img`
+  max-width: 20rem;
+  width: 100%;
+  margin: 0 4rem;
 `;
 
 export const TitleAndButton = styled.div`
@@ -16,16 +28,9 @@ export const TitleAndButton = styled.div`
   flex-wrap: wrap;
 `;
 
-export const HomeImage = styled.img`
-  height: 20rem;
-  width: 20rem;
-  min-height: 20rem;
-  min-width: 20rem;
-  padding: 0rem 2rem;
-`;
-
 export const Title = styled.h1`
   font-size: ${font.sizeH1} ;
   font-family: ${font.h1};
   text-align: center;
+  max-width: 10em;
 `;

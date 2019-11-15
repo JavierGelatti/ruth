@@ -17,3 +17,7 @@ export const colors = {
   black30: '#DADADA',
   background: '#F2F2F2',
 };
+
+export const variables = {
+  headerHeight: '3rem',
+};

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import {
-  EmpezarRootsContainer, Title, TitleAndButton, HomeImage,
+  EmpezarRootsContainer, Title, TitleAndButton, HomeImage, FlexContainer,
 } from './EmpezarReunion.styled';
 import { Button } from '../components/Button.styled';
 import backend from '../api/backend';
@@ -14,8 +14,7 @@ const EmpezarReunion = () => {
   if (redirect) return <Redirect to="/reunionDeRoots" />;
 
   return (
-    <>
-      <RuthHeader/>
+    <FlexContainer>
       <EmpezarRootsContainer>
           <TitleAndButton>
             <Title>No hay ninguna reunión activa</Title>
@@ -23,7 +22,7 @@ const EmpezarReunion = () => {
           </TitleAndButton>
           <HomeImage src="./home.svg" alt="Home"/>
       </EmpezarRootsContainer>
-    </>
+    </FlexContainer>
   );
 };
 
