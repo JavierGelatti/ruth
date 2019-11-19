@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import { colors, font } from './styles/theme';
 
-
 export default createGlobalStyle`
+  @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:300,400,700&display=swap);
+
 html {
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:300,400,700&display=swap');
   font-family: ${font.family};
   scroll-behavior: smooth;
   scrollbar-width: none;
