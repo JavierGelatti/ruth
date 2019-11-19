@@ -1,8 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 import { EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
 import { Button } from '../components/Button.styled';
-// import { Spinner } from '../components/Spinner';
+// import { CircularIndeterminate } from '../components/Spinner';
 import backend from '../api/backend';
 
 
@@ -17,15 +18,22 @@ class EmpezarReunion extends React.Component {
 
   handleEmpezarReunion = () => {
     this.setState({ cargando: true });
-    backend.empezarReunion().then(() => {
-      this.setState({ redirect: true });
-    });
+    setTimeout(this.requestEmpezarReunion, 3000);
   };
+
+  requestEmpezarReunion = () => {
+    backend.empezarReunion().then(() => { this.setState({ redirect: true }); })
+      .catch(() => {
+        this.setState({ cargando: false });
+        alert('Error al iniciar reunión!');
+        return <Redirect to="/" />;
+      });
+  }
 
   iniciarReunion = () => {
     if (this.state.cargando) {
       return (
-        <div>hola</div>
+       <CircularProgress/>
       );
     }
     return (<Button onClick={this.handleEmpezarReunion}> Empezar reunión </Button>);
@@ -33,6 +41,7 @@ class EmpezarReunion extends React.Component {
 
   render() {
     if (this.state.redirect) return <Redirect to="/reunionDeRoots" />;
+    // if (this.state.redirect) return this.props.history.push("/reunionDeRoots");
 
     return (
       <EmpezarRootsContainer>
