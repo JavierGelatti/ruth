@@ -9,6 +9,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
+
 body {
   background: ${colors.background};
   margin: 0;
