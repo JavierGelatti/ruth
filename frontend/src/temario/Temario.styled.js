@@ -30,7 +30,7 @@ export const Arrow = styled.div`
 `;
 
 export const Titulo = styled.div`
-  font-family: ${font.title};
+  font-family: ${font.h1};
   font-size: 2rem;
   color: white;
 `;

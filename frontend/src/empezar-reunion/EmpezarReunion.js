@@ -1,10 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
-import { EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
+import {
+  EmpezarRootsContainer, Title, TitleAndButton, HomeImage, FlexContainer,
+} from './EmpezarReunion.styled';
 import { Button } from '../components/Button.styled';
 import backend from '../api/backend';
-
+import RuthHeader from '../Header/Header';
 
 class EmpezarReunion extends React.Component {
   constructor(props) {
@@ -35,17 +37,22 @@ class EmpezarReunion extends React.Component {
        <CircularProgress/>
       );
     }
-    return (<Button onClick={this.handleEmpezarReunion}> Empezar reunión </Button>);
+    return (<Button onClick={this.handleEmpezarReunion}>Empezar Reunión</Button>);
   }
 
   render() {
     if (this.state.redirect) return <Redirect to="/reunionDeRoots" />;
 
     return (
-      <EmpezarRootsContainer>
-        <Title> Aplicacion para moderar la Reunion de Roots</Title>
-        {this.iniciarReunion()}
-      </EmpezarRootsContainer>
+      <FlexContainer>
+        <EmpezarRootsContainer>
+            <TitleAndButton>
+              <Title>No hay ninguna reunión activa</Title>
+              {this.iniciarReunion()}
+            </TitleAndButton>
+            <HomeImage src="./home.svg" alt="Home"/>
+        </EmpezarRootsContainer>
+      </FlexContainer>
     );
   }
 }

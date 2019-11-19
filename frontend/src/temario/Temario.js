@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Arrow, TemarioContainer, Temas, Titulo,
 } from './Temario.styled';
 
-const Temario = () => {
-  const [isActive, setIsActive] = useState(false);
+class Temario extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+    };
+  }
 
-  return (
-    <TemarioContainer isActive={isActive}>
-      <Arrow onMouseEnter={() => setIsActive(true)}> + </Arrow>
-      <Temas onMouseLeave={() => setIsActive(false)}>
-        <Titulo> Temario </Titulo>
-      </Temas>
-    </TemarioContainer>
-  );
-};
+  render() {
+    return (
+      <TemarioContainer isActive={this.state.isActive}>
+        <Arrow onMouseEnter={() => this.setState({ isActive: true })}> + </Arrow>
+        <Temas onMouseLeave={() => this.setState({ isActive: false })}>
+          <Titulo> Temario </Titulo>
+        </Temas>
+      </TemarioContainer>
+    );
+  }
+}
 
 export default Temario;

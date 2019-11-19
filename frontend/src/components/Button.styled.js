@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import { colors, font } from '../styles/theme';
 
 export const Button = styled.button`
-  font-size: 1.2rem;
-  height: 2.5em;
+  font-size: ${font.sizeP};
   background: ${colors.primary};
-  border-radius: 1em;
+  border-radius: 0.2em;
   border: none;
-  padding: 0.5em;
+  padding: 0.5em 3em;
   cursor: pointer;
   color: white;
-  font-family: ${font.text}
+  font-family: ${font.p}
 `;
