@@ -5,7 +5,7 @@ import Reunion from './reunion/Reunion';
 import EmpezarReunion from './empezar-reunion/EmpezarReunion';
 import backend from './api/backend';
 
-
+// NOTA A DESAROLLADERE: Si van a tocar este crchivo, hablen con Joaquito :)
 const App = ({ location }) => {
   const [reunionDeRoots, setReunionDeRoots] = useState({});
   useEffect(() => {
