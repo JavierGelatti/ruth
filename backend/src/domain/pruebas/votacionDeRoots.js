@@ -4,7 +4,7 @@ const getTemasRoots = () => {
     const temasRootsHost = process.env.TEMAS_ROOTS_HOST;
     const temasRootsApiKey = process.env.TEMAS_ROOTS_API_KEY;
   
-    return fetch(`${temasRootsHost}/api/v2/temas?apiKey=1${temasRootsApiKey}`).then(
+    return fetch(`${temasRootsHost}/api/v2/temas?apiKey=${temasRootsApiKey}`).then(
       response => response.json())
   };
 
