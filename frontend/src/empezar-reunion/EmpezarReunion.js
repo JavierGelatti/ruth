@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 import { EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
 import { Button } from '../components/Button.styled';
-// import { CircularIndeterminate } from '../components/Spinner';
 import backend from '../api/backend';
 
 
@@ -41,7 +40,6 @@ class EmpezarReunion extends React.Component {
 
   render() {
     if (this.state.redirect) return <Redirect to="/reunionDeRoots" />;
-    // if (this.state.redirect) return this.props.history.push("/reunionDeRoots");
 
     return (
       <EmpezarRootsContainer>
