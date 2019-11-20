@@ -1,12 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { CircularProgress } from '@material-ui/core';
 import {
   EmpezarRootsContainer, Title, TitleAndButton, HomeImage, FlexContainer,
 } from './EmpezarReunion.styled';
-import { Button } from '../components/Button.styled';
 import backend from '../api/backend';
-import RuthHeader from '../Header/Header';
+import BotonParaIniciarReunion from './BotonParaIniciarReunion';
 
 class EmpezarReunion extends React.Component {
   constructor(props) {
@@ -19,7 +17,7 @@ class EmpezarReunion extends React.Component {
 
   handleEmpezarReunion = () => {
     this.setState({ cargando: true });
-    setTimeout(this.requestEmpezarReunion, 3000);
+    this.requestEmpezarReunion();
   };
 
   requestEmpezarReunion = () => {
@@ -31,15 +29,6 @@ class EmpezarReunion extends React.Component {
       });
   }
 
-  iniciarReunion = () => {
-    if (this.state.cargando) {
-      return (
-       <CircularProgress/>
-      );
-    }
-    return (<Button onClick={this.handleEmpezarReunion}>Empezar Reunión</Button>);
-  }
-
   render() {
     if (this.state.redirect) return <Redirect to="/reunionDeRoots" />;
 
@@ -48,7 +37,7 @@ class EmpezarReunion extends React.Component {
         <EmpezarRootsContainer>
             <TitleAndButton>
               <Title>No hay ninguna reunión activa</Title>
-              {this.iniciarReunion()}
+              <BotonParaIniciarReunion cargando={this.state.cargando} handleEmpezarReunion={this.handleEmpezarReunion}/>
             </TitleAndButton>
             <HomeImage src="./home.svg" alt="Home"/>
         </EmpezarRootsContainer>
