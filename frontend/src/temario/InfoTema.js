@@ -1,18 +1,14 @@
 import React from 'react';
+import { InfoTemaContainer } from './InfoTema.styled';
 
 class InfoTema extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
 
   render() {
-    return(
-      <div>
-        InfoTema
-     </div>
-      )
+    return (
+      <InfoTemaContainer>
+
+      </InfoTemaContainer>
+    );
   }
 }
 

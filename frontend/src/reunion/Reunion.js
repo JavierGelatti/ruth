@@ -4,9 +4,9 @@ import { ReunionContainer } from './Reunion.styled';
 import InfoTema from '../temario/InfoTema';
 import DescripcionTema from '../temario/DescripcionTema';
 import SideBarIzquierda from '../temario/SideBarIzquierda';
-//import Temario from '../temario/Temario';
-//import { Button } from '../components/Button.styled';
-//import backend from '../api/backend';
+// import Temario from '../temario/Temario';
+// import { Button } from '../components/Button.styled';
+// import backend from '../api/backend';
 
 class Reunion extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Reunion extends React.Component {
   }
 
 
-  //handleCerrarReunion = () => backend.cerrarReunion().then(() => this.setState({ redirect: true }));
+  // handleCerrarReunion = () => backend.cerrarReunion().then(() => this.setState({ redirect: true }));
 
   render() {
     return (

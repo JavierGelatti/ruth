@@ -1,18 +1,14 @@
 import React from 'react';
+import { DescripcionTemaContainer } from './DescripcionTema.styled';
 
 class DescripcionTema extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
 
   render() {
-    return(
-      <div>
-        DescripcionTema
-      </div>
-      )
+    return (
+      <DescripcionTemaContainer>
+          DescripcionTema
+      </DescripcionTemaContainer>
+    );
   }
 }
 
