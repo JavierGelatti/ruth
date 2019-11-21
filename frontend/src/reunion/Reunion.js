@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Temario from '../temario/Temario';
+import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
 import { Button } from '../components/Button.styled';
 import backend from '../api/backend';
@@ -23,6 +24,7 @@ class Reunion extends React.Component {
         <Temario />
         Tema actual
       <Button onClick={this.handleCerrarReunion}> Cerrar reunion </Button>
+      <Sidebar/>
       </ReunionContainer>);
   }
 }
