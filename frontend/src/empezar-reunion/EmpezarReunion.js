@@ -5,7 +5,6 @@ import {
 } from './EmpezarReunion.styled';
 import { Button } from '../components/Button.styled';
 import backend from '../api/backend';
-import RuthHeader from '../Header/Header';
 
 class EmpezarReunion extends React.Component {
   constructor(props) {

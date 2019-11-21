@@ -16,6 +16,9 @@ export const colors = {
   black50: '#7F7F7F',
   black30: '#DADADA',
   background: '#F2F2F2',
+  viridian: '#448475',
+  downy: '#68c9b2',
+  white: '#FFFFFF',
 };
 
 export const variables = {
