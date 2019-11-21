@@ -1,4 +1,5 @@
 import models from '~/database/models';
+var pick = require('lodash.pick');
 
 export default class TemasRepo {
     
@@ -11,17 +12,8 @@ export default class TemasRepo {
   }
 
   create(tema) {
-    return models.Tema.create({ 
-        tipo: tema.tipo,
-        titulo: tema.titulo,
-        descripcion: tema.descripcion,
-        duracion: tema.duracion,
-        autor: tema.autor,
-        obligatoriedad: tema.obligatoriedad,
-        linkDePresentacion: tema.linkDePresentacion,
-        propuestas: tema.propuestas,
-        temasParaRepasar: tema.temasParaRepasar
-    });
+    return models.Tema.create(
+      pick(tema, ['tipo', 'titulo', 'descripcion', 'duracion', 'autor', 'obligatoriedad',
+       'linkDePresentacion', 'propuestas', 'temasParaRepasar']));
   }
-
 }

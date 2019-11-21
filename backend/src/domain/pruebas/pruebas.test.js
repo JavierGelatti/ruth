@@ -6,7 +6,6 @@ describe('Post Endpoints', () => {
     const res = await request(app)
       .get('/api/pruebas/temas')
       .send()
-    expect(res.statusCode).toEqual(200)
-    expect(res.body).toEqual('Hola');
+    expect(res.statusCode).toEqual(200);
   })
 })
