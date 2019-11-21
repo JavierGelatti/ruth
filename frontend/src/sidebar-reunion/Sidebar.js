@@ -1,29 +1,30 @@
 import React from 'react';
+import { faChartBar, faBroadcastTower, faComment } from '@fortawesome/free-solid-svg-icons';
+
+
+import SidebarElement from './SidebarElement';
 import { SidebarContainer, Titulo } from './Sidebar.styled';
-import TemaActual from './TemaActual';
-import Presentacion from './Presentacion';
-import Analytics from './Analytics';
 
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tema: true,
-      presentacion: false,
-      analytics: false,
+      selectedElement: 0,
     };
   }
 
-  handleTemaActual = () => {
-    alert('Pruebita del click');
+  handleSelection = (itemId) => {
+    this.setState({
+      selectedElement: itemId,
+    });
   }
 
   render() {
     return (
         <SidebarContainer>
-          <div onClick={this.handleTemaActual}> <TemaActual/> </div>
-          <div onClick={this.handleTemaActual}> <Presentacion/> </div>
-          <div onClick={this.handleTemaActual}> <Analytics/> </div>
+          <div onClick={() => this.handleSelection(0)}> <SidebarElement icon={faBroadcastTower} title={'Tema Actual'} isActive={this.state.selectedElement === 0}/> </div>
+          <div onClick={() => this.handleSelection(1)}> <SidebarElement icon={faComment} title={'Presentación'} isActive={this.state.selectedElement === 1}/> </div>
+          <div onClick={() => this.handleSelection(2)}> <SidebarElement icon={faChartBar} title={'Analytics'} isActive={this.state.selectedElement === 2}/> </div>
         </SidebarContainer>
     );
   }
