@@ -1,5 +1,8 @@
 import React from 'react';
 import { SidebarContainer, Titulo } from './Sidebar.styled';
+import TemaActual from './TemaActual';
+import Presentacion from './Presentacion';
+import Analytics from './Analytics';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -11,10 +14,16 @@ class Sidebar extends React.Component {
     };
   }
 
+  handleTemaActual = () => {
+    alert('Pruebita del click');
+  }
+
   render() {
     return (
         <SidebarContainer>
-            <Titulo> Hola! </Titulo>
+          <div onClick={this.handleTemaActual}> <TemaActual/> </div>
+          <div onClick={this.handleTemaActual}> <Presentacion/> </div>
+          <div onClick={this.handleTemaActual}> <Analytics/> </div>
         </SidebarContainer>
     );
   }

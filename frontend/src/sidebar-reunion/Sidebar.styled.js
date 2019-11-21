@@ -4,30 +4,31 @@ import { colors, font } from '../styles/theme';
 export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   position: relative;
   right: 0;
-  width: 25%;
+  width: 20%;
   background: ${colors.black30}
 `;
 
-export const TemaActual = styled.img`
-  min-height: 100vh;
-  padding: 1em;
-  width: 12em;  
+export const SeleccionImagen = styled.img`
   background: ${colors.secondary};
+  padding-top: 10%;
+  padding-bottom: 5%;
+  height: 5rem;
 `;
 
-export const Arrow = styled.div`
-  display: inline-block;
-  font-size: 1.5rem;
-  padding: 0.5em;
-  color: white;
-  width: 1em;
-  line-height: 2em;
-  height: 2em;
-  border-bottom-right-radius: 4em;
-  border-top-right-radius: 4em;
-  background: ${colors.secondary};
+export const SeleccionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TitulosSidebar = styled.div`
+  font-family: ${font.p};
+  font-size: ${font.sizeP};
+  color: ${colors.primary};
+  text-align: center;
+  border-bottom: 2rem ${colors.secondary};
 `;
 
 export const Titulo = styled.div`
