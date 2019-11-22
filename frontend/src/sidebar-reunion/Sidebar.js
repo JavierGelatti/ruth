@@ -9,22 +9,24 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedElement: 0,
+      selectedElement: 'Tema Actual',
     };
   }
 
-  handleSelection = (itemId) => {
+  menu = [{ icon: faBroadcastTower, title: 'Tema Actual' },
+    { icon: faComment, title: 'Presentación' },
+    { icon: faChartBar, title: 'Analytics' }];
+
+  handleSelection = (name) => {
     this.setState({
-      selectedElement: itemId,
+      selectedElement: name,
     });
   }
 
   render() {
     return (
         <SidebarContainer>
-          <div onClick={() => this.handleSelection(0)}> <SidebarElement icon={faBroadcastTower} title={'Tema Actual'} isActive={this.state.selectedElement === 0}/> </div>
-          <div onClick={() => this.handleSelection(1)}> <SidebarElement icon={faComment} title={'Presentación'} isActive={this.state.selectedElement === 1}/> </div>
-          <div onClick={() => this.handleSelection(2)}> <SidebarElement icon={faChartBar} title={'Analytics'} isActive={this.state.selectedElement === 2}/> </div>
+          {this.menu.map((seccion) => <div onClick={() => this.handleSelection(seccion.title)}> <SidebarElement icon={seccion.icon} title={seccion.title} isActive={this.state.selectedElement === seccion.title}/> </div>)}
         </SidebarContainer>
     );
   }
