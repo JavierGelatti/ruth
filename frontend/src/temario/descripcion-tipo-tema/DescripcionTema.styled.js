@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { font } from '../styles/theme';
+import { font } from '../../styles/theme';
 
 
 export const DescripcionTemaContainer = styled.div`

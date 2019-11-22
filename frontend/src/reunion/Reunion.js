@@ -2,20 +2,27 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { ReunionContainer } from './Reunion.styled';
 import InfoTema from '../temario/InfoTema';
-import DescripcionTema from '../temario/DescripcionTema';
 import SidebarVistas from '../temario/SidebarVistas';
 import backend from '../api/backend';
 import { Button } from '../components/Button.styled';
+import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
 
 class Reunion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      autor: 'Caro',
+      autor: 'Joaco',
       duracion: '60 mins',
-      tipo: 'Obligatorio',
-      titulo: 'Título Tema',
-      descripcion: 'Descripción Tema',
+      tipo: 'proponerPinos',
+      titulo: 'Título',
+      propuestas: [
+        {
+          pino: 'Caro',
+          sponsor: {
+            name: 'Joaco',
+          },
+        },
+      ],
       redirect: false,
     };
   }
@@ -27,7 +34,8 @@ class Reunion extends React.Component {
     return (
       <ReunionContainer>
         <InfoTema autor={this.state.autor} duracion={this.state.duracion} tipo={this.state.tipo}/>
-        <DescripcionTema titulo={this.state.titulo} descripcion={this.state.descripcion}/>
+        {(new HandlerTipoTema()).handleTipoTema(this.state)}
+        {/* <DescripcionTema tema={this.state}/> */}
         <SidebarVistas/>
         <Button onClick={this.handleCerrarReunion}> Cerrar reunion </Button>
       </ReunionContainer>);
