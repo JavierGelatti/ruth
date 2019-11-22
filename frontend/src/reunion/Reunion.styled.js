@@ -4,5 +4,6 @@ import styled from 'styled-components';
 export const ReunionContainer = styled.div`
   display: flex;
   min-width: 100vw;
+  justify-content: space-between;
   align-items: flex-start
 `;
