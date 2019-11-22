@@ -1,5 +1,5 @@
 import models from '~/database/models';
-var pick = require('lodash.pick');
+import {pick} from 'lodash';
 
 export default class TemasRepo {
     
@@ -11,9 +11,10 @@ export default class TemasRepo {
     return models.Tema.findByPk(id);
   }
 
-  create(tema) {
-    return models.Tema.create(
+  guardarTemas(temas) {
+    return models.Tema.bulkCreate(temas.map(tema => 
       pick(tema, ['tipo', 'titulo', 'descripcion', 'duracion', 'autor', 'obligatoriedad',
-       'linkDePresentacion', 'propuestas', 'temasParaRepasar']));
+      'linkDePresentacion', 'propuestas', 'temasParaRepasar'])))
   }
+  
 }
