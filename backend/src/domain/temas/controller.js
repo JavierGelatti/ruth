@@ -1,26 +1,19 @@
-const ReunionController = ({reunionesRepo: repo}) => ({
-  reunion: (req, res) => {
-    repo.findLastCreated().then(reunion =>
-      res.status(200).send(reunion));
+import {respondWithSuccess, respondWithError} from '../sarasa'
+import VotacionDeRoots from '../votacionDeRoots/votacionDeRoots';
+
+const TemaController = ({temasRepo: repo}) => ({
+  obtener: (req, res) => {
+    repo.findAll().then(temas => respondWithSuccess(res, temas))
+    .catch(error => respondWithError(res, error));
   },
 
-  crear: (req, res) => {
-    const {abierta} = req.body;
-    repo.create({abierta})
-      .then(nuevaReunion =>
-        res.status(201).send(nuevaReunion));
-  },
-
-  actualizar: (req, res) => {
-    const {abierta} = req.body;
-
-    repo.findLastCreated()
-      .then(reunionAActualizar =>
-        reunionAActualizar.update({abierta}))
-      .then(() =>
-        res.status(200).send());
+  guardar: (req, res) => {
+    VotacionDeRoots.getTemasRoots().then(temas => 
+      Promise.all(temas.map(tema => repo.create(tema))))
+      .then(temas => respondWithSuccess(res))
+      .catch(error => respondWithError(res, error));
   },
 
 });
 
-export default ReunionController;
+export default TemaController;

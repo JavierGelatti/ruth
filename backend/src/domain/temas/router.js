@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import context from '~/context';
 
-import ReunionController from './controller';
+import TemaController from './controller';
 import asyncMiddleware from '~/utils/asyncMiddleware';
 
 const router = Router({ promise: true });
 
-const controller = ReunionController(context);
+const controller = TemaController(context);
 
-router.get('/temas', asyncMiddleware(controller.reunion));
-router.post('/temas', asyncMiddleware(controller.crear));
+router.get('/obtener', asyncMiddleware(controller.obtener));
+router.get('/guardar', asyncMiddleware(controller.guardar));
 
 export default router;
