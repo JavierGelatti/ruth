@@ -1,21 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { EmpezarRootsContainer, Title } from './EmpezarReunion.styled';
-import { Button } from '../components/Button.styled';
+import {
+  EmpezarRootsContainer, Title, TitleAndButton, HomeImage, FlexContainer,
+} from './EmpezarReunion.styled';
 import backend from '../api/backend';
+import BotonParaIniciarReunion from './BotonParaIniciarReunion';
 
-const EmpezarReunion = () => {
-  const [redirect, setRedirect] = useState(false);
-  const handleEmpezarReunion = () => backend.empezarReunion().then(() => setRedirect(true));
+class EmpezarReunion extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirect: false,
+      cargando: false,
+    };
+  }
 
-  if (redirect) return <Redirect to="/reunionDeRoots" />;
+  handleEmpezarReunion = () => {
+    this.setState({ cargando: true });
+    this.requestEmpezarReunion();
+  };
 
-  return (
-    <EmpezarRootsContainer>
-      <Title> Aplicacion para moderar la Reunion de Roots</Title>
-      <Button onClick={handleEmpezarReunion}> Empezar reunión </Button>
-    </EmpezarRootsContainer>
-  );
-};
+  requestEmpezarReunion = () => {
+    backend.empezarReunion().then(() => { this.setState({ redirect: true }); })
+      .catch(() => {
+        this.setState({ cargando: false });
+        alert('Error al iniciar reunión!');
+        return <Redirect to="/" />;
+      });
+  }
+
+  render() {
+    if (this.state.redirect) return <Redirect to="/reunionDeRoots" />;
+
+    return (
+      <FlexContainer>
+        <EmpezarRootsContainer>
+            <TitleAndButton>
+              <Title>No hay ninguna reunión activa</Title>
+              <BotonParaIniciarReunion cargando={this.state.cargando} handleEmpezarReunion={this.handleEmpezarReunion}/>
+            </TitleAndButton>
+            <HomeImage src="./home.svg" alt="Home"/>
+        </EmpezarRootsContainer>
+      </FlexContainer>
+    );
+  }
+}
 
 export default EmpezarReunion;
