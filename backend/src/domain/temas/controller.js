@@ -1,4 +1,4 @@
-import {respondWithSuccess, respondWithError} from '../sarasa'
+import {respondWithSuccess, respondWithError} from '../responses'
 import VotacionDeRoots from '../votacionDeRoots/votacionDeRoots';
 
 const TemaController = ({temasRepo: repo}) => ({

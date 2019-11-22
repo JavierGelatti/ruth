@@ -1,4 +1,4 @@
-import {respondWithSuccess, respondWithError} from '../sarasa'
+import {respondWithSuccess, respondWithError} from '../responses'
 
 const PruebasController = ({buscarTemasVotacionRoots}) => ({
   temas: (req, res) => {
