@@ -1,43 +1,36 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import Temario from '../temario/Temario';
+import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
-import InfoTema from '../temario/InfoTema';
-import SidebarVistas from '../temario/SidebarVistas';
-import backend from '../api/backend';
-import { Button } from '../components/Button.styled';
-import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
+import TemaActual from '../tipos-vista-principal/TemaActual';
+import Presentacion from '../tipos-vista-principal/Presentacion';
+import Analytics from '../tipos-vista-principal/Analytics';
+
 
 class Reunion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      autor: 'Joaco',
-      duracion: '60 mins',
-      tipo: 'proponerPinos',
-      titulo: 'Título',
-      propuestas: [
-        {
-          pino: 'Caro',
-          sponsor: {
-            name: 'Joaco',
-          },
-        },
-      ],
-      redirect: false,
+      selectedElement: 'Tema Actual',
     };
   }
 
-  handleCerrarReunion = () => backend.cerrarReunion().then(() => this.setState({ redirect: true }));
+  vistas = [TemaActual, Presentacion, Analytics]
+  obtenerVista = () => this.vistas.find((vista) => vista.canHandleView(this.state.selectedElement))
+
+  handleSelection = (name) => {
+    this.setState({
+      selectedElement: name,
+    });
+  }
 
   render() {
-    if (this.state.redirect) return <Redirect to="/" />;
+    const VistaSeleccionada = this.obtenerVista();
     return (
       <ReunionContainer>
-        <InfoTema autor={this.state.autor} duracion={this.state.duracion} tipo={this.state.tipo}/>
-        {(new HandlerTipoTema()).handleTipoTema(this.state)}
-        {/* <DescripcionTema tema={this.state}/> */}
-        <SidebarVistas/>
-        <Button onClick={this.handleCerrarReunion}> Cerrar reunion </Button>
+        {/* <Temario/> */}
+        <VistaSeleccionada/>
+        <Sidebar handleSelection={this.handleSelection} selectedElement={this.state.selectedElement}/>
       </ReunionContainer>);
   }
 }

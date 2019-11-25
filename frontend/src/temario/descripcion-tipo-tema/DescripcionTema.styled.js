@@ -4,7 +4,7 @@ import { font } from '../../styles/theme';
 
 export const DescripcionTemaContainer = styled.div`
   display: flex;
-  flex-grow: 0.6;
+  flex: 1;
   flex-direction:column;
   align-items:center;
 `;

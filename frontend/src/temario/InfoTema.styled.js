@@ -8,5 +8,5 @@ export const InfoTemaContainer = styled.div`
   padding: 3rem 0rem;
   justify-content: space-around;
   background: ${colors.downy};
-  flex-grow:0.1;
+  width:22%;
 `;
