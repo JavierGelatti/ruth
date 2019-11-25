@@ -1,30 +1,30 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import Temario from '../temario/Temario';
 import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
-import { Button } from '../components/Button.styled';
-import backend from '../api/backend';
+import VistaActual from './VistaActual';
 
 class Reunion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       redirect: false,
+      selectedElement: 'Tema Actual',
     };
   }
 
-  handleCerrarReunion = () => backend.cerrarReunion().then(() => this.setState({ redirect: true }));
+  handleSelection = (name) => {
+    this.setState({
+      selectedElement: name,
+    });
+  }
 
   render() {
-    if (this.state.redirect) return <Redirect to="/" />;
-
     return (
       <ReunionContainer>
         <Temario/>
-        Tema actual
-      <Button onClick={this.handleCerrarReunion}> Cerrar reunion </Button>
-      <Sidebar/>
+        <VistaActual vista={this.state.selectedElement}/>
+        <Sidebar handleSelection={this.handleSelection} selectedElement={this.state.selectedElement}/>
       </ReunionContainer>);
   }
 }
