@@ -17,16 +17,10 @@ class Sidebar extends React.Component {
     { icon: faComment, title: 'Presentación' },
     { icon: faChartBar, title: 'Analytics' }];
 
-  handleSelection = (name) => {
-    this.setState({
-      selectedElement: name,
-    });
-  }
-
   render() {
     return (
         <SidebarContainer>
-          {this.menu.map((seccion) => <div onClick={() => this.handleSelection(seccion.title)}> <SidebarElement icon={seccion.icon} title={seccion.title} isActive={this.state.selectedElement === seccion.title}/> </div>)}
+          {this.menu.map((seccion) => <div onClick={() => this.props.handleSelection(seccion.title)}> <SidebarElement icon={seccion.icon} title={seccion.title} isActive={this.props.selectedElement === seccion.title}/> </div>)}
         </SidebarContainer>
     );
   }
