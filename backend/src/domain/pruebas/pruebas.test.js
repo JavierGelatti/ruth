@@ -1,13 +1,11 @@
 import request from 'supertest'
-// import app from '~/server'
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import app from '~/server'
 
 describe('Post Endpoints', () => {
-  xit('should create a new post', async () => {
-    const res = await request(app)
+  it('should create a new post', () => {
+    return request(app)
       .get('/api/pruebas/temas')
       .send()
-    expect(res.statusCode).toEqual(200);
+      .then(res => expect(res.statusCode).toEqual(200));
   })
 })

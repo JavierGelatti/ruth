@@ -1,4 +1,4 @@
-var fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const getTemasRoots = () => {
     const temasRootsHost = process.env.TEMAS_ROOTS_HOST;
@@ -8,9 +8,13 @@ const getTemasRoots = () => {
       response => response.json())
   };
 
+const getTemasRootsMock = () => {
+  return Promise.resolve( require('./temas-fixture.json') );
+}
+
 const VotacionDeRoots = {
 
-    getTemasRoots
+    getTemasRoots: process.env.NODE_ENV === 'test' ? getTemasRootsMock : getTemasRoots
 
 }
 

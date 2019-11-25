@@ -1,0 +1,262 @@
+[
+    {
+        "tipo": "conDescripcion",
+        "id": 796,
+        "duracion": "MEDIO",
+        "idDeAutor": 9,
+        "ultimoModificador": "Ailen Muñoz",
+        "idDeReunion": 793,
+        "autor": "Ailen Muñoz",
+        "prioridad": 2,
+        "titulo": "HOla hola",
+        "descripcion": ":)",
+        "idsDeInteresados": [],
+        "obligatoriedad": "OBLIGATORIO",
+        "idDePropuestaOriginal": null,
+        "fechaDePropuestaOriginal": null,
+        "esRePropuesta": false,
+        "linkDePresentacion": null
+    },
+    {
+        "tipo": "conDescripcion",
+        "id": 799,
+        "duracion": "CORTO",
+        "idDeAutor": 9,
+        "ultimoModificador": "Ailen Muñoz",
+        "idDeReunion": 793,
+        "autor": "Ailen Muñoz",
+        "prioridad": 3,
+        "titulo": "lakjsdad",
+        "descripcion": "ljksdasd",
+        "idsDeInteresados": [
+            9,
+            9,
+            9
+        ],
+        "obligatoriedad": "NO_OBLIGATORIO",
+        "idDePropuestaOriginal": null,
+        "fechaDePropuestaOriginal": null,
+        "esRePropuesta": false,
+        "linkDePresentacion": "https://www.lipsum.com/"
+    },
+    {
+        "tipo": "conDescripcion",
+        "id": 795,
+        "duracion": "CORTO",
+        "idDeAutor": 9,
+        "ultimoModificador": "Ailen Muñoz",
+        "idDeReunion": 793,
+        "autor": "Ailen Muñoz",
+        "prioridad": 4,
+        "titulo": "Ir a Temaiken",
+        "descripcion": "Como empresa queremos ir a Temaiken. Vamos?",
+        "idsDeInteresados": [],
+        "obligatoriedad": "NO_OBLIGATORIO",
+        "idDePropuestaOriginal": null,
+        "fechaDePropuestaOriginal": null,
+        "esRePropuesta": false,
+        "linkDePresentacion": null
+    },
+    {
+        "tipo": "proponerPinos",
+        "id": 797,
+        "duracion": "CORTO",
+        "idDeAutor": 9,
+        "ultimoModificador": null,
+        "idDeReunion": 793,
+        "autor": "Ailen Muñoz",
+        "prioridad": 5,
+        "titulo": "Proponer pinos a root",
+        "descripcion": null,
+        "idsDeInteresados": [],
+        "obligatoriedad": "NO_OBLIGATORIO",
+        "idDePropuestaOriginal": null,
+        "fechaDePropuestaOriginal": null,
+        "esRePropuesta": false,
+        "propuestas": [
+            {
+                "pino": "ailu",
+                "sponsor": {
+                    "id": 9,
+                    "name": "Ailen Muñoz",
+                    "login": "ailen",
+                    "backofficeId": "88",
+                    "creation": "2018-08-27T21:53:26.095Z",
+                    "modification": "2018-08-31T14:54:02.717Z",
+                    "mail": "ailen.munoz@10pines.com"
+                }
+            }
+        ]
+    },
+    {
+        "tipo": "repasarActionItems",
+        "id": 800,
+        "duracion": "MEDIO",
+        "idDeAutor": 445,
+        "ultimoModificador": null,
+        "idDeReunion": 793,
+        "autor": "Angel Yan",
+        "prioridad": null,
+        "titulo": "Ver action items anteriores",
+        "descripcion": null,
+        "idsDeInteresados": [],
+        "obligatoriedad": "OBLIGATORIO",
+        "idDePropuestaOriginal": null,
+        "fechaDePropuestaOriginal": null,
+        "esRePropuesta": false,
+        "temasParaRepasar": [
+            {
+                "id": 752,
+                "idDeMinuta": 750,
+                "tema": {
+                    "tipo": "repasarActionItems",
+                    "id": 749,
+                    "duracion": "MEDIO",
+                    "idDeAutor": 445,
+                    "ultimoModificador": null,
+                    "idDeReunion": 746,
+                    "autor": "Angel Yan",
+                    "prioridad": null,
+                    "titulo": "Ver action items anteriores",
+                    "descripcion": null,
+                    "idsDeInteresados": [],
+                    "obligatoriedad": "OBLIGATORIO",
+                    "idDePropuestaOriginal": null,
+                    "fechaDePropuestaOriginal": null,
+                    "esRePropuesta": false,
+                    "temasParaRepasar": [
+                        {
+                            "id": 744,
+                            "idDeMinuta": 742,
+                            "tema": {
+                                "tipo": "repasarActionItems",
+                                "id": 741,
+                                "duracion": "MEDIO",
+                                "idDeAutor": 445,
+                                "ultimoModificador": null,
+                                "idDeReunion": 724,
+                                "autor": "Angel Yan",
+                                "prioridad": null,
+                                "titulo": "Ver action items anteriores",
+                                "descripcion": null,
+                                "idsDeInteresados": [],
+                                "obligatoriedad": "OBLIGATORIO",
+                                "idDePropuestaOriginal": null,
+                                "fechaDePropuestaOriginal": null,
+                                "esRePropuesta": false,
+                                "temasParaRepasar": [
+                                    {
+                                        "id": 739,
+                                        "idDeMinuta": 738,
+                                        "tema": {
+                                            "tipo": "conDescripcion",
+                                            "id": 735,
+                                            "duracion": "MEDIO",
+                                            "idDeAutor": 445,
+                                            "ultimoModificador": "Angel Yan",
+                                            "idDeReunion": 734,
+                                            "autor": "Angel Yan",
+                                            "prioridad": null,
+                                            "titulo": "Ver action items anteriores",
+                                            "descripcion": null,
+                                            "idsDeInteresados": [],
+                                            "obligatoriedad": "OBLIGATORIO",
+                                            "idDePropuestaOriginal": null,
+                                            "fechaDePropuestaOriginal": null,
+                                            "esRePropuesta": false,
+                                            "linkDePresentacion": null
+                                        },
+                                        "actionItems": [],
+                                        "conclusion": null,
+                                        "fueTratado": false
+                                    }
+                                ]
+                            },
+                            "actionItems": [],
+                            "conclusion": null,
+                            "fueTratado": false
+                        },
+                        {
+                            "id": 743,
+                            "idDeMinuta": 742,
+                            "tema": {
+                                "tipo": "conDescripcion",
+                                "id": 740,
+                                "duracion": "CORTO",
+                                "idDeAutor": 353,
+                                "ultimoModificador": "Federico Romero",
+                                "idDeReunion": 724,
+                                "autor": "Federico Romero",
+                                "prioridad": 2,
+                                "titulo": "sdmasdlka",
+                                "descripcion": null,
+                                "idsDeInteresados": [
+                                    353,
+                                    353,
+                                    353
+                                ],
+                                "obligatoriedad": "NO_OBLIGATORIO",
+                                "idDePropuestaOriginal": null,
+                                "fechaDePropuestaOriginal": null,
+                                "esRePropuesta": false,
+                                "linkDePresentacion": null
+                            },
+                            "actionItems": [
+                                {
+                                    "id": 745,
+                                    "descripcion": "kljsdlkajdalks",
+                                    "responsables": [
+                                        {
+                                            "id": 46,
+                                            "name": "Erik Gervas",
+                                            "login": "erik.gervas",
+                                            "backofficeId": "86",
+                                            "creation": "2018-08-29T16:25:15.872Z",
+                                            "modification": "2018-08-29T16:25:15.872Z",
+                                            "mail": "erik.gervas@10pines.com"
+                                        }
+                                    ],
+                                    "tema": null
+                                }
+                            ],
+                            "conclusion": null,
+                            "fueTratado": true
+                        }
+                    ]
+                },
+                "actionItems": [],
+                "conclusion": null,
+                "fueTratado": false
+            },
+            {
+                "id": 751,
+                "idDeMinuta": 750,
+                "tema": {
+                    "tipo": "conDescripcion",
+                    "id": 748,
+                    "duracion": "CORTO",
+                    "idDeAutor": 353,
+                    "ultimoModificador": "Federico Romero",
+                    "idDeReunion": 746,
+                    "autor": "Federico Romero",
+                    "prioridad": 2,
+                    "titulo": "kljlkjlkj",
+                    "descripcion": null,
+                    "idsDeInteresados": [
+                        353,
+                        353,
+                        353
+                    ],
+                    "obligatoriedad": "NO_OBLIGATORIO",
+                    "idDePropuestaOriginal": null,
+                    "fechaDePropuestaOriginal": null,
+                    "esRePropuesta": false,
+                    "linkDePresentacion": null
+                },
+                "actionItems": [],
+                "conclusion": null,
+                "fueTratado": false
+            }
+        ]
+    }
+]

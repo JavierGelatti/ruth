@@ -9,4 +9,8 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
   },
+  test: {
+    dialect: 'sqlite',
+    storage: ':memory:',
+  }
 };
