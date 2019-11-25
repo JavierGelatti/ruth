@@ -1,5 +1,7 @@
 import request from 'supertest'
-import app from '~/server'
+// import app from '~/server'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 describe('Post Endpoints', () => {
   xit('should create a new post', async () => {
