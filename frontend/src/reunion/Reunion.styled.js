@@ -5,4 +5,5 @@ export const ReunionContainer = styled.div`
   display:flex;
   justify-content: space-between;
   align-items: stretch;
+  height: 100%;
 `;

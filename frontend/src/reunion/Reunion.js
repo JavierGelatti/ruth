@@ -16,6 +16,7 @@ class Reunion extends React.Component {
   }
 
   vistas = [TemaActual, Presentacion, Analytics]
+
   obtenerVista = () => this.vistas.find((vista) => vista.canHandleView(this.state.selectedElement))
 
   handleSelection = (name) => {
@@ -28,7 +29,6 @@ class Reunion extends React.Component {
     const VistaSeleccionada = this.obtenerVista();
     return (
       <ReunionContainer>
-        {/* <Temario/> */}
         <VistaSeleccionada/>
         <Sidebar handleSelection={this.handleSelection} selectedElement={this.state.selectedElement}/>
       </ReunionContainer>);
