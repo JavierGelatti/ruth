@@ -1,6 +1,6 @@
 [**Link al Trello**](https://trello.com/c/ID_DE_LA_CARD)
 
-**Evidencia**
+**Aceptación**
 (Acá van imagenes o una descipción de qué valor agrega este PR)
 
 **Checklist**:
