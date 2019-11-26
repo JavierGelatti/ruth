@@ -18,3 +18,6 @@ export const Descripcion = styled.p`
   font-size: ${font.sizeP} ;
   font-family: ${font.p};
 `;
+
+export const Lista = styled.ul`
+`;
