@@ -12,3 +12,8 @@ export const VistaDelMedioContainer = styled.div`
     flex: 1;
     align-items: center;
 `;
+
+export const Botonera = styled.div` 
+    display: flex; 
+    flex-direction: column;
+`;

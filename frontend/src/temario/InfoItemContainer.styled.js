@@ -11,8 +11,8 @@ export const InfoImage = styled.div`
   border-radius: 12.5rem;
   border: 4px solid ${colors.viridian};
   background: ${colors.white};
-  width:120px;
-  height:120px;
+  width:7.5rem;
+  height:7.5rem;
   padding:2%;
   margin:2%;
   background-image: url(${(props) => props.src});
