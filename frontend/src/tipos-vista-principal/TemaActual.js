@@ -1,6 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { TemaActualContainer, VistaDelMedioContainer, Botonera } from './TemaActual.styled';
+import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  TemaActualContainer, VistaDelMedioContainer, Botonera, BotoneraNavegacionTemas, BotoneraCerrarReunion,
+} from './TemaActual.styled';
 import InfoTema from '../temario/InfoTema';
 import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
 import backend from '../api/backend';
@@ -32,7 +36,7 @@ class TemaActual extends React.Component {
   componentDidMount() {
     backend.getTemas().then((temas) => {
       this.setState(
-        { tema: temas[0] },
+        { tema: temas[2] },
       );
     });
   }
@@ -51,8 +55,14 @@ class TemaActual extends React.Component {
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(this.state.tema)}
           <Botonera>
-            <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
-            <Button onClick={this.handleCerrarReunion}>Cerrar Reunión</Button>
+            <BotoneraNavegacionTemas>
+              <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
+              <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
+              <FontAwesomeIcon icon={faCaretRight} size="4x"/>
+            </BotoneraNavegacionTemas>
+            <BotoneraCerrarReunion>
+              <Button onClick={this.handleCerrarReunion}>Cerrar Reunión</Button>
+            </BotoneraCerrarReunion>
           </Botonera>
         </VistaDelMedioContainer>
       </TemaActualContainer>

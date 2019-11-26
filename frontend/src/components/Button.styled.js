@@ -7,7 +7,6 @@ export const Button = styled.button`
   border-radius: 0.2em;
   border: none;
   padding: 0.5em 3em;
-  margin-bottom: 0.5em;
   cursor: pointer;
   color: white;
   font-family: ${font.p}
