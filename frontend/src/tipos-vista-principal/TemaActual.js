@@ -11,15 +11,15 @@ class TemaActual extends React.Component {
     super(props);
     this.state = {
       tema: {
-        autor: 'Joaco',
-        duracion: '60 mins',
-        tipo: 'proponerPinos',
-        titulo: 'Título',
+        autor: 'Loading...',
+        duracion: 'Loading... ',
+        tipo: 'conDescripcion',
+        titulo: 'Loading...',
         propuestas: [
           {
-            pino: 'Caro',
+            pino: 'Loading...',
             sponsor: {
-              name: 'Joaco',
+              name: 'Loading...',
             },
           },
         ],
