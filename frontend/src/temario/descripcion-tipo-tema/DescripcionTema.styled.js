@@ -19,5 +19,5 @@ export const Descripcion = styled.p`
   font-family: ${font.p};
 `;
 
-export const Lista = styled.ul`
+export const ListaPinosPropuestos = styled.ul`
 `;

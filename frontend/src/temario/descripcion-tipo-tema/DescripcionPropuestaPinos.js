@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  DescripcionTemaContainer, Titulo, Descripcion, Lista,
+  DescripcionTemaContainer, Titulo, Descripcion, ListaPinosPropuestos,
 } from './DescripcionTema.styled';
 
 class DescripcionPropuestaPinos extends React.Component {
@@ -9,9 +9,9 @@ class DescripcionPropuestaPinos extends React.Component {
             <DescripcionTemaContainer>
                 <Titulo>{this.props.tema.titulo}</Titulo>
                 <Descripcion>
-                    <Lista>
+                    <ListaPinosPropuestos>
                         {this.props.tema.propuestas.map((propuesta, index) => <li key={`propuesta-${index}`}><b>Pino propuesto:</b> {propuesta.pino}, <b>Sponsor de pino:</b> {propuesta.sponsor.name}</li>)}
-                    </Lista>
+                    </ListaPinosPropuestos>
                 </Descripcion>
             </DescripcionTemaContainer>
     );

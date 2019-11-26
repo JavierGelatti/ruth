@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { TemaActualContainer, VistaDelMedioContainer } from './TemaActual.styled';
+import { TemaActualContainer, VistaDelMedioContainer, Botonera } from './TemaActual.styled';
 import InfoTema from '../temario/InfoTema';
 import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
 import backend from '../api/backend';
@@ -30,7 +30,7 @@ class TemaActual extends React.Component {
 
   handleCerrarReunion = () => backend.cerrarReunion().then(() => this.setState({ redirect: true }));
 
-  handleEmpezarTema = () => backend.cerrarReunion().then(() => this.setState({ redirect: true }));
+  handleEmpezarTema = () => { };
 
   render() {
     if (this.state.redirect) return <Redirect to="/" />;
@@ -39,9 +39,10 @@ class TemaActual extends React.Component {
         <InfoTema autor={this.state.autor} duracion={this.state.duracion} tipo={this.state.tipo} />
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(this.state)}
-         <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
-         <br/>
-         <Button onClick={this.handleCerrarReunion}>Cerrar Reunión</Button>
+          <Botonera>
+            <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
+            <Button onClick={this.handleCerrarReunion}>Cerrar Reunión</Button>
+          </Botonera>
         </VistaDelMedioContainer>
       </TemaActualContainer>
     );
