@@ -9,7 +9,7 @@ export const InfoItemContainer = styled.div`
 
 export const InfoImage = styled.div`
   border-radius: 12.5rem;
-  border: 4px solid ${colors.viridian};
+  border: 0.25rem solid ${colors.viridian};
   background: ${colors.white};
   width:7.5rem;
   height:7.5rem;
