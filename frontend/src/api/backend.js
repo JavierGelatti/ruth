@@ -8,11 +8,16 @@ const Backend = {
   },
 
   empezarReunion() {
-    return requester.post('/reunionDeRoots', { abierta: true });
+    return this.guardarDatosReunion()
+      .then(() => requester.post('/reunionDeRoots', { abierta: true }));
   },
 
   cerrarReunion() {
     return requester.put('/reunionActual', { abierta: false });
+  },
+
+  guardarDatosReunion() {
+    return requester.get('/temas/guardar');
   },
 };
 
