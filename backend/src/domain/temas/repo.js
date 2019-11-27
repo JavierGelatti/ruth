@@ -1,8 +1,7 @@
+import { pick } from 'lodash';
 import models from '~/database/models';
-import {pick} from 'lodash';
 
 export default class TemasRepo {
-    
   findAll() {
     return models.Tema.findAll();
   }
@@ -11,10 +10,12 @@ export default class TemasRepo {
     return models.Tema.findByPk(id);
   }
 
-  guardarTemas(temas) {
-    return models.Tema.bulkCreate(temas.map(tema => 
-      pick(tema, ['tipo', 'titulo', 'descripcion', 'duracion', 'autor', 'obligatoriedad',
-      'linkDePresentacion', 'propuestas', 'temasParaRepasar'])))
+  guardarTemas(reunion, temas) {
+    return models.Tema.bulkCreate(temas.map((tema) => {
+      const temaSanitizado = pick(tema, ['tipo', 'titulo', 'descripcion', 'duracion', 'autor', 'obligatoriedad',
+        'linkDePresentacion', 'propuestas', 'temasParaRepasar']);
+
+      return { ...temaSanitizado, reunionId: reunion.id };
+    }));
   }
-  
 }

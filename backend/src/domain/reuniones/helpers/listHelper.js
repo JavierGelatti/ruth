@@ -1,1 +1,1 @@
-export const getLastElement = list =>  list[list.length - 1] || {};
+export const getLastElement = (list) => list[list.length - 1] || {};

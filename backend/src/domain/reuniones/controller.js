@@ -1,22 +1,24 @@
-const ReunionController = ({reunionesRepo: repo}) => ({
-  reunion: () => {
-    return repo.findLastCreated();
-  },
+import VotacionDeRoots from '../votacionDeRoots/votacionDeRoots';
+
+const ReunionController = ({ reunionesRepo: repoReuniones, temasRepo: repoTemas }) => ({
+  reunion: () => repoReuniones.findLastCreated(),
 
   crear: (req, res) => {
-    const {abierta} = req.body;
+    const { abierta } = req.body;
 
-    repo.create({abierta})
-      .then(nuevaReunion =>
-        res.status(201).send(nuevaReunion));
+    repoReuniones.create({ abierta })
+      .then((nuevaReunion) => {
+        VotacionDeRoots.getTemasRoots()
+          .then((temas) => repoTemas.guardarTemas(nuevaReunion, temas));
+      })
+      .then((nuevaReunion) => res.status(201).send(nuevaReunion));
   },
 
   actualizar: (req) => {
-    const {abierta} = req.body;
+    const { abierta } = req.body;
 
-    return repo.findLastCreated()
-      .then(reunionAActualizar =>
-        reunionAActualizar.update({abierta}))
+    return repoReuniones.findLastCreated()
+      .then((reunionAActualizar) => reunionAActualizar.update({ abierta }));
   },
 
 });
