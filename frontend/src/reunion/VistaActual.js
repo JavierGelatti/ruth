@@ -13,7 +13,10 @@ class VistaActual extends React.Component {
     this.state = {
       redirect: false,
       selectedElement: 'Tema Actual',
-      countdownHabilitado: false,
+      tema: {
+        inicio: Date.now() - 50000,
+        duracion: 2,
+      },
     };
   }
 
@@ -25,17 +28,18 @@ class VistaActual extends React.Component {
     obtenerVista = () => this.vistas.find((vista) => vista.canHandleView(this.props.vista))
 
     handleEmpezarTema = () => {
+      if (this.state.tema.inicio !== null) {
+        return;
+      }
+      // TO DO: persistir inicio del tema
       this.setState({
-        countdownHabilitado: true,
+        tema: {
+          inicio: Date.now(),
+        },
       });
     }
 
-    mostrarCountdown = () => {
-      if (this.state.countdownHabilitado) {
-        return <Countdown/>;
-      }
-      return null;
-    }
+    mostrarCountdown = () => <Countdown inicio={this.state.tema.inicio} duracion={this.state.tema.duracion}/>
 
     render() {
       if (this.state.redirect) return <Redirect to="/" />;

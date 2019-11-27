@@ -1,49 +1,65 @@
 import React from 'react';
+import { CountdownContainer } from './Countdown.styled';
 
 export default class Countdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      minutes: 0,
-      seconds: 10,
+      inicio: this.props.inicio,
+      segundos: this.segundosRestantes(),
+      duracion: this.props.duracion * 60,
     };
   }
 
-  componentDidMount() {
-    this.myInterval = setInterval(() => {
-      const { seconds, minutes } = this.state;
+  segundosRestantes() {
+    return this.props.inicio === null ? this.props.duracion * 60 : Math.round(this.props.duracion * 60 - (Date.now() - this.props.inicio) / 1000);
+  }
 
-      if (seconds > 0) {
-        this.setState(() => ({
-          seconds: seconds - 1,
-        }));
-      }
-      if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(this.myInterval);
-        } else {
-          this.setState(() => ({
-            minutes: minutes - 1,
-            seconds: 59,
-          }));
-        }
+  componentDidMount() {
+    if (this.state.inicio === null) {
+      return;
+    }
+    this.runCountdown();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.inicio !== prevProps.inicio) {
+      this.setState({
+        inicio: this.props.inicio,
+      });
+      this.runCountdown();
+    }
+  }
+
+  runCountdown() {
+    this.myInterval = setInterval(() => {
+      const { segundos } = this.state;
+
+      if (segundos > 0) {
+        this.setState({
+          segundos: segundos - 1,
+        });
+      } else {
+        this.parar();
       }
     }, 1000);
   }
 
-  componentWillUnmount() {
+  parar() {
     clearInterval(this.myInterval);
   }
 
   render() {
-    const { minutes, seconds } = this.state;
+    const segundos = this.state.segundos % 60;
+    const minutos = Math.floor(this.state.segundos / 60);
+
     return (
-            <div>
-                { minutes === 0 && seconds === 0
-                  ? <h1>Tiempo Acabado</h1>
-                  : <h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
+            <CountdownContainer>
+                { this.state.segundos === 0
+                  ? 'Tiempo Acabado'
+                  : <span>{minutos}:{segundos < 10 ? `0${segundos}` : segundos}</span>
                 }
-            </div>
+            </CountdownContainer>
     );
   }
 }
