@@ -1,15 +1,22 @@
 import React from 'react';
 
 class Presentacion extends React.Component {
-    static canHandleView = (view) => view === 'Presentación'
+  constructor(props) {
+    super(props);
+    this.state = {
+      link: 'Acá ven preciosas slides de presentación',
+    };
+  }
 
-    render() {
-      return (
-        <div>
-            Acá ven preciosas slides de presentación
-        </div>
-      );
-    }
+  static canHandleView = (view) => view === 'Presentación'
+
+  render() {
+    return (
+      <div>
+          {this.state.link}
+      </div>
+    );
+  }
 }
 
 export default Presentacion;

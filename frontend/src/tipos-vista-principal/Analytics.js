@@ -1,12 +1,19 @@
 import React from 'react';
 
 class Analytics extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      grafico: 'Gráficos locos sólo para entendidos',
+    };
+  }
+
     static canHandleView = (view) => view === 'Analytics'
 
     render() {
       return (
         <div>
-            Gráficos locos sólo para entendidos
+            {this.state.grafico}
         </div>
       );
     }

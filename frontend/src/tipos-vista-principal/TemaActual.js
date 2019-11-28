@@ -3,12 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  TemaActualContainer, VistaDelMedioContainer, Botonera, BotoneraNavegacionTemas, BotoneraCerrarReunion,
+  TemaActualContainer, VistaDelMedioContainer, Botonera,
+  BotoneraNavegacionTemas, BotoneraCerrarReunion,
 } from './TemaActual.styled';
 import InfoTema from '../temario/InfoTema';
 import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
 import backend from '../api/backend';
 import { Button } from '../components/Button.styled';
+import Countdown from '../reunion/Countdown';
 
 class TemaActual extends React.Component {
   constructor(props) {
@@ -16,7 +18,6 @@ class TemaActual extends React.Component {
     this.state = {
       tema: {
         autor: 'Loading...',
-        duracion: 'Loading... ',
         tipo: 'conDescripcion',
         titulo: 'Loading...',
         obligatoriedad: 'Loading...',
@@ -28,6 +29,8 @@ class TemaActual extends React.Component {
             },
           },
         ],
+        inicio: null,
+        cantidadDeMinutos: 2,
       },
       redirect: false,
     };
@@ -36,25 +39,43 @@ class TemaActual extends React.Component {
   componentDidMount() {
     backend.getTemas().then((temas) => {
       this.setState(
-        { tema: temas[2] },
+        { tema: { ...temas[2], cantidadDeMinutos: 2, inicio: null } },
       );
     });
   }
 
   static canHandleView = (view) => view === 'Tema Actual'
 
-  handleCerrarReunion = () => backend.cerrarReunion().then(() => this.setState({ redirect: true }));
+  handleCerrarReunion = () => backend.cerrarReunion()
+    .then(() => this.setState({ redirect: true }));
 
-  handleEmpezarTema = () => { };
+  handleEmpezarTema = () => {
+    if (this.state.tema.inicio !== null) {
+      return;
+    }
+    // TO DO: persistir inicio del tema
+    this.setState({
+      tema: {
+        ...this.state.tema,
+        inicio: Date.now(),
+      },
+    });
+  }
+
+  mostrarCountdown = () => <Countdown inicio={this.state.tema.inicio}
+                                      duracion={this.state.tema.cantidadDeMinutos}/>
 
   render() {
     if (this.state.redirect) return <Redirect to="/" />;
     return (
       <TemaActualContainer>
-        <InfoTema autor={this.state.tema.autor} duracion={this.state.tema.duracion} obligatoriedad={this.state.tema.obligatoriedad}/>
+        <InfoTema autor={this.state.tema.autor}
+                  duracion={this.state.tema.cantidadDeMinutos}
+                  obligatoriedad={this.state.tema.obligatoriedad}/>
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(this.state.tema)}
           <Botonera>
+            {this.mostrarCountdown()}
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
               <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Temario from '../temario/Temario';
 import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
 import TemaActual from '../tipos-vista-principal/TemaActual';
@@ -30,7 +29,8 @@ class Reunion extends React.Component {
     return (
       <ReunionContainer>
         <VistaSeleccionada/>
-        <Sidebar handleSelection={this.handleSelection} selectedElement={this.state.selectedElement}/>
+        <Sidebar handleSelection={this.handleSelection}
+                  selectedElement={this.state.selectedElement}/>
       </ReunionContainer>);
   }
 }
