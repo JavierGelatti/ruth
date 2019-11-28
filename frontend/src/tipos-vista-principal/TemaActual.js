@@ -62,6 +62,10 @@ class TemaActual extends React.Component {
     });
   }
 
+  handleTerminarTema = () => {
+
+  }
+
   mostrarCountdown = () => <Countdown inicio={this.state.tema.inicio}
                                       duracion={this.state.tema.cantidadDeMinutos}/>
 
@@ -79,6 +83,7 @@ class TemaActual extends React.Component {
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
               <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
+              <Button onClick={this.handleTerminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
