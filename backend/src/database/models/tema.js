@@ -1,4 +1,4 @@
-'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Tema = sequelize.define('Tema', {
     tipo: DataTypes.STRING,
@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     obligatoriedad: DataTypes.STRING,
     linkDePresentacion: DataTypes.STRING,
     propuestas: DataTypes.JSON,
-    temasParaRepasar: DataTypes.JSON
+    temasParaRepasar: DataTypes.JSON,
   }, {});
-  Tema.associate = function(models) {
-    // associations can be defined here
+  Tema.associate = function (models) {
+    Tema.Reunion = Tema.belongsTo(models.Reunion, {as: 'reunion'});
   };
   return Tema;
 };

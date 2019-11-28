@@ -1,7 +1,5 @@
-const PruebasController = ({buscarTemasVotacionRoots}) => ({
-  temas: () => {
-    return buscarTemasVotacionRoots();
-  }
+const PruebasController = ({ buscarTemasVotacionRoots }) => ({
+  temas: () => buscarTemasVotacionRoots(),
 });
 
 export default PruebasController;

@@ -1,4 +1,4 @@
-import {getLastElement} from "./listHelper";
+import { getLastElement } from './listHelper';
 
 describe('#getLastElement', () => {
   let list;
@@ -6,7 +6,7 @@ describe('#getLastElement', () => {
   describe('dada una lista', () => {
     describe('si esta vacia', () => {
       beforeEach(() => {
-        list = []
+        list = [];
       });
 
       it('retorna un objeto vacio', () => {
@@ -17,15 +17,13 @@ describe('#getLastElement', () => {
 
     describe('si no esta vacia', () => {
       beforeEach(() => {
-        list = [{id: 1, titulo: 'untitulo', descr: 'una descr'}, {id: 3, titulo: 'otrotitulo', descr: 'otra descr'}]
+        list = [{ id: 1, titulo: 'untitulo', descr: 'una descr' }, { id: 3, titulo: 'otrotitulo', descr: 'otra descr' }];
       });
 
       it('retorna el ultimo elemento de la lista', () => {
         const result = getLastElement(list);
         expect(result.id).toBe(3);
-
       });
     });
-
   });
 });

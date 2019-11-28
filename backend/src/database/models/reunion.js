@@ -4,7 +4,6 @@ export default (sequelize, DataTypes) => {
     abierta: DataTypes.BOOLEAN,
   }, {});
   Reunion.associate = () => {
-    // associations can be defined here
   };
   return Reunion;
 };

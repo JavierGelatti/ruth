@@ -9,12 +9,9 @@ const router = Router({ promise: true });
 const repo = context.temasRepo;
 
 const controller = PruebasController({
-    buscarTemasVotacionRoots: () => {
-        return VotacionDeRoots.getTemasRoots()
-    }
+  buscarTemasVotacionRoots: () => VotacionDeRoots.getTemasRoots(),
 });
 
 router.get('/temas', asyncMiddleware(controller.temas));
 
 export default router;
-

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 router.use('/', reunionRouter);
 router.use('/temas', temasRouter);
 
-if(process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   router.use('/pruebas', pruebasRouter);
 }
 

@@ -17,7 +17,7 @@ const logger = createLogger({
         format.colorize(),
         format.simple(),
       ),
-    })
+    }),
   ],
 });
 
@@ -25,9 +25,10 @@ if (process.env.NODE_ENV !== 'production') {
   logger.add(
     new transports.File({
       dirname: 'logs', filename: 'error.log', level: 'error', options: { flags: 'w' },
-    }));
+    }),
+  );
   logger.add(
-    new transports.File({ dirname: 'logs', filename: 'combined.log' })
+    new transports.File({ dirname: 'logs', filename: 'combined.log' }),
   );
 }
 

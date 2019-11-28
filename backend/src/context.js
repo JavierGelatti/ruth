@@ -3,5 +3,5 @@ import TemasRepo from '~/domain/temas/repo';
 
 export default {
   reunionesRepo: new ReunionesRepo(),
-  temasRepo: new TemasRepo()
+  temasRepo: new TemasRepo(),
 };

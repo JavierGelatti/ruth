@@ -1,17 +1,10 @@
-import VotacionDeRoots from '../votacionDeRoots/votacionDeRoots';
 
-const TemaController = ({temasRepo: repo}) => ({
+const TemaController = ({ reunionesRepo, temasRepo }) => ({
   obtener: () => {
-    return repo.findAll()
-  },
-
-  guardar: () => {
-    return VotacionDeRoots.getTemasRoots()
-      .then(temas => 
-        repo.guardarTemas(temas))
-      .then(() => {});
+    return reunionesRepo.findLastCreated()
+      .then(reunion => temasRepo.findTemasDeReunion(reunion.id))
   }
-
 });
 
 export default TemaController;
+
