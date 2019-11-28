@@ -14,6 +14,10 @@ const Backend = {
   cerrarReunion() {
     return requester.put('/reunionActual', { abierta: false });
   },
+
+  getTemas() {
+    return requester.get('/temas/obtener');
+  },
 };
 
 export default Backend;
