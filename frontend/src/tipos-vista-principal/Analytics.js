@@ -3,7 +3,7 @@ import React from 'react';
 class Analytics extends React.Component {
     static canHandleView = (view) => view === 'Analytics'
 
-    static render() {
+    render() {
       return (
         <div>
             Gráficos locos sólo para entendidos

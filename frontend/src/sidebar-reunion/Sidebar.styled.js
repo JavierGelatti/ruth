@@ -5,9 +5,7 @@ export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  position: relative;
-  right: 0;
-  width: 20%;
+  width: 18%;
   background: ${colors.black30};
   border-left: 0.1rem solid ${colors.black30};
 `;

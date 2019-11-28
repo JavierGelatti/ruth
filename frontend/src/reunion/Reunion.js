@@ -2,16 +2,22 @@ import React from 'react';
 import Temario from '../temario/Temario';
 import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
-import VistaActual from './VistaActual';
+import TemaActual from '../tipos-vista-principal/TemaActual';
+import Presentacion from '../tipos-vista-principal/Presentacion';
+import Analytics from '../tipos-vista-principal/Analytics';
+
 
 class Reunion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
       selectedElement: 'Tema Actual',
     };
   }
+
+  vistas = [TemaActual, Presentacion, Analytics]
+
+  obtenerVista = () => this.vistas.find((vista) => vista.canHandleView(this.state.selectedElement))
 
   handleSelection = (name) => {
     this.setState({
@@ -20,10 +26,10 @@ class Reunion extends React.Component {
   }
 
   render() {
+    const VistaSeleccionada = this.obtenerVista();
     return (
       <ReunionContainer>
-        <Temario/>
-        <VistaActual vista={this.state.selectedElement}/>
+        <VistaSeleccionada/>
         <Sidebar handleSelection={this.handleSelection} selectedElement={this.state.selectedElement}/>
       </ReunionContainer>);
   }

@@ -3,7 +3,7 @@ import React from 'react';
 class Presentacion extends React.Component {
     static canHandleView = (view) => view === 'Presentación'
 
-    static render() {
+    render() {
       return (
         <div>
             Acá ven preciosas slides de presentación
