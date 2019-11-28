@@ -10,6 +10,13 @@ export default class TemasRepo {
     return models.Tema.findByPk(id);
   }
 
+  findTemasDeReunion(id) {
+    return models.Tema.findAll({
+      where: {
+         reunionId: id
+      }});
+  }
+
   guardarTemas(reunion, temas) {
     return models.Tema.bulkCreate(temas.map((tema) => {
       const temaSanitizado = pick(tema, ['tipo', 'titulo', 'descripcion', 'duracion', 'autor', 'obligatoriedad',

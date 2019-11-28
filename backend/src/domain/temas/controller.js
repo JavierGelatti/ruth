@@ -1,8 +1,15 @@
 
-const TemaController = ({ temasRepo: repo }) => ({
+const TemaController = ({ reunionesRepo, temasRepo }) => ({
   obtener: () => {
-    return repo.findAll();
+    return reunionesRepo.findLastCreated()
+      .then(reunion => temasRepo.findTemasDeReunion(obtenerId(reunion)))
   }
 });
 
 export default TemaController;
+
+
+function obtenerId(reunion) {
+  return JSON.stringify(reunion.id);
+}
+

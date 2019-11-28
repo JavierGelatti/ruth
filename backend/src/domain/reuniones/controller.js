@@ -3,15 +3,14 @@ import VotacionDeRoots from '../votacionDeRoots/votacionDeRoots';
 const ReunionController = ({ reunionesRepo: repoReuniones, temasRepo: repoTemas }) => ({
   reunion: () => repoReuniones.findLastCreated(),
 
-  crear: (req, res) => {
+  crear: (req) => {
     const { abierta } = req.body;
 
-    repoReuniones.create({ abierta })
+    return repoReuniones.create({ abierta })
       .then((nuevaReunion) => {
-        VotacionDeRoots.getTemasRoots()
+        return VotacionDeRoots.getTemasRoots()
           .then((temas) => repoTemas.guardarTemas(nuevaReunion, temas));
       })
-      .then((nuevaReunion) => res.status(201).send(nuevaReunion));
   },
 
   actualizar: (req) => {
