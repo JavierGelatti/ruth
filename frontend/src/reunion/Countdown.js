@@ -12,7 +12,8 @@ export default class Countdown extends React.Component {
   }
 
   segundosRestantes() {
-    return this.props.inicio === null ? this.props.duracion * 60 : Math.round(this.props.duracion * 60 - (Date.now() - this.props.inicio) / 1000);
+    return this.props.inicio === null ? this.props.duracion * 60
+      : Math.round(this.props.duracion * 60 - (Date.now() - this.props.inicio) / 1000);
   }
 
   componentDidMount() {
@@ -26,8 +27,13 @@ export default class Countdown extends React.Component {
     if (this.props.inicio !== prevProps.inicio) {
       this.setState({
         inicio: this.props.inicio,
+        segundos: this.segundosRestantes(),
+        duracion: this.props.duracion * 60,
       });
-      this.runCountdown();
+      if (this.props.inicio !== null) {
+        this.runCountdown();
+      }
+      this.parar();
     }
   }
 
