@@ -32,8 +32,9 @@ export default class Countdown extends React.Component {
       });
       if (this.props.inicio !== null) {
         this.runCountdown();
+      } else {
+        this.parar();
       }
-      this.parar();
     }
   }
 
