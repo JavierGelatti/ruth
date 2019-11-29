@@ -5,32 +5,24 @@ export default class Countdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inicio: this.props.inicio,
-      segundos: this.segundosRestantes(),
-      duracion: this.props.duracion * 60,
+      activo: this.props.activo,
+      segundos: this.props.segundos,
     };
   }
 
-  segundosRestantes() {
-    return this.props.inicio === null ? this.props.duracion * 60
-      : Math.round(this.props.duracion * 60 - (Date.now() - this.props.inicio) / 1000);
-  }
-
   componentDidMount() {
-    if (this.state.inicio === null) {
-      return;
+    if (this.state.activo === 'Activo') {
+      this.runCountdown();
     }
-    this.runCountdown();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.inicio !== prevProps.inicio) {
+    if (this.props.activo !== prevProps.activo) {
       this.setState({
-        inicio: this.props.inicio,
-        segundos: this.segundosRestantes(),
-        duracion: this.props.duracion * 60,
+        activo: this.props.activo,
+        segundos: this.props.segundos,
       });
-      if (this.props.inicio !== null) {
+      if (this.props.activo === 'Activo') {
         this.runCountdown();
       } else {
         this.parar();
@@ -41,7 +33,6 @@ export default class Countdown extends React.Component {
   runCountdown() {
     this.myInterval = setInterval(() => {
       const { segundos } = this.state;
-
       if (segundos > 0) {
         this.setState({
           segundos: segundos - 1,

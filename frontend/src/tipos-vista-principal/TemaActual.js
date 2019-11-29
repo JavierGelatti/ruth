@@ -17,7 +17,9 @@ class TemaActual extends React.Component {
     super(props);
     // TO DO: Que el estado del tema llegue de manera completa de la base de datos
     this.state = {
-      tema: { ...this.props.tema, cantidadDeMinutosDeTema: 30, inicio: null },
+      tema: {
+        ...this.props.tema, cantidadDeMinutosDeTema: 30, inicio: null, fin: null,
+      },
     };
   }
 
@@ -26,7 +28,9 @@ class TemaActual extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.tema.id !== prevProps.tema.id) {
       this.setState({
-        tema: { ...this.props.tema, cantidadDeMinutosDeTema: 40, inicio: null },
+        tema: {
+          ...this.props.tema, cantidadDeMinutosDeTema: 40, inicio: null, fin: null,
+        },
       });
     }
   }
@@ -58,6 +62,15 @@ class TemaActual extends React.Component {
     });
   }
 
+  segundosRestantes = () => (this.state.tema.inicio === null ? this.state.tema.cantidadDeMinutosDeTema * 60
+    : Math.round(this.state.tema.cantidadDeMinutosDeTema * 60
+      - (Date.now() - this.state.tema.inicio) / 1000))
+
+  temaActivo = () => {
+    if (this.state.tema.inicio !== null && this.state.tema.fin === null) return 'Activo';
+    return 'Inactivo';
+  }
+
   render() {
     if (this.state.redirect) return <Redirect to="/" />;
     return (
@@ -68,8 +81,8 @@ class TemaActual extends React.Component {
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(this.state.tema)}
           <Botonera>
-            <Countdown inicio={this.state.tema.inicio}
-                        duracion={this.state.tema.cantidadDeMinutosDeTema}/>
+            <Countdown activo={this.temaActivo()}
+                        segundos={this.segundosRestantes()}/>
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
               <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
