@@ -6,8 +6,15 @@ const TemaController = ({ reunionesRepo, temasRepo }) => ({
   },
 
   actualizar: (req) => {
-    return null
+
+    const id = req.body.id
+    const inicio = req.body.inicio
+    const fin = req.body.fin
+
+    return temasRepo.findOneById(id)
+      .then((temaAActualizar) => temaAActualizar.update({ inicio, fin }));
   }
+
 });
 
 export default TemaController;

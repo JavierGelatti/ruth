@@ -17,6 +17,7 @@ class TemaActual extends React.Component {
     super(props);
     this.state = {
       tema: {
+        id: 1,
         autor: 'Loading...',
         tipo: 'conDescripcion',
         titulo: 'Loading...',
@@ -53,17 +54,27 @@ class TemaActual extends React.Component {
     if (this.state.tema.inicio !== null) {
       return;
     }
-    // TO DO: persistir inicio del tema
-    this.setState({
-      tema: {
-        ...this.state.tema,
-        inicio: Date.now(),
-      },
-    });
+    this.requestActualizarTema({ id: this.state.tema.id, inicio: Date.now(), fin: null });
   }
 
   handleTerminarTema = () => {
+    this.requestActualizarTema({ id: this.state.tema.id, inicio: this.state.tema.inicio, fin: Date.now() });
+  }
 
+  requestActualizarTema = (datosTema) => {
+    backend.actualizarTema(datosTema)
+      .then(() => {
+        this.setState({
+          tema: {
+            ...this.state.tema,
+            inicio: datosTema.inicio,
+            fin: datosTema.fin,
+          },
+        });
+      })
+      .catch(() => {
+        alert('No se pudo actualizar el tema :(');
+      });
   }
 
   mostrarCountdown = () => <Countdown inicio={this.state.tema.inicio}

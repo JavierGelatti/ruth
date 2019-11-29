@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return [queryInterface.addColumn(
+    return Promise.all([queryInterface.addColumn(
       'Temas',
       'inicio',
       {
@@ -15,11 +15,11 @@ module.exports = {
       {
         type: Sequelize.DATE
       },
-    ) ];
+    ) ]);
   },
 
   down: (queryInterface, Sequelize) => {
-    return [queryInterface.removeColumn('Temas', 'inicio'),
-    queryInterface.removeColumn('Temas', 'fin')];
+    return Promise.all([queryInterface.removeColumn('Temas', 'inicio'),
+    queryInterface.removeColumn('Temas', 'fin')]);
   }
 };
