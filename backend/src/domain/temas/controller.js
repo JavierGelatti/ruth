@@ -12,7 +12,8 @@ const TemaController = ({ reunionesRepo, temasRepo }) => ({
     const fin = req.body.fin
 
     return temasRepo.findOneById(id)
-      .then((temaAActualizar) => temaAActualizar.update({ inicio, fin }));
+      .then((temaAActualizar) => temaAActualizar.update({ inicio, fin }))
+      .then(temasRepo.findOneById(id));
   }
 
 });
