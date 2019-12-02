@@ -18,9 +18,7 @@ class Reunion extends React.Component {
   }
 
   componentDidMount() {
-    backend.getTemas().then((temas) => {
-      this.setState({ temas });
-    }).catch(() => this.setState({ temas: 'Error' }));
+    this.obtenerTemas();
   }
 
   vistas = [TemaActual, Presentacion, Analytics]
@@ -33,7 +31,18 @@ class Reunion extends React.Component {
     });
   }
 
-  siguienteTema = () => {
+  empezarTema = () => {
+    if (this.temaSeleccionado().inicio !== null) {
+      return;
+    }
+    this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: Date.now(), fin: null });
+  }
+
+  terminarTema = () => {
+    if (this.temaSeleccionado().inicio === null) {
+      alert('El tema no se encuentra iniciado.');
+    }
+    this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: this.temaSeleccionado().inicio, fin: Date.now() });
     if (this.ultimoTema()) {
       alert('Es el último tema');
     } else {
@@ -43,8 +52,34 @@ class Reunion extends React.Component {
     }
   }
 
+  requestActualizarTema = (datosTema) => {
+    backend.actualizarTema(datosTema)
+      .then(() => this.obtenerTemas())
+      .catch(() => {
+        alert('No se pudo actualizar el tema :(');
+      });
+  }
+
+  obtenerTemas() {
+    backend.getTemas().then((temas) => {
+      this.setState({ temas: temas.sort((tema1, tema2) => ((tema1.id > tema2.id) ? 1 : -1)) });
+    }).catch(() => this.setState({ temas: 'Error al actualizar temas' }));
+  }
+
+  temaSeleccionado() {
+    return this.state.temas[this.state.temaSeleccionado];
+  }
+
   ultimoTema() {
     return this.state.temaSeleccionado === this.state.temas.length - 1;
+  }
+
+  temaATratar() {
+    const { temas } = this.state;
+    if (temas !== 'Cargando' || temas !== 'Error') {
+      return temas.find((tema) => tema.fin === null);
+    }
+    return null;
   }
 
   render() {
@@ -53,8 +88,9 @@ class Reunion extends React.Component {
     if (this.state.temas === 'Cargando') return null;
     return (
       <ReunionContainer>
-        <VistaSeleccionada tema={this.state.temas[this.state.temaSeleccionado]}
-                            avanzar={this.siguienteTema}/>
+        <VistaSeleccionada tema={this.temaSeleccionado()}
+                            terminarTema={this.terminarTema}
+                            empezarTema={this.empezarTema}/>
         <Sidebar handleSelection={this.handleSelection}
                   selectedElement={this.state.selectedElement}/>
       </ReunionContainer>);
