@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     linkDePresentacion: DataTypes.STRING,
     propuestas: DataTypes.JSON,
     temasParaRepasar: DataTypes.JSON,
+    inicio: DataTypes.DATE,
+    fin: DataTypes.DATE,
   }, {});
   Tema.associate = function (models) {
     Tema.Reunion = Tema.belongsTo(models.Reunion, {as: 'reunion'});

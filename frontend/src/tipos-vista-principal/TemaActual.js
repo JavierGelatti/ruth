@@ -17,6 +17,7 @@ class TemaActual extends React.Component {
     super(props);
     this.state = {
       tema: {
+        id: 1,
         autor: 'Loading...',
         tipo: 'conDescripcion',
         titulo: 'Loading...',
@@ -30,6 +31,7 @@ class TemaActual extends React.Component {
           },
         ],
         inicio: null,
+        fin: null,
         cantidadDeMinutos: 2,
       },
       redirect: false,
@@ -39,7 +41,7 @@ class TemaActual extends React.Component {
   componentDidMount() {
     backend.getTemas().then((temas) => {
       this.setState(
-        { tema: { ...temas[2], cantidadDeMinutos: 2, inicio: null } },
+        { tema: { ...temas[0], cantidadDeMinutos: 2 } },
       );
     });
   }
@@ -53,13 +55,25 @@ class TemaActual extends React.Component {
     if (this.state.tema.inicio !== null) {
       return;
     }
-    // TO DO: persistir inicio del tema
-    this.setState({
-      tema: {
-        ...this.state.tema,
-        inicio: Date.now(),
-      },
-    });
+    this.requestActualizarTema({ id: this.state.tema.id, inicio: Date.now(), fin: null });
+  }
+
+  handleTerminarTema = () => {
+    this.requestActualizarTema({ id: this.state.tema.id, inicio: this.state.tema.inicio, fin: Date.now() });
+  }
+
+  requestActualizarTema = (datosTema) => {
+    backend.actualizarTema(datosTema)
+      .then((temaActualizado) => {
+        this.setState({
+          tema: {
+            ...temaActualizado,
+          },
+        });
+      })
+      .catch(() => {
+        alert('No se pudo actualizar el tema :(');
+      });
   }
 
   mostrarCountdown = () => <Countdown inicio={this.state.tema.inicio}
@@ -79,6 +93,7 @@ class TemaActual extends React.Component {
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
               <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
+              <Button onClick={this.handleTerminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>

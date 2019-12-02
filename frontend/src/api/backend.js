@@ -15,6 +15,10 @@ const Backend = {
     return requester.put('/reunionActual', { abierta: false });
   },
 
+  actualizarTema(datosTema) {
+    return requester.put('/temas/temaActual', datosTema);
+  },
+
   getTemas() {
     return requester.get('/temas/obtener');
   },
