@@ -7,15 +7,17 @@ const TemaController = ({ reunionesRepo, temasRepo }) => ({
 
   actualizar: (req) => {
 
-    const id = req.body.id
-    const inicio = req.body.inicio
-    const fin = req.body.fin
+    const { id, inicio, fin } = req.body;
+    if(fin !== null && inicio === null){
+      return Promise.reject(new Error('Datos inválidos de tema'));
+    } 
 
     return temasRepo.findOneById(id)
-      .then((temaAActualizar) => temaAActualizar.update({ inicio, fin }))
-      .then(temasRepo.findOneById(id));
+      .then((temaAActualizar) => {
+        return temaAActualizar.update({ inicio, fin })
+        .then( (temaActualizado) => temaActualizado);
+      });
   }
-
 });
 
 export default TemaController;

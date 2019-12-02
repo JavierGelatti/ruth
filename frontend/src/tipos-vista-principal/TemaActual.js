@@ -31,6 +31,7 @@ class TemaActual extends React.Component {
           },
         ],
         inicio: null,
+        fin: null,
         cantidadDeMinutos: 2,
       },
       redirect: false,
@@ -40,7 +41,7 @@ class TemaActual extends React.Component {
   componentDidMount() {
     backend.getTemas().then((temas) => {
       this.setState(
-        { tema: { ...temas[2], cantidadDeMinutos: 2, inicio: null } },
+        { tema: { ...temas[0], cantidadDeMinutos: 2 } },
       );
     });
   }
@@ -63,12 +64,10 @@ class TemaActual extends React.Component {
 
   requestActualizarTema = (datosTema) => {
     backend.actualizarTema(datosTema)
-      .then(() => {
+      .then((temaActualizado) => {
         this.setState({
           tema: {
-            ...this.state.tema,
-            inicio: datosTema.inicio,
-            fin: datosTema.fin,
+            ...temaActualizado,
           },
         });
       })

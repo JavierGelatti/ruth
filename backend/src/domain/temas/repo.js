@@ -26,7 +26,10 @@ export default class TemasRepo {
     }));
   }
 
-  save(tema) {
-    models.Tema.update(tema);
+  actualizar(tema) {
+    models.Tema.update(tema)
+    .then(function(rowsUpdated) {
+      res.json(rowsUpdated)
+    });
   }
 }
