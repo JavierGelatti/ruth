@@ -6,4 +6,5 @@
 **Checklist**:
 - [ ] Agregue tests (y los corrí localmente)
 - [ ] Vi que localmente funcionara
+- [ ] Probe que en la review app funcionara
 
