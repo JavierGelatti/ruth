@@ -12,13 +12,15 @@ class Reunion extends React.Component {
     super(props);
     this.state = {
       selectedElement: 'Tema Actual',
-      temas: 'Cargando',
+      estadoDeTemas: 'Cargando',
+      temas: [],
       temaSeleccionado: 0,
     };
   }
 
   componentDidMount() {
-    this.obtenerTemas();
+    this.obtenerTemas()
+      .then(() => this.setState({ temaSeleccionado: this.state.temas.indexOf(this.temaATratar()) }));
   }
 
   vistas = [TemaActual, Presentacion, Analytics]
@@ -61,9 +63,13 @@ class Reunion extends React.Component {
   }
 
   obtenerTemas() {
-    backend.getTemas().then((temas) => {
-      this.setState({ temas: temas.sort((tema1, tema2) => ((tema1.id > tema2.id) ? 1 : -1)) });
-    }).catch(() => this.setState({ temas: 'Error al actualizar temas' }));
+    return backend.getTemas().then((temas) => {
+      this.setState({
+        temas: temas.sort((tema1, tema2) => ((tema1.id > tema2.id) ? 1 : -1)),
+        estadoDeTemas: 'Cargado',
+      });
+    })
+      .catch(() => this.setState({ estadoDeTemas: 'Error' }));
   }
 
   temaSeleccionado() {
@@ -75,9 +81,11 @@ class Reunion extends React.Component {
   }
 
   temaATratar() {
-    const { temas } = this.state;
-    if (temas !== 'Cargando' || temas !== 'Error') {
-      return temas.find((tema) => tema.fin === null);
+    const { temas, estadoDeTemas } = this.state;
+    if (estadoDeTemas === 'Cargado') {
+      const temaSinFinalizar = temas.find((tema) => tema.fin === null);
+      const ultimoTema = temas[temas.length - 1];
+      return temaSinFinalizar || ultimoTema;
     }
     return null;
   }
@@ -85,7 +93,7 @@ class Reunion extends React.Component {
   render() {
     const VistaSeleccionada = this.obtenerVista();
     // TO DO: Ver qué se debería mostrar en caso de carga o error
-    if (this.state.temas === 'Cargando') return null;
+    if (this.state.estadoDeTemas === 'Cargando') return null;
     return (
       <ReunionContainer>
         <VistaSeleccionada tema={this.temaSeleccionado()}
