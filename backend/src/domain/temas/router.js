@@ -9,5 +9,6 @@ const router = Router({ promise: true });
 const controller = TemaController(context);
 
 router.get('/obtener', asyncMiddleware(controller.obtener));
+router.put('/temaActual', asyncMiddleware(controller.actualizar));
 
 export default router;

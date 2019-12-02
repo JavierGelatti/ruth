@@ -25,4 +25,11 @@ export default class TemasRepo {
       return { ...temaSanitizado, reunionId: reunion.id };
     }));
   }
+
+  actualizar(tema) {
+    models.Tema.update(tema)
+    .then(function(rowsUpdated) {
+      res.json(rowsUpdated)
+    });
+  }
 }

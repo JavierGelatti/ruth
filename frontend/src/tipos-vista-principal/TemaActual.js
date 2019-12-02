@@ -18,7 +18,7 @@ class TemaActual extends React.Component {
     // TO DO: Que el estado del tema llegue de manera completa de la base de datos
     this.state = {
       tema: {
-        ...this.props.tema, cantidadDeMinutosDeTema: 30, inicio: null, fin: null,
+        ...this.props.tema, cantidadDeMinutosDeTema: 30,
       },
     };
   }
@@ -26,10 +26,10 @@ class TemaActual extends React.Component {
   static canHandleView = (view) => view === 'Tema Actual'
 
   componentDidUpdate(prevProps) {
-    if (this.props.tema.id !== prevProps.tema.id) {
+    if (this.props.tema !== prevProps.tema) {
       this.setState({
         tema: {
-          ...this.props.tema, cantidadDeMinutosDeTema: 40, inicio: null, fin: null,
+          ...this.props.tema, cantidadDeMinutosDeTema: 30,
         },
       });
     }
@@ -40,31 +40,23 @@ class TemaActual extends React.Component {
       .then(() => this.setState({ redirect: true }));
   }
 
-  handleTerminarTema = () => {
-    if (this.state.tema.inicio === null) {
-      alert('El tema no se encuentra iniciado.');
-    } else {
-      // TO DO: persistir el fin del tema
-      this.props.avanzar();
-    }
-  }
-
   handleEmpezarTema = () => {
-    if (this.state.tema.inicio !== null) {
-      return;
-    }
-    // TO DO: persistir inicio del tema
-    this.setState({
-      tema: {
-        ...this.state.tema,
-        inicio: Date.now(),
-      },
-    });
+    this.props.empezarTema();
   }
 
-  segundosRestantes = () => (this.state.tema.inicio === null ? this.state.tema.cantidadDeMinutosDeTema * 60
-    : Math.round(this.state.tema.cantidadDeMinutosDeTema * 60
-      - (Date.now() - this.state.tema.inicio) / 1000))
+  handleTerminarTema = () => {
+    this.props.terminarTema();
+  }
+
+  segundosRestantes = () => {
+    if (this.state.tema.inicio === null) {
+      return this.state.tema.cantidadDeMinutosDeTema * 60;
+    }
+    let tiempo = Date.now();
+    if (this.state.tema.fin !== null) tiempo = Date.parse(this.state.tema.fin);
+    return Math.round(this.state.tema.cantidadDeMinutosDeTema * 60
+        - (tiempo - Date.parse(this.state.tema.inicio)) / 1000);
+  }
 
   temaActivo = () => {
     if (this.state.tema.inicio !== null && this.state.tema.fin === null) return 'Activo';
