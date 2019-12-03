@@ -11,7 +11,7 @@ export default class Countdown extends React.Component {
   }
 
   componentDidMount = () => {
-    if (this.state.activo === 'Activo') {
+    if (this.state.activo) {
       this.runCountdown();
     }
   }
@@ -22,11 +22,7 @@ export default class Countdown extends React.Component {
         activo: this.props.activo,
         segundos: this.props.segundos,
       });
-      if (this.props.activo === 'Activo') {
-        this.runCountdown();
-      } else {
-        this.parar();
-      }
+      this.props.activo ? this.runCountdown() : this.parar();
     }
   }
 
