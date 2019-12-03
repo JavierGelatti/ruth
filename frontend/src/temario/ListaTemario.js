@@ -9,11 +9,9 @@ class ListaTemario extends React.Component {
     return (
             <ListaTemasContainer>
                 <ListaTemas>
-                    {this.props.temas.map((tema, index) => <li key={`propuesta-${index}`}>
-                        <TituloTema>
+                    {this.props.temas.map((tema) => <TituloTema>
                             {tema.titulo}
-                        </TituloTema>
-                    </li>)}
+                        </TituloTema>)}
                 </ListaTemas>
             </ListaTemasContainer>
     );

@@ -9,9 +9,11 @@ export const ListaTemasContainer = styled.div`
 `;
 
 export const ListaTemas = styled.ul`
+  display: flex;
+  flex-direction: column;
 `;
 
-export const TituloTema = styled.div`
+export const TituloTema = styled.li`
   font-family: ${font.p};
   font-size: 2rem;
   color: white;

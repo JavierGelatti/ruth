@@ -12,7 +12,7 @@ class Reunion extends React.Component {
     super(props);
     this.state = {
       selectedElement: 'Tema Actual',
-      temas: [{ titulo: 'ALOHA' }, { titulo: 'TEMAZO' }, { titulo: 'MIAMEEE' }],
+      temas: [{ titulo: 'Action items roots anterior' }, { titulo: 'Tema 1' }, { titulo: 'Un tema obligatorio' }],
     };
   }
 
