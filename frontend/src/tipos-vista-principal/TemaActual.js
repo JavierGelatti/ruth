@@ -15,25 +15,12 @@ import Countdown from '../reunion/Countdown';
 class TemaActual extends React.Component {
   constructor(props) {
     super(props);
-    // TO DO: Que el estado del tema llegue de manera completa de la base de datos
     this.state = {
-      tema: {
-        ...this.props.tema, cantidadDeMinutosDeTema: 30,
-      },
+      redirect: false,
     };
   }
 
   static canHandleView = (view) => view === 'Tema Actual'
-
-  componentDidUpdate(prevProps) {
-    if (this.props.tema !== prevProps.tema) {
-      this.setState({
-        tema: {
-          ...this.props.tema, cantidadDeMinutosDeTema: 30,
-        },
-      });
-    }
-  }
 
   handleCerrarReunion = () => {
     backend.cerrarReunion()
@@ -49,17 +36,17 @@ class TemaActual extends React.Component {
   }
 
   segundosRestantes = () => {
-    if (this.state.tema.inicio === null) {
-      return this.state.tema.cantidadDeMinutosDeTema * 60;
+    if (this.props.tema.inicio === null) {
+      return this.props.tema.cantidadDeMinutosDelTema * 60;
     }
     let tiempo = Date.now();
-    if (this.state.tema.fin !== null) tiempo = Date.parse(this.state.tema.fin);
-    return Math.round(this.state.tema.cantidadDeMinutosDeTema * 60
-        - (tiempo - Date.parse(this.state.tema.inicio)) / 1000);
+    if (this.props.tema.fin !== null) tiempo = Date.parse(this.props.tema.fin);
+    return Math.round(this.props.tema.cantidadDeMinutosDelTema * 60
+        - (tiempo - Date.parse(this.props.tema.inicio)) / 1000);
   }
 
   temaActivo = () => {
-    if (this.state.tema.inicio !== null && this.state.tema.fin === null) return true;
+    if (this.props.tema.inicio !== null && this.props.tema.fin === null) return true;
     return false;
   }
 
@@ -67,11 +54,11 @@ class TemaActual extends React.Component {
     if (this.state.redirect) return <Redirect to="/" />;
     return (
       <TemaActualContainer>
-        <InfoTema autor={this.state.tema.autor}
-                  duracion={this.state.tema.cantidadDeMinutosDeTema}
-                  obligatoriedad={this.state.tema.obligatoriedad}/>
+        <InfoTema autor={this.props.tema.autor}
+                  duracion={this.props.tema.cantidadDeMinutosDelTema}
+                  obligatoriedad={this.props.tema.obligatoriedad}/>
         <VistaDelMedioContainer>
-          {(new HandlerTipoTema()).handleTipoTema(this.state.tema)}
+          {(new HandlerTipoTema()).handleTipoTema(this.props.tema)}
           <Botonera>
             <Countdown activo={this.temaActivo()}
                         segundos={this.segundosRestantes()}/>
