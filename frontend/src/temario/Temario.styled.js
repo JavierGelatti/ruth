@@ -5,14 +5,14 @@ export const TemarioContainer = styled.div(({ isActive }) => `
   display: flex;
   flex-direction: row-reverse;
   transition: all 0.2s linear;
-  position: relative;
-  left: ${isActive ? '0' : '-14em'};
+  position: fixed;
+  left: ${isActive ? '0' : '-16.5em'};
 `);
 
 export const Temas = styled.div`
   min-height: 100vh;
   padding: 1em;
-  width: 12em;  
+  width: 14.5em;  
   background: ${colors.secondary};
 `;
 

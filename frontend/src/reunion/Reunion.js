@@ -4,6 +4,7 @@ import { ReunionContainer } from './Reunion.styled';
 import TemaActual from '../tipos-vista-principal/TemaActual';
 import Presentacion from '../tipos-vista-principal/Presentacion';
 import Analytics from '../tipos-vista-principal/Analytics';
+import Temario from '../temario/Temario';
 
 
 class Reunion extends React.Component {
@@ -11,6 +12,7 @@ class Reunion extends React.Component {
     super(props);
     this.state = {
       selectedElement: 'Tema Actual',
+      temas: [{ titulo: 'ALOHA' }, { titulo: 'TEMAZO' }, { titulo: 'MIAMEEE' }],
     };
   }
 
@@ -28,6 +30,7 @@ class Reunion extends React.Component {
     const VistaSeleccionada = this.obtenerVista();
     return (
       <ReunionContainer>
+        <Temario temas = {this.state.temas}/>
         <VistaSeleccionada/>
         <Sidebar handleSelection={this.handleSelection}
                   selectedElement={this.state.selectedElement}/>
