@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     temasParaRepasar: DataTypes.JSON,
     inicio: DataTypes.DATE,
     fin: DataTypes.DATE,
+    cantidadDeMinutosDelTema: DataTypes.INTEGER,
   }, {});
   Tema.associate = function (models) {
     Tema.Reunion = Tema.belongsTo(models.Reunion, {as: 'reunion'});
