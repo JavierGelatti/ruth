@@ -13,7 +13,7 @@ export const Temas = styled.div`
   min-height: 100vh;
   padding: 1em;
   width: 14.5em;  
-  background: ${colors.secondary};
+  background: ${colors.downy};
 `;
 
 export const Arrow = styled.div`
@@ -26,7 +26,7 @@ export const Arrow = styled.div`
   height: 2em;
   border-bottom-right-radius: 4em;
   border-top-right-radius: 4em;
-  background: ${colors.secondary};
+  background: ${colors.downy};
 `;
 
 export const Titulo = styled.div`

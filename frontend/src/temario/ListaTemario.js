@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ListaTemasContainer, ListaTemas,
+  ListaTemasContainer, ListaTemas, TituloTema,
 } from './ListaTemario.styled';
 
 
@@ -10,7 +10,9 @@ class ListaTemario extends React.Component {
             <ListaTemasContainer>
                 <ListaTemas>
                     {this.props.temas.map((tema, index) => <li key={`propuesta-${index}`}>
-                        {tema.titulo}
+                        <TituloTema>
+                            {tema.titulo}
+                        </TituloTema>
                     </li>)}
                 </ListaTemas>
             </ListaTemasContainer>
