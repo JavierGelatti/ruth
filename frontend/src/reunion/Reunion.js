@@ -14,13 +14,11 @@ class Reunion extends React.Component {
       selectedElement: 'Tema Actual',
       estadoDeTemas: 'Cargando',
       temas: [],
-      temaSeleccionado: 0,
     };
   }
 
   componentDidMount() {
-    this.obtenerTemas()
-      .then(() => this.setState({ temaSeleccionado: this.state.temas.indexOf(this.temaATratar()) }));
+    this.obtenerTemas();
   }
 
   vistas = [TemaActual, Presentacion, Analytics]
@@ -47,10 +45,6 @@ class Reunion extends React.Component {
     this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: this.temaSeleccionado().inicio, fin: Date.now() });
     if (this.ultimoTema()) {
       alert('Es el último tema');
-    } else {
-      this.setState({
-        temaSeleccionado: this.state.temaSeleccionado + 1,
-      });
     }
   }
 
@@ -73,19 +67,22 @@ class Reunion extends React.Component {
   }
 
   temaSeleccionado() {
-    return this.state.temas[this.state.temaSeleccionado];
+    return this.state.temas[this.temaATratar()];
   }
 
   ultimoTema() {
-    return this.state.temaSeleccionado === this.state.temas.length - 1;
+    return this.temaATratar() === this.state.temas.length - 1;
   }
 
   temaATratar() {
     const { temas, estadoDeTemas } = this.state;
     if (estadoDeTemas === 'Cargado') {
-      const temaSinFinalizar = temas.find((tema) => tema.fin === null);
-      const ultimoTema = temas[temas.length - 1];
-      return temaSinFinalizar || ultimoTema;
+      const temaSinFinalizar = [...Array(temas.length).keys()].find((indexTema) => temas[indexTema].fin === null);
+      const ultimoTema = temas.length - 1;
+      if (temaSinFinalizar === undefined) {
+        return ultimoTema;
+      }
+      return temaSinFinalizar;
     }
     return null;
   }
