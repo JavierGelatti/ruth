@@ -59,8 +59,8 @@ class TemaActual extends React.Component {
   }
 
   temaActivo = () => {
-    if (this.state.tema.inicio !== null && this.state.tema.fin === null) return 'Activo';
-    return 'Inactivo';
+    if (this.state.tema.inicio !== null && this.state.tema.fin === null) return true;
+    return false;
   }
 
   render() {
@@ -78,7 +78,7 @@ class TemaActual extends React.Component {
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
               <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
-              <Button onClick={this.handleTerminarTema}>Terminar Tema</Button>
+              <Button disabled={!this.temaActivo()} onClick={this.handleTerminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
