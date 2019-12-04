@@ -6,9 +6,9 @@ class InfoTema extends React.Component {
   render() {
     return (
       <InfoTemaContainer>
-        <InfoItem src="./usuarie.svg" altText="Usuarie" descripcion={this.props.autor} position="20px 20px" size="80%"/>
-        <InfoItem src="./tema-mediano.svg" altText="Pino" descripcion={`${this.props.duracion} min.`} position="8px" size="90%"/>
-        <InfoItem src="./tema-obligatorio.svg" altText="Obligatorio" descripcion={obligatoriedad[this.props.obligatoriedad]} position="35px" size="45%"/>
+        <InfoItem src="./usuarie.png" altText="Usuarie" descripcion={this.props.autor} position="20px 20px" size="80%"/>
+        <InfoItem src="./tema-corto.svg" altText="Pino" descripcion={`${this.props.duracion} min.`} position="8px" size="90%"/>
+        <InfoItem src="./tema-no-obligatorio.svg" altText="Obligatorio" descripcion={obligatoriedad[this.props.obligatoriedad]} position="35px" size="45%"/>
       </InfoTemaContainer>
     );
   }
