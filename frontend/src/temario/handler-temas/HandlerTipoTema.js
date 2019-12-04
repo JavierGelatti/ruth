@@ -1,9 +1,10 @@
 import HandlerTemaComun from './HandlerTemaComun';
 import HandlerPropuestaPinos from './HandlerPropuestaPinos';
+import HandlerRepasarActionItems from './HandlerRepasarActionItems';
 
 class HandlerTipoTema {
   constructor() {
-    this.tipos = [HandlerTemaComun, HandlerPropuestaPinos];
+    this.tipos = [HandlerTemaComun, HandlerPropuestaPinos, HandlerRepasarActionItems];
   }
 
   handleTipoTema(tema) {
