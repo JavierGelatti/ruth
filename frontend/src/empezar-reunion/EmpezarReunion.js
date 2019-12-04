@@ -24,7 +24,7 @@ class EmpezarReunion extends React.Component {
   requestEmpezarReunion = () => {
     backend.empezarReunion().then(() => {
       this.setState({ redirect: true });
-      ToastsStore.success('Reunión iniciada', 5000);
+      ToastsStore.success('Reunión iniciada');
     })
       .catch(() => {
         this.setState({ cargando: false });
@@ -41,7 +41,8 @@ class EmpezarReunion extends React.Component {
         <EmpezarRootsContainer>
             <TitleAndButton>
               <Title>No hay ninguna reunión activa</Title>
-              <BotonParaIniciarReunion cargando={this.state.cargando} handleEmpezarReunion={this.handleEmpezarReunion}/>
+              <BotonParaIniciarReunion cargando={this.state.cargando}
+              handleEmpezarReunion={this.handleEmpezarReunion}/>
             </TitleAndButton>
             <HomeImage src="./home.svg" alt="Home"/>
         </EmpezarRootsContainer>
