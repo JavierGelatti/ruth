@@ -7,25 +7,31 @@ export const InfoItemContainer = styled.div`
   align-items: center;
 `;
 
-export const InfoImage = styled.div`
-  border-radius: 12.5rem;
+export const InfoImageContainer = styled.div`
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
   border: 0.25rem solid ${colors.viridian};
+  height: 8rem;
+  width: 8rem;
+  overflow: hidden;
   background: ${colors.white};
-  width:7.5rem;
-  height:7.5rem;
-  padding:2%;
-  margin:2%;
-  background-image: url(${(props) => props.src});
-  background-repeat: no-repeat;
-  background-position:${(props) => props.position};
-  background-size: ${(props) => props.size};
+  padding: 1.25rem;
+  box-sizing: border-box;
+`;
+
+export const InfoImage = styled.img`
+  src: ${(props) => props.src};
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 
-export const Texto = styled.span`
+export const Texto = styled.p`
 font-size: 1rem ;
 font-family: ${font.p};
 color:white;
-margin-top: 10%
+margin-top: 1em;
 
 `;

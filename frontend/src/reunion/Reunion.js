@@ -58,7 +58,7 @@ class Reunion extends React.Component {
   obtenerTemas() {
     return backend.getTemas().then((temas) => {
       this.setState({
-        temas: temas.sort((tema1, tema2) => ((tema1.id > tema2.id) ? 1 : -1)),
+        temas: temas.sort((tema1, tema2) => tema1.prioridad - tema2.prioridad),
         estadoDeTemas: 'ok',
       });
     })
