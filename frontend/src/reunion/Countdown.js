@@ -17,7 +17,7 @@ export default class Countdown extends React.Component {
   }
 
   componentDidUpdate = (prevProps) => {
-    if (this.props.activo !== prevProps.activo) {
+    if (this.props.activo !== prevProps.activo || this.props.segundos !== prevProps.segundos) {
       this.setState({
         activo: this.props.activo,
         segundos: this.props.segundos,
