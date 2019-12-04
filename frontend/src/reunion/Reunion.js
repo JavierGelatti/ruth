@@ -5,6 +5,7 @@ import TemaActual from '../tipos-vista-principal/TemaActual';
 import Presentacion from '../tipos-vista-principal/Presentacion';
 import Analytics from '../tipos-vista-principal/Analytics';
 import Temario from '../temario/Temario';
+import backend from '../api/backend';
 
 
 class Reunion extends React.Component {
@@ -13,7 +14,12 @@ class Reunion extends React.Component {
     this.state = {
       selectedElement: 'Tema Actual',
       temas: [{ titulo: 'Action items roots anterior' }, { titulo: 'Tema 1' }, { titulo: 'Un tema obligatorio' }],
+      estadoDeTemas: 'cargando',
     };
+  }
+
+  componentDidMount() {
+    this.obtenerTemas();
   }
 
   vistas = [TemaActual, Presentacion, Analytics]
@@ -26,15 +32,77 @@ class Reunion extends React.Component {
     });
   }
 
+  empezarTema = () => {
+    if (this.temaSeleccionado().inicio !== null) {
+      return;
+    }
+    this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: Date.now(), fin: null });
+  }
+
+  terminarTema = () => {
+    this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: this.temaSeleccionado().inicio, fin: Date.now() });
+    if (this.ultimoTema()) {
+      alert('Reunión finalizada');
+    }
+  }
+
+  requestActualizarTema = (datosTema) => {
+    backend.actualizarTema(datosTema)
+      .then(() => this.obtenerTemas())
+      .catch(() => {
+        alert('No se pudo actualizar el tema :(');
+      });
+  }
+
+  obtenerTemas() {
+    return backend.getTemas().then((temas) => {
+      this.setState({
+        temas: temas.sort((tema1, tema2) => ((tema1.id > tema2.id) ? 1 : -1)),
+        estadoDeTemas: 'ok',
+      });
+    })
+      .catch(() => this.setState({ estadoDeTemas: 'error' }));
+  }
+
+  temaSeleccionado() {
+    return this.state.temas[this.indiceTemaATratar()];
+  }
+
+  ultimoTema() {
+    return this.indiceTemaATratar() === this.state.temas.length - 1;
+  }
+
+  indiceTemaATratar() {
+    const { temas, estadoDeTemas } = this.state;
+    if (estadoDeTemas === 'ok') {
+      const temaSinFinalizar = [...Array(temas.length).keys()].find((indexTema) => temas[indexTema].fin === null);
+      const ultimoTema = temas.length - 1;
+      if (temaSinFinalizar === undefined) {
+        return ultimoTema;
+      }
+      return temaSinFinalizar;
+    }
+    return null;
+  }
+
   render() {
     const VistaSeleccionada = this.obtenerVista();
-    return (
-      <ReunionContainer>
-        <Temario temas = {this.state.temas}/>
-        <VistaSeleccionada/>
-        <Sidebar handleSelection={this.handleSelection}
-                  selectedElement={this.state.selectedElement}/>
-      </ReunionContainer>);
+    // TO DO: Ver qué se debería mostrar en caso de carga o error
+    switch (this.state.estadoDeTemas) {
+      case ('cargando'): return null;
+      case ('error'): return null;
+      case ('ok'): return (
+        <ReunionContainer>
+          <Temario temas = {this.state.temas}/>
+          <VistaSeleccionada tema={this.temaSeleccionado()}
+            terminarTema={this.terminarTema}
+            empezarTema={this.empezarTema} />
+          <Sidebar handleSelection={this.handleSelection}
+            selectedElement={this.state.selectedElement} />
+        </ReunionContainer>
+      );
+      default: return null;
+    }
   }
 }
 

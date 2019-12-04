@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { ToastsContainer, ToastsStore } from 'react-toasts';
 import GlobalStyle from './GlobalStyle.styled';
 import Reunion from './reunion/Reunion';
 import EmpezarReunion from './empezar-reunion/EmpezarReunion';
@@ -22,6 +23,7 @@ const App = ({ location }) => {
         <Route path="/reunionDeRoots"
                render={() => (reunionDeRoots.abierta ? <Reunion {...reunionDeRoots} location={location}/> : <Redirect to="/"/>)}/>
       </Switch>
+      <ToastsContainer store={ToastsStore} />
     </>
   );
 };
