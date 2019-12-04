@@ -40,7 +40,11 @@ class Reunion extends React.Component {
     if (this.state.indiceTemaAMostrar !== this.indiceTemaATratar()) {
       return ToastsStore.error('Existe otro tema para tratar');
     }
-    return this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: Date.now(), fin: null });
+    return this.requestActualizarTema({
+      id: this.temaSeleccionado().id,
+      inicio: Date.now(),
+      fin: null,
+    });
   }
 
   terminarTema = () => {
@@ -76,6 +80,7 @@ class Reunion extends React.Component {
   }
 
   seleccionarTema = (index) => {
+    if (index === this.state.indiceTemaAMostrar) return;
     this.setState({ indiceTemaAMostrar: index });
   }
 

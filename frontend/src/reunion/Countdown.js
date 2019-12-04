@@ -22,6 +22,7 @@ export default class Countdown extends React.Component {
         activo: this.props.activo,
         segundos: this.props.segundos,
       });
+      if (prevProps.activo && this.props.activo) return;
       this.props.activo ? this.runCountdown() : this.parar();
     }
   }
