@@ -16,84 +16,58 @@ class TemaActual extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tema: {
-        id: 1,
-        autor: 'Loading...',
-        tipo: 'conDescripcion',
-        titulo: 'Loading...',
-        obligatoriedad: 'Loading...',
-        propuestas: [
-          {
-            pino: 'Loading...',
-            sponsor: {
-              name: 'Loading...',
-            },
-          },
-        ],
-        inicio: null,
-        fin: null,
-        cantidadDeMinutos: 2,
-      },
       redirect: false,
     };
   }
 
-  componentDidMount() {
-    backend.getTemas().then((temas) => {
-      this.setState(
-        { tema: { ...temas[0], cantidadDeMinutos: 2 } },
-      );
-    });
-  }
-
   static canHandleView = (view) => view === 'Tema Actual'
 
-  handleCerrarReunion = () => backend.cerrarReunion()
-    .then(() => this.setState({ redirect: true }));
+  handleCerrarReunion = () => {
+    backend.cerrarReunion()
+      .then(() => this.setState({ redirect: true }));
+  }
 
   handleEmpezarTema = () => {
-    if (this.state.tema.inicio !== null) {
-      return;
-    }
-    this.requestActualizarTema({ id: this.state.tema.id, inicio: Date.now(), fin: null });
+    this.props.empezarTema();
   }
 
   handleTerminarTema = () => {
-    this.requestActualizarTema({ id: this.state.tema.id, inicio: this.state.tema.inicio, fin: Date.now() });
+    this.props.terminarTema();
   }
 
-  requestActualizarTema = (datosTema) => {
-    backend.actualizarTema(datosTema)
-      .then((temaActualizado) => {
-        this.setState({
-          tema: {
-            ...temaActualizado,
-          },
-        });
-      })
-      .catch(() => {
-        alert('No se pudo actualizar el tema :(');
-      });
+  segundosRestantes = () => {
+    const { tema } = this.props;
+    if (tema.inicio === null) {
+      return tema.cantidadDeMinutosDelTema * 60;
+    }
+    let tiempo = Date.now();
+    if (tema.fin !== null) tiempo = Date.parse(tema.fin);
+    return Math.round(tema.cantidadDeMinutosDelTema * 60
+        - (tiempo - Date.parse(tema.inicio)) / 1000);
   }
 
-  mostrarCountdown = () => <Countdown inicio={this.state.tema.inicio}
-                                      duracion={this.state.tema.cantidadDeMinutos}/>
+  temaActivo = () => {
+    const { inicio, fin } = this.props.tema;
+    return inicio !== null && fin === null;
+  }
 
   render() {
+    const { tema } = this.props;
     if (this.state.redirect) return <Redirect to="/" />;
     return (
       <TemaActualContainer>
-        <InfoTema autor={this.state.tema.autor}
-                  duracion={this.state.tema.cantidadDeMinutos}
-                  obligatoriedad={this.state.tema.obligatoriedad}/>
+        <InfoTema autor={tema.autor}
+                  duracion={tema.cantidadDeMinutosDelTema}
+                  obligatoriedad={tema.obligatoriedad}/>
         <VistaDelMedioContainer>
-          {(new HandlerTipoTema()).handleTipoTema(this.state.tema)}
+          {(new HandlerTipoTema()).handleTipoTema(tema)}
           <Botonera>
-            {this.mostrarCountdown()}
+            <Countdown activo={this.temaActivo()}
+                        segundos={this.segundosRestantes()}/>
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
               <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
-              <Button onClick={this.handleTerminarTema}>Terminar Tema</Button>
+              <Button disabled={!this.temaActivo()} onClick={this.handleTerminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
