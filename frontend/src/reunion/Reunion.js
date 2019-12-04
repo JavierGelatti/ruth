@@ -76,7 +76,11 @@ class Reunion extends React.Component {
   }
 
   temaSeleccionado() {
-    return this.state.temas[this.state.indiceTemaAMostrar || this.indiceTemaATratar()];
+    // TO DO: Nunca debería ser null pero al inicio es null...
+    if (this.state.indiceTemaAMostrar === null) {
+      return this.state.temas[this.indiceTemaATratar()];
+    }
+    return this.state.temas[this.state.indiceTemaAMostrar];
   }
 
   seleccionarTema = (index) => {
