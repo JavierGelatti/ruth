@@ -36,29 +36,31 @@ class TemaActual extends React.Component {
   }
 
   segundosRestantes = () => {
-    if (this.props.tema.inicio === null) {
-      return this.props.tema.cantidadDeMinutosDelTema * 60;
+    const { tema } = this.props;
+    if (tema.inicio === null) {
+      return tema.cantidadDeMinutosDelTema * 60;
     }
     let tiempo = Date.now();
-    if (this.props.tema.fin !== null) tiempo = Date.parse(this.props.tema.fin);
-    return Math.round(this.props.tema.cantidadDeMinutosDelTema * 60
-        - (tiempo - Date.parse(this.props.tema.inicio)) / 1000);
+    if (tema.fin !== null) tiempo = Date.parse(tema.fin);
+    return Math.round(tema.cantidadDeMinutosDelTema * 60
+        - (tiempo - Date.parse(tema.inicio)) / 1000);
   }
 
   temaActivo = () => {
-    if (this.props.tema.inicio !== null && this.props.tema.fin === null) return true;
-    return false;
+    const { inicio, fin } = this.props.tema;
+    return inicio !== null && fin === null;
   }
 
   render() {
+    const { tema } = this.props;
     if (this.state.redirect) return <Redirect to="/" />;
     return (
       <TemaActualContainer>
-        <InfoTema autor={this.props.tema.autor}
-                  duracion={this.props.tema.cantidadDeMinutosDelTema}
-                  obligatoriedad={this.props.tema.obligatoriedad}/>
+        <InfoTema autor={tema.autor}
+                  duracion={tema.cantidadDeMinutosDelTema}
+                  obligatoriedad={tema.obligatoriedad}/>
         <VistaDelMedioContainer>
-          {(new HandlerTipoTema()).handleTipoTema(this.props.tema)}
+          {(new HandlerTipoTema()).handleTipoTema(tema)}
           <Botonera>
             <Countdown activo={this.temaActivo()}
                         segundos={this.segundosRestantes()}/>
