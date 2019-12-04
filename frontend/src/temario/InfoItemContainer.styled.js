@@ -29,9 +29,12 @@ export const InfoImage = styled.img`
 
 
 export const Texto = styled.p`
+
 font-size: 1rem ;
 font-family: ${font.p};
 color:white;
 margin-top: 1em;
+text-align: center;
+max-width: 90%;
 
 `;
