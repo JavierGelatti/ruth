@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { ToastsStore } from 'react-toasts';
 import {
   EmpezarRootsContainer, Title, TitleAndButton, HomeImage, FlexContainer,
 } from './EmpezarReunion.styled';
@@ -21,10 +22,13 @@ class EmpezarReunion extends React.Component {
   };
 
   requestEmpezarReunion = () => {
-    backend.empezarReunion().then(() => { this.setState({ redirect: true }); })
+    backend.empezarReunion().then(() => {
+      this.setState({ redirect: true });
+      ToastsStore.success('Reunión iniciada', 5000);
+    })
       .catch(() => {
         this.setState({ cargando: false });
-        alert('Error al iniciar reunión!');
+        ToastsStore.error('Error al iniciar la reunión');
         return <Redirect to="/" />;
       });
   }
