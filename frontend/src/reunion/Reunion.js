@@ -13,8 +13,9 @@ class Reunion extends React.Component {
     super(props);
     this.state = {
       selectedElement: 'Tema Actual',
-      temas: [{ titulo: 'Action items roots anterior' }, { titulo: 'Tema 1' }, { titulo: 'Un tema obligatorio' }],
+      temas: [],
       estadoDeTemas: 'cargando',
+      indiceTemaAMostrar: null,
     };
   }
 
@@ -61,11 +62,16 @@ class Reunion extends React.Component {
         estadoDeTemas: 'ok',
       });
     })
+      .then(() => this.setState({ indiceTemaAMostrar: this.indiceTemaATratar() }))
       .catch(() => this.setState({ estadoDeTemas: 'error' }));
   }
 
   temaSeleccionado() {
-    return this.state.temas[this.indiceTemaATratar()];
+    return this.state.temas[this.state.indiceTemaAMostrar || this.indiceTemaATratar()];
+  }
+
+  seleccionarTema = (index) => {
+    this.setState({ indiceTemaAMostrar: index });
   }
 
   ultimoTema() {
@@ -93,7 +99,8 @@ class Reunion extends React.Component {
       case ('error'): return null;
       case ('ok'): return (
         <ReunionContainer>
-          <Temario temas = {this.state.temas}/>
+          <Temario temas = {this.state.temas}
+                    seleccionarTema = {this.seleccionarTema}/>
           <VistaSeleccionada tema={this.temaSeleccionado()}
             terminarTema={this.terminarTema}
             empezarTema={this.empezarTema} />

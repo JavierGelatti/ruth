@@ -18,7 +18,8 @@ class Temario extends React.Component {
         <Arrow onMouseEnter={() => this.setState({ isActive: true })}> + </Arrow>
         <Temas onMouseLeave={() => this.setState({ isActive: false })}>
           <Titulo> Temario </Titulo>
-          <ListaTemario temas = {this.props.temas}/>
+          <ListaTemario temas = {this.props.temas}
+                        seleccionarTema = {this.props.seleccionarTema}/>
         </Temas>
       </TemarioContainer>
     );
