@@ -4,14 +4,17 @@ import { colors, font } from '../styles/theme';
 export const TemaItemContainer = styled.li`
   display: flex;
   align-items: center;
-  margin: 5%;
+  margin: 0.5em 0;
+  justify-content: space-between;
 `;
 
 export const TituloTema = styled.div`
-  font-family: ${font.h1};
-  font-size:  1.6rem;
+  font-family: ${font.p};
+  font-size:  ${font.sizeP};
   letter-spacing: 1px;
   color: ${colors.viridian};
+  max-width: calc(100% - 2.5rem)
+  
 `;
 
 export const ImagenTemaContainer = styled.div`
@@ -23,12 +26,14 @@ export const ImagenTemaContainer = styled.div`
   width: 2rem;
   overflow: hidden;
   background: ${colors.white};
-  padding: 0.2rem;
+  padding: 0.4rem;
   box-sizing: border-box;
+  opacity: 0.8;
 `;
 
 export const ImagenTema = styled.img`
   src: ${(props) => props.src};
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0.8;
 `;
