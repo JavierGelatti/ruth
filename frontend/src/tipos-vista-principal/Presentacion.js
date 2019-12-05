@@ -3,7 +3,7 @@ import ReactGoogleSlides from 'react-google-slides';
 import {
   PresentacionContainter, SidebarIzquierdo, SlidesContainer, Transparencia,
 } from './Presentacion.styled';
-
+import Countdown from '../reunion/Countdown';
 
 class Presentacion extends React.Component {
   static canHandleView = (view) => view === 'Presentación'
@@ -14,6 +14,8 @@ class Presentacion extends React.Component {
         <SidebarIzquierdo/>
         <SlidesContainer>
           <ReactGoogleSlides width="90%" slidesLink={this.props.tema.linkDePresentacion} slideDuration={20} showControls/>
+          <Countdown activo={this.props.temaActivo}
+                      segundos={this.props.segundosRestantes}/>
         </SlidesContainer>
       </PresentacionContainter>
     );
