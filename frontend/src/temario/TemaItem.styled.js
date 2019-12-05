@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { colors, font } from '../styles/theme';
 
-export const TemaItemContainer = styled.div`
+export const TemaItemContainer = styled.li`
   display: flex;
   align-items: center;
+  margin: 5%;
 `;
 
-export const TituloTema = styled.ul`
+export const TituloTema = styled.div`
   font-family: ${font.h1};
   font-size:  1.6rem;
   letter-spacing: 1px;
@@ -18,8 +19,8 @@ export const ImagenTemaContainer = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 2rem;
   overflow: hidden;
   background: ${colors.white};
   padding: 0.2rem;
@@ -28,6 +29,6 @@ export const ImagenTemaContainer = styled.div`
 
 export const ImagenTema = styled.img`
   src: ${(props) => props.src};
-  max-width: 90%;
-  max-height: 90%;
+  width: 100%;
+  height: 100%;
 `;
