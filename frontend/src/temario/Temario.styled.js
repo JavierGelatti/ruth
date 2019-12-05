@@ -14,6 +14,9 @@ export const Temas = styled.div`
   padding: 1em;
   width: 14.5em;  
   background: ${colors.downy};
+  border-right-style: solid;
+  border-width: 10px;
+  border-color: ${colors.viridian};
 `;
 
 export const Arrow = styled.div`
@@ -26,7 +29,7 @@ export const Arrow = styled.div`
   height: 2em;
   border-bottom-right-radius: 4em;
   border-top-right-radius: 4em;
-  background: ${colors.downy};
+  background: ${colors.viridian};
 `;
 
 export const Titulo = styled.div`
