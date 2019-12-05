@@ -11,9 +11,7 @@ class Presentacion extends React.Component {
   render() {
     return (
       <PresentacionContainter>
-        <SidebarIzquierdo>
-          <Transparencia/>
-        </SidebarIzquierdo>
+        <SidebarIzquierdo/>
         <SlidesContainer>
           <ReactGoogleSlides width="90%" slidesLink={this.props.tema.linkDePresentacion} slideDuration={20} showControls/>
         </SlidesContainer>
