@@ -66,7 +66,7 @@ class TemaActual extends React.Component {
                         segundos={this.segundosRestantes()}/>
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
-              <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
+              <Button disabled={this.props.tema.inicio} onClick={this.handleEmpezarTema}>Empezar Tema</Button>
               <Button disabled={!this.temaActivo()} onClick={this.handleTerminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>
