@@ -9,7 +9,7 @@ class InfoTema extends React.Component {
         return './tema-corto.svg';
       case 60:
         return './tema-mediano.svg';
-      case 90:
+      case 120:
         return './tema-largo.svg';
       default:
         return null;
