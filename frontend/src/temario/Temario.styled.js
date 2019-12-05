@@ -19,17 +19,20 @@ export const Temas = styled.div`
   border-color: ${colors.viridian};
 `;
 
-export const Arrow = styled.div`
-  display: inline-block;
+export const Arrow = styled.img`
   font-size: 1.5rem;
   padding: 0.5em;
-  color: white;
-  width: 1em;
+  padding-right: 0.8em;
   line-height: 2em;
-  height: 2em;
+  width: 1.2em;
+  height: 1.5em;
   border-bottom-right-radius: 4em;
   border-top-right-radius: 4em;
   background: ${colors.viridian};
+  overflow: visible;
+  margin-top: 0.5em;
+  background-color:${colors.viridian};
+  cursor: pointer;
 `;
 
 export const Titulo = styled.div`

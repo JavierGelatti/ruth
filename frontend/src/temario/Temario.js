@@ -15,7 +15,7 @@ class Temario extends React.Component {
   render() {
     return (
       <TemarioContainer isActive={this.state.isActive}>
-        <Arrow onMouseEnter={() => this.setState({ isActive: true })}> + </Arrow>
+        <Arrow src="./pino-blanco.svg" onMouseEnter={() => this.setState({ isActive: true })} />
         <Temas onMouseLeave={() => this.setState({ isActive: false })}>
           <Titulo> Temario </Titulo>
           <ListaTemario temas = {this.props.temas}
