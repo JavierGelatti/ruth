@@ -1,18 +1,13 @@
 import React from 'react';
-import {
-  ListaTemasContainer, ListaTemas, TituloTema,
-} from './ListaTemario.styled';
+import { ListaTemasContainer } from './ListaTemario.styled';
+import TemaItem from './TemaItem';
 
 
 class ListaTemario extends React.Component {
   render() {
     return (
             <ListaTemasContainer>
-                <ListaTemas>
-                    {this.props.temas.map((tema, index) => <TituloTema onClick = {() => this.props.seleccionarTema(index)}>
-                      {tema.titulo}
-                    </TituloTema>)}
-                </ListaTemas>
+              {this.props.temas.map((tema, index) => <TemaItem tema = {tema} onClick = {() => this.props.seleccionarTema(index)}/>)}
             </ListaTemasContainer>
     );
   }

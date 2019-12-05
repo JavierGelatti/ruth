@@ -12,7 +12,7 @@ export const TemarioContainer = styled.div(({ isActive }) => `
 export const Temas = styled.div`
   min-height: 100vh;
   padding: 1em;
-  width: 14.5em;  
+  width: 15em;  
   background: ${colors.downy};
   border-right-style: solid;
   border-width: 10px;
@@ -35,8 +35,29 @@ export const Arrow = styled.img`
   cursor: pointer;
 `;
 
+export const LeyendaEmpresa = styled.div`
+  font-family: ${font.p};
+  font-size:  ${font.sizeH1};
+  letter-spacing: -3px;
+  color: white;
+`;
+
+export const ExtensionLeyendaEmpresa = styled.div`
+  font-family: ${font.p};
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 2em;
+`;
+
 export const Titulo = styled.div`
   font-family: ${font.h1};
-  font-size: 2rem;
+  font-size:  ${font.sizeH2};
+  letter-spacing: 1px;
   color: white;
+`;
+
+export const ContenidoTemario = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;

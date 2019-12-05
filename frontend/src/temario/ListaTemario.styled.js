@@ -1,16 +1,10 @@
 import styled from 'styled-components';
-import { colors, font } from '../styles/theme';
+import { font } from '../styles/theme';
 
 export const ListaTemasContainer = styled.div`
   display: flex;
-  flex: 1;
   flex-direction:column;
-  align-items:center;
-`;
-
-export const ListaTemas = styled.ul`
-  display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 export const TituloTema = styled.li`
