@@ -5,7 +5,6 @@ import GlobalStyle from './GlobalStyle.styled';
 import Reunion from './reunion/Reunion';
 import EmpezarReunion from './empezar-reunion/EmpezarReunion';
 import backend from './api/backend';
-import 'react-toastify/dist/ReactToastify.css';
 import './toast.css';
 
 // NOTA A DESAROLLADERE: Si van a tocar este crchivo, hablen con Joaquito :)
@@ -18,7 +17,6 @@ const App = ({ location }) => {
   toast.configure({
     position: toast.POSITION.BOTTOM_CENTER,
     autoClose: 5000,
-    className: 'toast',
     transition: Slide,
   });
 
