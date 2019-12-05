@@ -3,7 +3,7 @@ import { faChartBar, faBroadcastTower, faComment } from '@fortawesome/free-solid
 
 
 import SidebarElement from './SidebarElement';
-import { SidebarContainer, Titulo } from './Sidebar.styled';
+import { SidebarContainer, ElementoContainer } from './Sidebar.styled';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -17,10 +17,17 @@ class Sidebar extends React.Component {
     { icon: faComment, title: 'Presentación' },
     { icon: faChartBar, title: 'Analytics' }];
 
+  habilitarPresentacion = (titulo) => {
+    if (titulo === 'Presentación') {
+      return this.props.link !== null;
+    }
+    return true;
+  }
+
   render() {
     return (
         <SidebarContainer>
-          {this.menu.map((seccion) => <div onClick={() => this.props.handleSelection(seccion.title)}> <SidebarElement icon={seccion.icon} title={seccion.title} isActive={this.props.selectedElement === seccion.title}/> </div>)}
+          {this.menu.map((seccion) => <ElementoContainer habilitar={this.habilitarPresentacion(seccion.title)} onClick={() => this.props.handleSelection(seccion.title)}> <SidebarElement icon={seccion.icon} title={seccion.title} isActive={this.props.selectedElement === seccion.title}/> </ElementoContainer>)}
         </SidebarContainer>
     );
   }

@@ -1,8 +1,8 @@
 import React from 'react';
+import ReactGoogleSlides from 'react-google-slides';
 import {
-  PresentacionContainter, SidebarIzquierdo, SlidesContainer,
+  PresentacionContainter, SidebarIzquierdo, SlidesContainer, Transparencia,
 } from './Presentacion.styled';
-import MostrarSlides from './MostrarSlides';
 
 
 class Presentacion extends React.Component {
@@ -11,10 +11,12 @@ class Presentacion extends React.Component {
   render() {
     return (
       <PresentacionContainter>
-        <SidebarIzquierdo/>
-          <SlidesContainer>
-            <MostrarSlides linkDePresentacion={this.props.tema.linkDePresentacion}/>
-          </SlidesContainer>
+        <SidebarIzquierdo>
+          <Transparencia/>
+        </SidebarIzquierdo>
+        <SlidesContainer>
+          <ReactGoogleSlides width="90%" slidesLink={this.props.tema.linkDePresentacion} slideDuration={20} showControls/>
+        </SlidesContainer>
       </PresentacionContainter>
     );
   }

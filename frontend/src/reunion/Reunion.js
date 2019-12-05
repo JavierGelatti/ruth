@@ -96,7 +96,8 @@ class Reunion extends React.Component {
             terminarTema={this.terminarTema}
             empezarTema={this.empezarTema} />
           <Sidebar handleSelection={this.handleSelection}
-            selectedElement={this.state.selectedElement} />
+            selectedElement={this.state.selectedElement}
+            link={this.temaSeleccionado().linkDePresentacion} />
         </ReunionContainer>
       );
       default: return null;

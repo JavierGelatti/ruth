@@ -3,8 +3,13 @@ import { colors, font } from '../styles/theme';
 
 
 export const SidebarIzquierdo = styled.div`
+  background: url("./fondo-pino.png");
   width: 22%;
-  background: ${colors.downy};
+`;
+
+export const Transparencia = styled.div`
+  background-color: ${colors.downy};
+  opacity: 0.9;
 `;
 
 export const PresentacionContainter = styled.div`  
