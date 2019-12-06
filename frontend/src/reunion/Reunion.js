@@ -85,14 +85,13 @@ class Reunion extends React.Component {
   }
 
   segundosRestantes = () => {
-    const tema = this.temaSeleccionado();
-    if (tema.inicio === null) {
-      return tema.cantidadDeMinutosDelTema * 60;
+    const { inicio, fin, cantidadDeMinutosDelTema } = this.temaSeleccionado();
+    if (inicio === null) {
+      return cantidadDeMinutosDelTema * 60;
     }
-    let tiempo = Date.now();
-    if (tema.fin !== null) tiempo = Date.parse(tema.fin);
-    return Math.round(tema.cantidadDeMinutosDelTema * 60
-        - (tiempo - Date.parse(tema.inicio)) / 1000);
+    const tiempo = fin === null ? Date.now() : Date.parse(fin);
+    return Math.round(cantidadDeMinutosDelTema * 60
+        - (tiempo - Date.parse(inicio)) / 1000);
   }
 
   temaActivo = () => {
