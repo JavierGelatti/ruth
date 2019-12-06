@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { ToastsContainer, ToastsStore } from 'react-toasts';
+import { toast, Slide } from 'react-toastify';
 import GlobalStyle from './GlobalStyle.styled';
 import Reunion from './reunion/Reunion';
 import EmpezarReunion from './empezar-reunion/EmpezarReunion';
 import backend from './api/backend';
+import './toast.css';
 
 // NOTA A DESAROLLADERE: Si van a tocar este crchivo, hablen con Joaquito :)
 const App = ({ location }) => {
@@ -12,6 +13,12 @@ const App = ({ location }) => {
   useEffect(() => {
     backend.getReunion().then((reunion) => setReunionDeRoots(reunion));
   }, [location]);
+
+  toast.configure({
+    position: toast.POSITION.BOTTOM_CENTER,
+    autoClose: 5000,
+    transition: Slide,
+  });
 
   return (
     <>
@@ -23,7 +30,6 @@ const App = ({ location }) => {
         <Route path="/reunionDeRoots"
                render={() => (reunionDeRoots.abierta ? <Reunion {...reunionDeRoots} location={location}/> : <Redirect to="/"/>)}/>
       </Switch>
-      <ToastsContainer store={ToastsStore} />
     </>
   );
 };
