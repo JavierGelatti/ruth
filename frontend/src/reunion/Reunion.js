@@ -84,6 +84,21 @@ class Reunion extends React.Component {
     return null;
   }
 
+  segundosRestantes = () => {
+    const { inicio, fin, cantidadDeMinutosDelTema } = this.temaSeleccionado();
+    if (inicio === null) {
+      return cantidadDeMinutosDelTema * 60;
+    }
+    const tiempo = fin === null ? Date.now() : Date.parse(fin);
+    return Math.round(cantidadDeMinutosDelTema * 60
+        - (tiempo - Date.parse(inicio)) / 1000);
+  }
+
+  temaActivo = () => {
+    const { inicio, fin } = this.temaSeleccionado();
+    return inicio !== null && fin === null;
+  }
+
   render() {
     const VistaSeleccionada = this.obtenerVista();
     // TO DO: Ver qué se debería mostrar en caso de carga o error
@@ -94,9 +109,12 @@ class Reunion extends React.Component {
         <ReunionContainer>
           <VistaSeleccionada tema={this.temaSeleccionado()}
             terminarTema={this.terminarTema}
-            empezarTema={this.empezarTema} />
+            empezarTema={this.empezarTema}
+            segundosRestantes={this.segundosRestantes()}
+            temaActivo= {this.temaActivo()}/>
           <Sidebar handleSelection={this.handleSelection}
-            selectedElement={this.state.selectedElement} />
+            selectedElement={this.state.selectedElement}
+            link={this.temaSeleccionado().linkDePresentacion} />
         </ReunionContainer>
       );
       default: return null;

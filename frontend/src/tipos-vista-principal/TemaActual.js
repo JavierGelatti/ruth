@@ -35,22 +35,6 @@ class TemaActual extends React.Component {
     this.props.terminarTema();
   }
 
-  segundosRestantes = () => {
-    const { tema } = this.props;
-    if (tema.inicio === null) {
-      return tema.cantidadDeMinutosDelTema * 60;
-    }
-    let tiempo = Date.now();
-    if (tema.fin !== null) tiempo = Date.parse(tema.fin);
-    return Math.round(tema.cantidadDeMinutosDelTema * 60
-        - (tiempo - Date.parse(tema.inicio)) / 1000);
-  }
-
-  temaActivo = () => {
-    const { inicio, fin } = this.props.tema;
-    return inicio !== null && fin === null;
-  }
-
   render() {
     const { tema } = this.props;
     if (this.state.redirect) return <Redirect to="/" />;
@@ -62,12 +46,12 @@ class TemaActual extends React.Component {
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(tema)}
           <Botonera>
-            <Countdown activo={this.temaActivo()}
-                        segundos={this.segundosRestantes()}/>
+            <Countdown activo={this.props.temaActivo}
+                        segundos={this.props.segundosRestantes}/>
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
               <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
-              <Button disabled={!this.temaActivo()} onClick={this.handleTerminarTema}>Terminar Tema</Button>
+              <Button disabled={!this.props.temaActivo} onClick={this.handleTerminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
