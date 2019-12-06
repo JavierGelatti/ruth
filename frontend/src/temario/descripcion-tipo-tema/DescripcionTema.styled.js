@@ -6,7 +6,8 @@ export const DescripcionTemaContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction:column;
-  align-items:center;
+  align-items: center;
+  overflow-y: auto;
 `;
 
 export const Titulo = styled.h1`
