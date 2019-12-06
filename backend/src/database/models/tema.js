@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     titulo: DataTypes.STRING,
     descripcion: DataTypes.STRING,
     duracion: DataTypes.STRING,
-    autor: DataTypes.TEXT,
+    autor: DataTypes.STRING,
     obligatoriedad: DataTypes.STRING,
     linkDePresentacion: DataTypes.STRING,
     propuestas: DataTypes.JSON,
