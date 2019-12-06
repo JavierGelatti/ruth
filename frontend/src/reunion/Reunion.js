@@ -95,13 +95,9 @@ class Reunion extends React.Component {
   indiceTemaATratar() {
     const { temas, estadoDeTemas } = this.state;
     if (estadoDeTemas === 'ok') {
-      const temaSinFinalizar = [...Array(temas.length).keys()]
-        .find((indexTema) => temas[indexTema].fin === null);
+      const indiceTemaSinFinalizar = temas.findIndex((tema) => tema.fin === null);
       const ultimoTema = temas.length - 1;
-      if (temaSinFinalizar === undefined) {
-        return ultimoTema;
-      }
-      return temaSinFinalizar;
+      return indiceTemaSinFinalizar >= 0 ? indiceTemaSinFinalizar : ultimoTema;
     }
     return null;
   }
@@ -113,15 +109,15 @@ class Reunion extends React.Component {
       case ('cargando'): return null;
       case ('error'): return null;
       case ('ok'): return (
-        <ReunionContainer>
-          <Temario temas = {this.state.temas}
-                    seleccionarTema = {this.seleccionarTema}/>
-          <VistaSeleccionada tema={this.temaSeleccionado()}
-            terminarTema={this.terminarTema}
-            empezarTema={this.empezarTema} />
-          <Sidebar handleSelection={this.handleSelection}
-            selectedElement={this.state.selectedElement} />
-        </ReunionContainer>
+          <ReunionContainer>
+            <Temario temas={this.state.temas}
+              seleccionarTema={this.seleccionarTema} />
+            <VistaSeleccionada tema={this.temaSeleccionado()}
+              terminarTema={this.terminarTema}
+              empezarTema={this.empezarTema} />
+            <Sidebar handleSelection={this.handleSelection}
+              selectedElement={this.state.selectedElement} />
+          </ReunionContainer>
       );
       default: return null;
     }
