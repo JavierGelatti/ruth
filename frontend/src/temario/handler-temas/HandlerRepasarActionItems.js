@@ -1,11 +1,12 @@
 import React from 'react';
+import { Titulo } from '../descripcion-tipo-tema/DescripcionTema.styled';
 
 const HandlerRepasarActionItems = {
   canHandle(tipoTema) {
     return tipoTema === 'repasarActionItems';
   },
   handleTema(tema) {
-    return <h1>Falta implementar</h1>;
+    return <Titulo>Repasar Action Items</Titulo>;
   },
 };
 
