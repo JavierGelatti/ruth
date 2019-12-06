@@ -31,7 +31,7 @@ tipoDuracion = (duracion) => {
 
 render() {
   return (
-        <TemaItemContainer onClick = {() => this.props.seleccionarTema(this.props.index)}>
+        <TemaItemContainer onClick = {() => this.props.seleccionarTema(this.props.tema)}>
             <TituloTema>{this.props.tema.titulo}</TituloTema>
             <ImagenTemaContainer>
                 <ImagenTema src={this.tipoImagen(this.props.tema)} />

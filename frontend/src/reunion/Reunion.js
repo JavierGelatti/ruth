@@ -83,7 +83,8 @@ class Reunion extends React.Component {
     return this.state.temas[this.state.indiceTemaAMostrar];
   }
 
-  seleccionarTema = (index) => {
+  seleccionarTema = (temaSeleccionado) => {
+    const index = this.state.temas.findIndex((tema) => tema === temaSeleccionado);
     if (index === this.state.indiceTemaAMostrar) return;
     this.setState({ indiceTemaAMostrar: index });
   }
