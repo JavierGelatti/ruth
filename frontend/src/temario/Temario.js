@@ -8,7 +8,7 @@ class Temario extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: true,
+      isActive: false,
     };
   }
 
@@ -16,7 +16,7 @@ class Temario extends React.Component {
     return (
       <TemarioContainer isActive={this.state.isActive}>
         <Arrow src="./pino-blanco.svg" onMouseEnter={() => this.setState({ isActive: true })} />
-        <Temas onMouseLeave={() => this.setState({ isActive: true })}>
+        <Temas onMouseLeave={() => this.setState({ isActive: false })}>
           <LeyendaEmpresa>10 Pines</LeyendaEmpresa>
           <ExtensionLeyendaEmpresa>Creative Software Developement</ExtensionLeyendaEmpresa>
           <ContenidoTemario>
