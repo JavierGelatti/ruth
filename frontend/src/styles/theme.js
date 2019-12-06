@@ -17,6 +17,7 @@ export const colors = {
   black50: '#7F7F7F',
   black40: '#AFAFAF',
   black30: '#DADADA',
+  black20: '#E6E6E6',
   black10: '#EEEEEE',
   background: '#F2F2F2',
   viridian: '#448475',
