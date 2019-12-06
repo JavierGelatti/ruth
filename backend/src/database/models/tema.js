@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Tema = sequelize.define('Tema', {
     tipo: DataTypes.STRING,
     titulo: DataTypes.STRING,
-    descripcion: DataTypes.STRING,
+    descripcion: DataTypes.TEXT,
     duracion: DataTypes.STRING,
     autor: DataTypes.STRING,
     obligatoriedad: DataTypes.STRING,
