@@ -15,7 +15,8 @@
         "idDePropuestaOriginal": null,
         "fechaDePropuestaOriginal": null,
         "esRePropuesta": false,
-        "linkDePresentacion": null
+        "linkDePresentacion": null,
+        "cantidadDeMinutosDelTema": 60
     },
     {
         "tipo": "conDescripcion",
@@ -37,7 +38,8 @@
         "idDePropuestaOriginal": null,
         "fechaDePropuestaOriginal": null,
         "esRePropuesta": false,
-        "linkDePresentacion": "https://www.lipsum.com/"
+        "linkDePresentacion": "https://www.lipsum.com/",
+        "cantidadDeMinutosDelTema": 60
     },
     {
         "tipo": "conDescripcion",
@@ -55,7 +57,8 @@
         "idDePropuestaOriginal": null,
         "fechaDePropuestaOriginal": null,
         "esRePropuesta": false,
-        "linkDePresentacion": null
+        "linkDePresentacion": null,
+        "cantidadDeMinutosDelTema": 60
     },
     {
         "tipo": "proponerPinos",
@@ -86,7 +89,8 @@
                     "mail": "ailen.munoz@10pines.com"
                 }
             }
-        ]
+        ],
+        "cantidadDeMinutosDelTema": 60
     },
     {
         "tipo": "repasarActionItems",
@@ -257,6 +261,7 @@
                 "conclusion": null,
                 "fueTratado": false
             }
-        ]
+        ],
+        "cantidadDeMinutosDelTema": 60
     }
 ]
