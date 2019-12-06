@@ -18,7 +18,7 @@ class Temario extends React.Component {
         <Arrow src="./pino-blanco.svg" onMouseEnter={() => this.setState({ isActive: true })} />
         <Temas onMouseLeave={() => this.setState({ isActive: false })}>
           <LeyendaEmpresa>10 Pines</LeyendaEmpresa>
-          <ExtensionLeyendaEmpresa>Creative Software Developement</ExtensionLeyendaEmpresa>
+          <ExtensionLeyendaEmpresa>Creative Software Development</ExtensionLeyendaEmpresa>
           <ContenidoTemario>
             <Titulo> Temario </Titulo>
             <ListaTemario temas = {this.props.temas}
