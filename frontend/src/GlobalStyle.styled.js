@@ -22,10 +22,3 @@ body {
   height: 100vh;
 }
 `;
-
-export const ToastContainer = styled.div` 
-    display: flex; 
-    flex-direction: column;
-    width: 100%;
-    background-color: black;
-`;
