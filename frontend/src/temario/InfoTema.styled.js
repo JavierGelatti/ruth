@@ -5,8 +5,8 @@ export const InfoTemaContainer = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 0rem;
   justify-content: space-around;
   background: ${colors.downy};
-  width:22%;
+  width: 15vw;
+  height: 100vh;
 `;

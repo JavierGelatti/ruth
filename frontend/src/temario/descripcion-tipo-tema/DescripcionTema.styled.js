@@ -15,6 +15,9 @@ export const Titulo = styled.h1`
 `;
 
 export const Descripcion = styled.p`
+  white-space: pre-line;
+  text-align: justify;
+  margin: 0 3em;
   font-size: ${font.sizeP} ;
   font-family: ${font.p};
 `;
