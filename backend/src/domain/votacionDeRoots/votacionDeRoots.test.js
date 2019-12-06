@@ -36,7 +36,10 @@ describe('#getTemasRoots', () => {
                     const [primerTema, ...resto] = temas;
 
                     // Nota: Podríamos asertar sobre más valores?
-                    expect(primerTema).toHaveProperty("autor");
+                    for (const key of ['tipo', 'titulo', 'descripcion', 'duracion', 'autor', 'obligatoriedad',
+                        'linkDePresentacion', 'cantidadDeMinutosDelTema']) {
+                        expect(primerTema).toHaveProperty(key);
+                    }
                     expect(resto.length).toEqual(0);
                 });
             });
