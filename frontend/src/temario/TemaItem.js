@@ -9,7 +9,20 @@ tipoImagen = (tema) => {
     case 'OBLIGATORIO':
       return './tema-obligatorio.svg';
     case 'NO_OBLIGATORIO':
-      return duracion[tema.duracion];
+      return this.tipoDuracion(tema.duracion);
+    default:
+      return null;
+  }
+}
+
+tipoDuracion = (duracion) => {
+  switch (duracion) {
+    case 'CORTO':
+      return './tema-corto.svg';
+    case 'MEDIO':
+      return './tema-mediano.svg';
+    case 'LARGO':
+      return './tema-largo.svg';
     default:
       return null;
   }
@@ -27,11 +40,5 @@ render() {
   );
 }
 }
-
-const duracion = {
-  CORTO: './tema-corto.svg',
-  MEDIO: './tema-mediano.svg',
-  LARGO: './tema-largo.svg',
-};
 
 export default InfoTema;

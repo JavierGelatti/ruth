@@ -56,9 +56,7 @@ class TemaActual extends React.Component {
     if (this.state.redirect) return <Redirect to="/" />;
     return (
       <TemaActualContainer>
-        <InfoTema autor={tema.autor}
-                  duracion={tema.cantidadDeMinutosDelTema}
-                  obligatoriedad={tema.obligatoriedad}/>
+        <InfoTema tema = {tema}/>
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(tema)}
           <Botonera>
