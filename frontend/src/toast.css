@@ -1,3 +1,12 @@
+:root {
+  --success-color: #68C9B2;
+  --error-color: #F2792D;
+  --warning-color: #f1c40f;
+  --background-toast: #4C4C4C;
+  --white: #fff;
+  --black: #000;
+}
+
 .Toastify__toast-container {
     z-index: 9999;
     -webkit-transform: translate3d(0, 0, 9999px);
@@ -5,7 +14,7 @@
     padding: 4px;
     width: 100%;
     box-sizing: border-box;
-    color: #fff; }
+    color: var(--white); }
     .Toastify__toast-container--top-left {
       top: 1em;
       left: 1em; }
@@ -60,7 +69,7 @@
     font-size: 1.4rem;
     cursor: pointer;
     direction: ltr;
-    background: #4C4C4C; }
+    background: var(--background-toast) }
     .Toastify__toast-body {
       margin: auto 0;
       -ms-flex: 1;
@@ -71,7 +80,7 @@
       margin-bottom: 0; } }
   
   .Toastify__close-button {
-    color: #fff;
+    color: var(--white);
     font-weight: bold;
     font-size: 14px;
     background: transparent;
@@ -84,7 +93,7 @@
     -ms-flex-item-align: start;
         align-self: flex-start; }
     .Toastify__close-button--default {
-      color: #000;
+      color: var(--black);
       opacity: 0.3; }
     .Toastify__close-button:hover, .Toastify__close-button:focus {
       opacity: 1; }
@@ -103,7 +112,6 @@
     height: 0.45rem;
     z-index: 9999;
     opacity: 0.7;
-    background-color: #F2792D;
     transform-origin: left; }
     .Toastify__progress-bar--animated {
       animation: Toastify__trackProgress linear 1 forwards; }
@@ -113,16 +121,12 @@
       right: 0;
       left: initial;
       transform-origin: right; }
-    .Toastify__progress-bar--default {
-      background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55); }
-    .Toastify__progress-bar--info {
-    background: #3498db; }
     .Toastify__progress-bar--success {
-    background: #68C9B2; }
+    background: var(--success-color); }
     .Toastify__progress-bar--warning {
-    background: #f1c40f; }
+    background: var(--warning-color); }
     .Toastify__progress-bar--error {
-    background: #F2792D; }
+    background: var(--error-color); }
   
   @keyframes Toastify__slideInUp {
     from {
