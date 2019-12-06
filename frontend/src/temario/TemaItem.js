@@ -31,7 +31,7 @@ render() {
 const duracion = {
   CORTO: './tema-corto.svg',
   MEDIO: './tema-mediano.svg',
-  LARGO: '.tema-largo.svg',
+  LARGO: './tema-largo.svg',
 };
 
 export default InfoTema;
