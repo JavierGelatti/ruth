@@ -8,6 +8,7 @@ export const font = {
   sizeH2: '2rem',
   p: 'Montserrat, sans-serif',
   sizeP: '1.25rem',
+  sizeCountdown: '4.5rem',
 };
 
 export const colors = {

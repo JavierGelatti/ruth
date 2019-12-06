@@ -27,7 +27,6 @@ export const BotoneraNavegacionTemas = styled.div`
     justify-content: space-evenly;
     align-items: center;
     padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
 `;
 
 export const BotoneraCerrarReunion = styled.div`
