@@ -18,7 +18,7 @@ tipoImagen = (tema) => {
 
 render() {
   return (
-        <TemaItemContainer>
+        <TemaItemContainer onClick = {() => this.props.seleccionarTema(this.props.index)}>
             <TituloTema>{this.props.tema.titulo}</TituloTema>
             <ImagenTemaContainer>
                 <ImagenTema src={this.tipoImagen(this.props.tema)} />

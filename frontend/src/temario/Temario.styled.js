@@ -6,7 +6,7 @@ export const TemarioContainer = styled.div(({ isActive }) => `
   flex-direction: row-reverse;
   transition: all 0.2s linear;
   position: fixed;
-  left: ${isActive ? '0' : '-16.5em'};
+  left: ${isActive ? '0' : '-17em'};
 `);
 
 export const Temas = styled.div`

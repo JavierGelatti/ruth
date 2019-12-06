@@ -7,7 +7,9 @@ class ListaTemario extends React.Component {
   render() {
     return (
             <ListaTemasContainer>
-              {this.props.temas.map((tema, index) => <TemaItem tema = {tema} onClick = {() => this.props.seleccionarTema(index)}/>)}
+              {this.props.temas.map((tema, index) => <TemaItem tema = {tema}
+              seleccionarTema = {this.props.seleccionarTema}
+              index = {index}/>)}
             </ListaTemasContainer>
     );
   }
