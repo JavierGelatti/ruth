@@ -3,10 +3,10 @@ import { ListaTemasContainer } from './ListaTemario.styled';
 import TemaItem from './TemaItem';
 
 
-const ListaTemario = (props) => (
+const ListaTemario = ({ temas, seleccionarTema }) => (
   <ListaTemasContainer>
-    {props.temas.map((tema) => <TemaItem tema={tema}
-      seleccionarTema={props.seleccionarTema}/>)}
+    {temas.map((tema) => <TemaItem tema={tema}
+      seleccionarTema={seleccionarTema}/>)}
   </ListaTemasContainer>
 );
 
