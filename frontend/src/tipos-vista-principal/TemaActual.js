@@ -40,9 +40,7 @@ class TemaActual extends React.Component {
     if (this.state.redirect) return <Redirect to="/" />;
     return (
       <TemaActualContainer>
-        <InfoTema autor={tema.autor}
-                  duracion={tema.cantidadDeMinutosDelTema}
-                  obligatoriedad={tema.obligatoriedad}/>
+        <InfoTema tema = {tema}/>
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(tema)}
           <Botonera>
@@ -50,7 +48,7 @@ class TemaActual extends React.Component {
                         segundos={this.props.segundosRestantes}/>
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
-              <Button onClick={this.handleEmpezarTema}>Empezar Tema</Button>
+              <Button disabled={this.props.tema.inicio} onClick={this.handleEmpezarTema}>Empezar Tema</Button>
               <Button disabled={!this.props.temaActivo} onClick={this.handleTerminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>

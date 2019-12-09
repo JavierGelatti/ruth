@@ -3,18 +3,45 @@ import { InfoTemaContainer } from './InfoTema.styled';
 import InfoItem from './InfoItem';
 
 class InfoTema extends React.Component {
+  imagenTipoDuracion = (tipoDuracion) => {
+    switch (tipoDuracion) {
+      case 'CORTO':
+        return './tema-corto.svg';
+      case 'MEDIO':
+        return './tema-mediano.svg';
+      case 'LARGO':
+        return './tema-largo.svg';
+      default:
+        return null;
+    }
+  }
+
+  imagenObligatoriedad = (obligatoriedad) => {
+    switch (obligatoriedad) {
+      case 'OBLIGATORIO':
+        return './tema-obligatorio.svg';
+      case 'NO_OBLIGATORIO':
+        return './tema-no-obligatorio.svg';
+      default:
+        return null;
+    }
+  }
+
   render() {
+    const {
+      autor, duracion, obligatoriedad, cantidadDeMinutosDelTema,
+    } = this.props.tema;
     return (
       <InfoTemaContainer>
-        <InfoItem src="./usuarie.svg" altText="Usuarie" descripcion={this.props.autor} position="20px 20px" size="80%"/>
-        <InfoItem src="./pino.png" altText="Pino" descripcion={`${this.props.duracion} min.`} position="8px" size="90%"/>
-        <InfoItem src="./tema-obligatorio.svg" altText="Obligatorio" descripcion={obligatoriedad[this.props.obligatoriedad]} position="35px" size="45%"/>
+        <InfoItem src="./usuarie.png" altText="Usuarie" descripcion={autor}/>
+        <InfoItem src={this.imagenTipoDuracion(duracion)} altText="Pino" descripcion={`${cantidadDeMinutosDelTema} min.`}/>
+        <InfoItem src={this.imagenObligatoriedad(obligatoriedad)} altText="Obligatorio" descripcion={diccObligatoriedad[obligatoriedad]}/>
       </InfoTemaContainer>
     );
   }
 }
 
-const obligatoriedad = {
+const diccObligatoriedad = {
   OBLIGATORIO: 'Obligatorio',
   NO_OBLIGATORIO: 'No obligatorio',
 };

@@ -1,19 +1,21 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
 import TemaActual from '../tipos-vista-principal/TemaActual';
 import Presentacion from '../tipos-vista-principal/Presentacion';
 import Analytics from '../tipos-vista-principal/Analytics';
+import Temario from '../temario/Temario';
 import backend from '../api/backend';
-
 
 class Reunion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedElement: 'Tema Actual',
-      estadoDeTemas: 'cargando',
       temas: [],
+      estadoDeTemas: 'cargando',
+      indiceTemaAMostrar: null,
     };
   }
 
@@ -33,38 +35,58 @@ class Reunion extends React.Component {
 
   empezarTema = () => {
     if (this.temaSeleccionado().inicio !== null) {
-      return;
+      return toast.error('No se puede iniciar un tema que ya fue iniciado');
     }
-    this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: Date.now(), fin: null });
+    if (this.state.indiceTemaAMostrar !== this.indiceTemaATratar()) {
+      return toast.error('Existe otro tema para tratar');
+    }
+    return this.requestActualizarTema({
+      id: this.temaSeleccionado().id,
+      inicio: Date.now(),
+      fin: null,
+    });
   }
 
   terminarTema = () => {
-    this.requestActualizarTema({ id: this.temaSeleccionado().id, inicio: this.temaSeleccionado().inicio, fin: Date.now() });
-    if (this.ultimoTema()) {
-      alert('Reunión finalizada');
-    }
+    this.requestActualizarTema({
+      id: this.temaSeleccionado().id,
+      inicio: this.temaSeleccionado().inicio,
+      fin: Date.now(),
+    });
+    toast.success('Tema finalizado');
   }
 
   requestActualizarTema = (datosTema) => {
     backend.actualizarTema(datosTema)
       .then(() => this.obtenerTemas())
       .catch(() => {
-        alert('No se pudo actualizar el tema :(');
+        toast.error('No se pudo actualizar el tema');
       });
   }
 
   obtenerTemas() {
     return backend.getTemas().then((temas) => {
       this.setState({
-        temas: temas.sort((tema1, tema2) => ((tema1.id > tema2.id) ? 1 : -1)),
+        temas: temas.sort((tema1, tema2) => tema1.prioridad - tema2.prioridad),
         estadoDeTemas: 'ok',
       });
     })
+      .then(() => this.setState({ indiceTemaAMostrar: this.indiceTemaATratar() }))
       .catch(() => this.setState({ estadoDeTemas: 'error' }));
   }
 
   temaSeleccionado() {
-    return this.state.temas[this.indiceTemaATratar()];
+    // TO DO: Nunca debería ser null pero al inicio es null...
+    if (this.state.indiceTemaAMostrar === null) {
+      return this.state.temas[this.indiceTemaATratar()];
+    }
+    return this.state.temas[this.state.indiceTemaAMostrar];
+  }
+
+  seleccionarTema = (temaSeleccionado) => {
+    const index = this.state.temas.findIndex((tema) => tema === temaSeleccionado);
+    if (index === this.state.indiceTemaAMostrar) return;
+    this.setState({ indiceTemaAMostrar: index });
   }
 
   ultimoTema() {
@@ -74,12 +96,9 @@ class Reunion extends React.Component {
   indiceTemaATratar() {
     const { temas, estadoDeTemas } = this.state;
     if (estadoDeTemas === 'ok') {
-      const temaSinFinalizar = [...Array(temas.length).keys()].find((indexTema) => temas[indexTema].fin === null);
+      const indiceTemaSinFinalizar = temas.findIndex((tema) => tema.fin === null);
       const ultimoTema = temas.length - 1;
-      if (temaSinFinalizar === undefined) {
-        return ultimoTema;
-      }
-      return temaSinFinalizar;
+      return indiceTemaSinFinalizar >= 0 ? indiceTemaSinFinalizar : ultimoTema;
     }
     return null;
   }
@@ -106,16 +125,18 @@ class Reunion extends React.Component {
       case ('cargando'): return null;
       case ('error'): return null;
       case ('ok'): return (
-        <ReunionContainer>
-          <VistaSeleccionada tema={this.temaSeleccionado()}
-            terminarTema={this.terminarTema}
-            empezarTema={this.empezarTema}
-            segundosRestantes={this.segundosRestantes()}
-            temaActivo= {this.temaActivo()}/>
-          <Sidebar handleSelection={this.handleSelection}
-            selectedElement={this.state.selectedElement}
-            link={this.temaSeleccionado().linkDePresentacion} />
-        </ReunionContainer>
+          <ReunionContainer>
+            <Temario temas={this.state.temas}
+              seleccionarTema={this.seleccionarTema} />
+            <VistaSeleccionada tema={this.temaSeleccionado()}
+              terminarTema={this.terminarTema}
+              empezarTema={this.empezarTema}
+              segundosRestantes={this.segundosRestantes()}
+              temaActivo= {this.temaActivo()} />
+            <Sidebar handleSelection={this.handleSelection}
+              selectedElement={this.state.selectedElement}
+              link={this.temaSeleccionado().linkDePresentacion} />
+          </ReunionContainer>
       );
       default: return null;
     }
