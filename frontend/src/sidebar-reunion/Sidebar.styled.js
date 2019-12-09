@@ -23,6 +23,9 @@ export const SeleccionContainer = styled.div(({ isActive }) => `
   color: ${isActive ? colors.primary : colors.black50};
   background: ${isActive ? colors.white : colors.background};
   border-bottom: ${isActive ? '0.3rem' : '0.1rem'} solid ${isActive ? colors.primary : colors.black30};
+  &:hover {
+    background: ${isActive ? colors.white : colors.black20};
+  }
 `);
 
 export const ElementoContainer = styled.div(({ habilitar }) => `

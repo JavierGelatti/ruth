@@ -8,6 +8,7 @@ export const font = {
   sizeH2: '2rem',
   p: 'Montserrat, sans-serif',
   sizeP: '1.25rem',
+  sizeCountdown: '4.5rem',
 };
 
 export const colors = {
@@ -15,7 +16,10 @@ export const colors = {
   secondary: '#448495',
   lightGrey: '#E0E0E0',
   black50: '#7F7F7F',
+  black40: '#AFAFAF',
   black30: '#DADADA',
+  black20: '#E6E6E6',
+  black10: '#EEEEEE',
   background: '#F2F2F2',
   viridian: '#448475',
   downy: '#68c9b2',

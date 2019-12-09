@@ -9,7 +9,7 @@ import {
 import InfoTema from '../temario/InfoTema';
 import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
 import backend from '../api/backend';
-import { Button } from '../components/Button.styled';
+import { Button, SecondaryButton } from '../components/Button.styled';
 import Countdown from '../reunion/Countdown';
 
 class TemaActual extends React.Component {
@@ -53,7 +53,7 @@ class TemaActual extends React.Component {
               <FontAwesomeIcon icon={faCaretRight} size="4x"/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
-              <Button onClick={this.handleCerrarReunion}>Cerrar Reunión</Button>
+              <SecondaryButton disabled={false} onClick={this.handleCerrarReunion}>Cerrar Reunión</SecondaryButton>
             </BotoneraCerrarReunion>
           </Botonera>
         </VistaDelMedioContainer>
