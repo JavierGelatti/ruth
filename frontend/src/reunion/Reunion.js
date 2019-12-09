@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToastsStore } from 'react-toasts';
+import { toast } from 'react-toastify';
 import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
 import TemaActual from '../tipos-vista-principal/TemaActual';
@@ -35,10 +35,10 @@ class Reunion extends React.Component {
 
   empezarTema = () => {
     if (this.temaSeleccionado().inicio !== null) {
-      return ToastsStore.error('No se puede iniciar un tema que ya fue iniciado');
+      return toast.error('No se puede iniciar un tema que ya fue iniciado');
     }
     if (this.state.indiceTemaAMostrar !== this.indiceTemaATratar()) {
-      return ToastsStore.error('Existe otro tema para tratar');
+      return toast.error('Existe otro tema para tratar');
     }
     return this.requestActualizarTema({
       id: this.temaSeleccionado().id,
@@ -53,14 +53,14 @@ class Reunion extends React.Component {
       inicio: this.temaSeleccionado().inicio,
       fin: Date.now(),
     });
-    ToastsStore.success('Tema finalizado');
+    toast.success('Tema finalizado');
   }
 
   requestActualizarTema = (datosTema) => {
     backend.actualizarTema(datosTema)
       .then(() => this.obtenerTemas())
       .catch(() => {
-        ToastsStore.error('No se pudo actualizar el tema');
+        toast.error('No se pudo actualizar el tema');
       });
   }
 
@@ -103,6 +103,21 @@ class Reunion extends React.Component {
     return null;
   }
 
+  segundosRestantes = () => {
+    const { inicio, fin, cantidadDeMinutosDelTema } = this.temaSeleccionado();
+    if (inicio === null) {
+      return cantidadDeMinutosDelTema * 60;
+    }
+    const tiempo = fin === null ? Date.now() : Date.parse(fin);
+    return Math.round(cantidadDeMinutosDelTema * 60
+        - (tiempo - Date.parse(inicio)) / 1000);
+  }
+
+  temaActivo = () => {
+    const { inicio, fin } = this.temaSeleccionado();
+    return inicio !== null && fin === null;
+  }
+
   render() {
     const VistaSeleccionada = this.obtenerVista();
     // TO DO: Ver qué se debería mostrar en caso de carga o error
@@ -115,9 +130,12 @@ class Reunion extends React.Component {
               seleccionarTema={this.seleccionarTema} />
             <VistaSeleccionada tema={this.temaSeleccionado()}
               terminarTema={this.terminarTema}
-              empezarTema={this.empezarTema} />
+              empezarTema={this.empezarTema}
+              segundosRestantes={this.segundosRestantes()}
+              temaActivo= {this.temaActivo()} />
             <Sidebar handleSelection={this.handleSelection}
-              selectedElement={this.state.selectedElement} />
+              selectedElement={this.state.selectedElement}
+              link={this.temaSeleccionado().linkDePresentacion} />
           </ReunionContainer>
       );
       default: return null;

@@ -1,5 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import color from '@material-ui/core/colors/amber';
 import { colors, font } from './styles/theme';
+
 
 export default createGlobalStyle`
   @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:300,400,700&display=swap);

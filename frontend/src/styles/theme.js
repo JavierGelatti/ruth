@@ -25,3 +25,7 @@ export const colors = {
 export const variables = {
   headerHeight: '3rem',
 };
+
+export const translucid = {
+  green: 'rgba(104, 201, 178, 0.7)',
+};
