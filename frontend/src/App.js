@@ -27,7 +27,7 @@ const App = ({ location }) => {
         <Route exact path="/"
                render={() => (reunionDeRoots.abierta ? <Redirect to="/reunionDeRoots"/>
                  : <EmpezarReunion {...reunionDeRoots} location={location}/>)}/>
-        <Route path="/reunionDeRoots"
+        <Route exact path="/reunionDeRoots"
                render={() => (reunionDeRoots.abierta ? <Reunion {...reunionDeRoots} location={location}/> : <Redirect to="/"/>)}/>
       </Switch>
     </>
