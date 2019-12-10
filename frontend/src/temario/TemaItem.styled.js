@@ -6,6 +6,7 @@ export const TemaItemContainer = styled.li`
   align-items: center;
   margin: 0.5em 0;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 export const TituloTema = styled.div`
