@@ -17,22 +17,28 @@ class TemaActual extends React.Component {
     super(props);
     this.state = {
       redirect: false,
+      vigente: false,
     };
   }
 
   static canHandleView = (view) => view === 'Tema Actual'
 
   handleCerrarReunion = () => {
+    if (this.state.vigente) {
+      this.handleTerminarTema();
+    }
     backend.cerrarReunion()
       .then(() => this.setState({ redirect: true }));
   }
 
   handleEmpezarTema = () => {
     this.props.empezarTema();
+    this.setState({ vigente: true });
   }
 
   handleTerminarTema = () => {
     this.props.terminarTema();
+    this.setState({ vigente: false });
   }
 
   render() {
