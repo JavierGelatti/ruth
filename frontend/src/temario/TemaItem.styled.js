@@ -30,6 +30,7 @@ export const ImagenTemaContainer = styled.div`
   padding: 0.4rem;
   box-sizing: border-box;
   opacity: 0.8;
+  margin-right: 2%;
 `;
 
 export const ImagenTema = styled.img`
