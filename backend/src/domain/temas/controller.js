@@ -14,8 +14,12 @@ const TemaController = ({ reunionesRepo, temasRepo }) => ({
 
     return temasRepo.findOneById(id)
       .then((temaAActualizar) => {
-        return temaAActualizar.update({ inicio, fin })
-        .then( (temaActualizado) => temaActualizado);
+        if((fin === null && temaAActualizar.inicio === null) || 
+        (fin !== null && temaAActualizar.fin === null)){
+          return temaAActualizar.update({ inicio, fin });
+        } else {
+          return temaAActualizar;
+        }
       });
   }
 });
