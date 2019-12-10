@@ -23,6 +23,9 @@ class TemaActual extends React.Component {
   static canHandleView = (view) => view === 'Tema Actual'
 
   handleCerrarReunion = () => {
+    if (this.props.temaActivo) {
+      this.handleTerminarTema();
+    }
     backend.cerrarReunion()
       .then(() => this.setState({ redirect: true }));
   }
