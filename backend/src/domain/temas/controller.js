@@ -14,12 +14,11 @@ const TemaController = ({ reunionesRepo, temasRepo }) => ({
 
     return temasRepo.findOneById(id)
       .then((temaAActualizar) => {
-        if((fin === null && temaAActualizar.inicio === null) || 
-        (fin !== null && temaAActualizar.fin === null)){
-          return temaAActualizar.update({ inicio, fin });
-        } else {
-          return temaAActualizar;
-        }
+        const actualizoInicioSiendoNull = fin === null && temaAActualizar.inicio === null
+        const actualizoFinSiendoNull = fin !== null && temaAActualizar.fin === null
+        const condicionParaActualizar = actualizoInicioSiendoNull || actualizoFinSiendoNull
+        if(condicionParaActualizar) return temaAActualizar.update({ inicio, fin });
+        return temaAActualizar;
       });
   }
 });
