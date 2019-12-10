@@ -85,13 +85,22 @@ class Reunion extends React.Component {
 
   seleccionarTema = (temaSeleccionado) => {
     const index = this.state.temas.findIndex((tema) => tema === temaSeleccionado);
-    if (index === this.state.indiceTemaAMostrar) return;
     this.setState({ indiceTemaAMostrar: index, selectedElement: 'Tema Actual' });
   }
 
-  ultimoTema() {
-    return this.indiceTemaATratar() === this.state.temas.length - 1;
+  avanzarTema = () => {
+    if (this.state.indiceTemaAMostrar !== this.state.temas.length - 1) {
+      this.setState({ indiceTemaAMostrar: this.state.indiceTemaAMostrar + 1 });
+    }
   }
+
+  retrocederTema = () => {
+    if (this.state.indiceTemaAMostrar !== 0) {
+      this.setState({ indiceTemaAMostrar: this.state.indiceTemaAMostrar - 1 });
+    }
+  }
+
+  ultimoTema = () => this.indiceTemaATratar() === this.state.temas.length - 1
 
   indiceTemaATratar() {
     const { temas, estadoDeTemas } = this.state;
@@ -132,7 +141,9 @@ class Reunion extends React.Component {
               terminarTema={this.terminarTema}
               empezarTema={this.empezarTema}
               segundosRestantes={this.segundosRestantes()}
-              temaActivo= {this.temaActivo()} />
+              temaActivo= {this.temaActivo()}
+              avanzarTema= {this.avanzarTema}
+              retrocederTema= {this.retrocederTema} />
             <Sidebar handleSelection={this.handleSelection}
               selectedElement={this.state.selectedElement}
               link={this.temaSeleccionado().linkDePresentacion} />

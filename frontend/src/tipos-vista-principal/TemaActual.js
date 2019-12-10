@@ -30,14 +30,6 @@ class TemaActual extends React.Component {
       .then(() => this.setState({ redirect: true }));
   }
 
-  handleEmpezarTema = () => {
-    this.props.empezarTema();
-  }
-
-  handleTerminarTema = () => {
-    this.props.terminarTema();
-  }
-
   render() {
     const { tema } = this.props;
     if (this.state.redirect) return <Redirect to="/" />;
@@ -50,10 +42,16 @@ class TemaActual extends React.Component {
             <Countdown activo={this.props.temaActivo}
                         segundos={this.props.segundosRestantes}/>
             <BotoneraNavegacionTemas>
-              <FontAwesomeIcon icon={faCaretLeft} size="4x"/>
-              <Button disabled={this.props.tema.inicio} onClick={this.handleEmpezarTema}>Empezar Tema</Button>
-              <Button disabled={!this.props.temaActivo} onClick={this.handleTerminarTema}>Terminar Tema</Button>
-              <FontAwesomeIcon icon={faCaretRight} size="4x"/>
+              <FontAwesomeIcon
+              icon={faCaretLeft}
+              size="4x"
+              onClick={this.props.retrocederTema}/>
+              <Button disabled={this.props.tema.inicio} onClick={this.props.empezarTema}>Empezar Tema</Button>
+              <Button disabled={!this.props.temaActivo} onClick={this.props.terminarTema}>Terminar Tema</Button>
+              <FontAwesomeIcon
+              icon={faCaretRight}
+              size="4x"
+              onClick={this.props.avanzarTema}/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
               <SecondaryButton disabled={false} onClick={this.handleCerrarReunion}>Cerrar Reunión</SecondaryButton>
