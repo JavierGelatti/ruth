@@ -25,6 +25,7 @@ export const SeleccionContainer = styled.div(({ isActive }) => `
   border-bottom: ${isActive ? '0.3rem' : '0.1rem'} solid ${isActive ? colors.primary : colors.black30};
   &:hover {
     background: ${isActive ? colors.white : colors.black20};
+    cursor: pointer;
   }
 `);
 
