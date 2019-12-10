@@ -35,7 +35,12 @@ export const ElementoContainer = styled.div(({ habilitar }) => `
 
 export const TitulosSidebar = styled.div`
   font-family: ${font.p};
-  font-size: ${font.sizeP};
+  @media (max-width: 1920px),(max-height: 1080px)  {
+    font-size:  ${font.sizeP};
+  }
+  @media (min-width: 1920px), @media (min-height: 1080px)  {
+    font-size: 1.75rem;
+  }
   text-align: center;
   padding-bottom: 7%;
 `;
