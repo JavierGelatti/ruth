@@ -85,18 +85,21 @@ class Reunion extends React.Component {
 
   seleccionarTema = (temaSeleccionado) => {
     const index = this.state.temas.findIndex((tema) => tema === temaSeleccionado);
-    if (index === this.state.indiceTemaAMostrar) return;
-    this.setState({ indiceTemaAMostrar: index });
+    if (index !== this.state.indiceTemaAMostrar) {
+      this.setState({ indiceTemaAMostrar: index });
+    }
   }
 
   avanzarTema = () => {
-    if (this.state.indiceTemaAMostrar === this.state.temas.length - 1) return;
-    this.setState({ indiceTemaAMostrar: this.state.indiceTemaAMostrar + 1 });
+    if (this.state.indiceTemaAMostrar !== this.state.temas.length - 1) {
+      this.setState({ indiceTemaAMostrar: this.state.indiceTemaAMostrar + 1 });
+    }
   }
 
   retrocederTema = () => {
-    if (this.state.indiceTemaAMostrar === 0) return;
-    this.setState({ indiceTemaAMostrar: this.state.indiceTemaAMostrar - 1 });
+    if (this.state.indiceTemaAMostrar !== 0) {
+      this.setState({ indiceTemaAMostrar: this.state.indiceTemaAMostrar - 1 });
+    }
   }
 
   ultimoTema = () => this.indiceTemaATratar() === this.state.temas.length - 1
