@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, font } from '../styles/theme';
+import { colors, font, sizeBreakpoint } from '../styles/theme';
 
 export const TemarioContainer = styled.div(({ isActive }) => `
   display: flex;
@@ -38,13 +38,19 @@ export const Arrow = styled.img`
 export const LeyendaEmpresa = styled.div`
   font-family: ${font.p};
   font-size:  ${font.sizeH1};
+  @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight})  {
+    font-size: 4rem;
+  }
   letter-spacing: -3px;
   color: white;
 `;
 
 export const ExtensionLeyendaEmpresa = styled.div`
   font-family: ${font.p};
-  font-size: 1rem;
+  font-size:  ${font.sizeP};
+  @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight})  {
+    font-size: 1.75rem;
+  }
   color: white;
   margin-bottom: 2em;
 `;
@@ -52,6 +58,9 @@ export const ExtensionLeyendaEmpresa = styled.div`
 export const Titulo = styled.div`
   font-family: ${font.h1};
   font-size:  ${font.sizeH2};
+  @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight}) {
+    font-size: 3rem;
+  }
   letter-spacing: 1px;
   color: white;
 `;

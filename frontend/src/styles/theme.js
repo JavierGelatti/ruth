@@ -33,3 +33,8 @@ export const variables = {
 export const translucid = {
   green: 'rgba(104, 201, 178, 0.7)',
 };
+
+export const sizeBreakpoint = {
+  bigWidth: '1920px',
+  bigHeight: '1080px',
+};

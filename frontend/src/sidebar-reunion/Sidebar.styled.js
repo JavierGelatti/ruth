@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, font } from '../styles/theme';
+import { colors, font, sizeBreakpoint } from '../styles/theme';
 
 export const SidebarContainer = styled.div`
   display: flex;
@@ -35,7 +35,10 @@ export const ElementoContainer = styled.div(({ habilitar }) => `
 
 export const TitulosSidebar = styled.div`
   font-family: ${font.p};
-  font-size: ${font.sizeP};
+  font-size:  ${font.sizeP};
+  @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight})  {
+    font-size: 1.75rem;
+  }
   text-align: center;
   padding-bottom: 7%;
 `;
