@@ -4,21 +4,16 @@ import {
 } from './Analytics.styled';
 
 class Analytics extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      grafico: 'Página en desarrollo',
-    };
-  }
-
     static canHandleView = (view) => view === 'Analytics'
+
+    mensaje = 'Pagina en desarrollo'
 
     render() {
       return (
         <AnalyticsContainter>
           <SidebarIzquierdo/>
           <WorkInProgressContainer>
-            <Titulo>{this.state.grafico}</Titulo>
+            <Titulo>{this.mensaje}</Titulo>
             <ImagenContainer src='./working.png'/>
           </WorkInProgressContainer>
         </AnalyticsContainter>
