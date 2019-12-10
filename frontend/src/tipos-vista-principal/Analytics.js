@@ -1,20 +1,22 @@
 import React from 'react';
+import {
+  AnalyticsContainter, SidebarIzquierdo, WorkInProgressContainer, Titulo, ImagenContainer,
+} from './Analytics.styled';
 
 class Analytics extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      grafico: 'Gráficos locos sólo para entendidos',
-    };
-  }
-
     static canHandleView = (view) => view === 'Analytics'
+
+    mensaje = 'Pagina en desarrollo'
 
     render() {
       return (
-        <div>
-            {this.state.grafico}
-        </div>
+        <AnalyticsContainter>
+          <SidebarIzquierdo/>
+          <WorkInProgressContainer>
+            <Titulo>{this.mensaje}</Titulo>
+            <ImagenContainer src='./working.png'/>
+          </WorkInProgressContainer>
+        </AnalyticsContainter>
       );
     }
 }

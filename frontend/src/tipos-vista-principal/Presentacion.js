@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactGoogleSlides from 'react-google-slides';
-import {
-  PresentacionContainter, SidebarIzquierdo, SlidesContainer, Transparencia,
-} from './Presentacion.styled';
+import { PresentacionContainter, SidebarIzquierdo, SlidesContainer } from './Presentacion.styled';
 import Countdown from '../reunion/Countdown';
 
 class Presentacion extends React.Component {
