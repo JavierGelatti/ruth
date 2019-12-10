@@ -10,7 +10,12 @@ export const TemaItemContainer = styled.li`
 
 export const TituloTema = styled.div`
   font-family: ${font.p};
-  font-size:  ${font.sizeP};
+  @media (max-width: 1920px),(max-height: 1080px)  {
+    font-size:  ${font.sizeP};
+  }
+  @media (min-width: 1920px), @media (min-height: 1080px)  {
+    font-size: 2rem;
+  }
   letter-spacing: 1px;
   color: ${colors.viridian};
   max-width: calc(100% - 2.5rem)

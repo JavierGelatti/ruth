@@ -37,21 +37,36 @@ export const Arrow = styled.img`
 
 export const LeyendaEmpresa = styled.div`
   font-family: ${font.p};
-  font-size:  ${font.sizeH1};
+  @media (max-width: 1920px),(max-height: 1080px)  {
+    font-size:  ${font.sizeH1};
+  }
+  @media (min-width: 1920px), @media (min-height: 1080px)  {
+    font-size: 4rem;
+  }
   letter-spacing: -3px;
   color: white;
 `;
 
 export const ExtensionLeyendaEmpresa = styled.div`
   font-family: ${font.p};
-  font-size: 1rem;
+  @media (max-width: 1920px),(max-height: 1080px)  {
+    font-size:  ${font.sizeP};
+  }
+  @media (min-width: 1920px), @media (min-height: 1080px)  {
+    font-size: 1.75rem;
+  }
   color: white;
   margin-bottom: 2em;
 `;
 
 export const Titulo = styled.div`
   font-family: ${font.h1};
-  font-size:  ${font.sizeH2};
+  @media (max-width: 1920px),(max-height: 1080px)  {
+    font-size:  ${font.sizeH2};
+  }
+  @media (min-width: 1920px), @media (min-height: 1080px)  {
+    font-size: 3rem;
+  }
   letter-spacing: 1px;
   color: white;
 `;

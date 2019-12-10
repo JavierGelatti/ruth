@@ -16,11 +16,16 @@ export const Titulo = styled.h1`
 `;
 
 export const Descripcion = styled.p`
+  font-family: ${font.p};
+  @media (max-width: 1920px),(max-height: 1080px)  {
+    font-size:  ${font.sizeP};
+  }
+  @media (min-width: 1920px), @media (min-height: 1080px)  {
+    font-size: 2rem;
+  }
   white-space: pre-line;
   text-align: justify;
   margin: 0 3em;
-  font-size: ${font.sizeP} ;
-  font-family: ${font.p};
 `;
 
 export const ListaPinosPropuestos = styled.ul`
