@@ -7,6 +7,6 @@ export const InfoTemaContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   background: ${colors.downy};
-  width: 15vw;
+  width: 22%;
   height: 100vh;
 `;

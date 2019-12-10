@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { toast } from 'react-toastify';
 import {
   TemaActualContainer, VistaDelMedioContainer, Botonera,
   BotoneraNavegacionTemas, BotoneraCerrarReunion,
@@ -25,6 +26,7 @@ class TemaActual extends React.Component {
   handleCerrarReunion = () => {
     backend.cerrarReunion()
       .then(() => this.setState({ redirect: true }));
+    toast.success('Reunión finalizada');
   }
 
   handleEmpezarTema = () => {
