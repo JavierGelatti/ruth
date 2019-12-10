@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { font } from '../../styles/theme';
+import { font, sizeBreakpoint } from '../../styles/theme';
 
 
 export const DescripcionTemaContainer = styled.div`
@@ -17,10 +17,8 @@ export const Titulo = styled.h1`
 
 export const Descripcion = styled.p`
   font-family: ${font.p};
-  @media (max-width: 1920px),(max-height: 1080px)  {
-    font-size:  ${font.sizeP};
-  }
-  @media (min-width: 1920px), @media (min-height: 1080px)  {
+  font-size:  ${font.sizeP};
+  @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight})  {
     font-size: 2rem;
   }
   white-space: pre-line;
