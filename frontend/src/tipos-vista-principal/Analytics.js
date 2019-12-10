@@ -1,10 +1,13 @@
 import React from 'react';
+import {
+  AnalyticsContainter, SidebarIzquierdo, WorkInProgressContainer, Titulo, ImagenContainer,
+} from './Analytics.styled';
 
 class Analytics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      grafico: 'Gráficos locos sólo para entendidos',
+      grafico: 'Página en desarrollo',
     };
   }
 
@@ -12,9 +15,13 @@ class Analytics extends React.Component {
 
     render() {
       return (
-        <div>
-            {this.state.grafico}
-        </div>
+        <AnalyticsContainter>
+          <SidebarIzquierdo/>
+          <WorkInProgressContainer>
+            <Titulo>{this.state.grafico}</Titulo>
+            <ImagenContainer src='./working.png'/>
+          </WorkInProgressContainer>
+        </AnalyticsContainter>
       );
     }
 }
