@@ -25,8 +25,9 @@ class TemaActual extends React.Component {
 
   handleCerrarReunion = () => {
     backend.cerrarReunion()
-      .then(() => this.setState({ redirect: true }));
-    toast.success('Reunión finalizada');
+      .then(() => toast.success('Reunión finalizada'))
+      .then(() => this.setState({ redirect: true }))
+      .catch(() => toast.error('No se pudo finalizar la reunión'));
   }
 
   handleEmpezarTema = () => {
