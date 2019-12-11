@@ -7,6 +7,10 @@ export const TemarioContainer = styled.div(({ isActive }) => `
   transition: all 0.2s linear;
   position: fixed;
   left: ${isActive ? '0' : '-17em'};
+  @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight})  {
+    left: ${isActive ? '0' : '-25em'};
+    width: 22%
+  }
 `);
 
 export const Temas = styled.div`
@@ -17,6 +21,9 @@ export const Temas = styled.div`
   border-right-style: solid;
   border-width: 10px;
   border-color: ${colors.viridian};
+  @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight})  {
+    width: 100%
+  }
 `;
 
 export const Arrow = styled.img`
