@@ -49,7 +49,7 @@ class TemaActual extends React.Component {
               icon={faCaretLeft}
               size="4x"
               onClick={this.props.retrocederTema}/>
-              <Button disabled={this.props.tema.inicio} onClick={this.props.empezarTema}>Empezar Tema</Button>
+              <Button disabled={this.props.tema.inicio || !this.props.temaATratar} onClick={this.props.empezarTema}>Empezar Tema</Button>
               <Button disabled={!this.props.temaActivo} onClick={this.props.terminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon
               icon={faCaretRight}
