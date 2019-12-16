@@ -25,7 +25,7 @@ class TemaActual extends React.Component {
 
   handleCerrarReunion = () => {
     if (this.props.temaActivo) {
-      this.handleTerminarTema();
+      this.props.terminarTema();
     }
     backend.cerrarReunion()
       .then(() => toast.success('Reunión finalizada'))
@@ -48,9 +48,10 @@ class TemaActual extends React.Component {
               <FontAwesomeIcon
               icon={faCaretLeft}
               size="4x"
-              onClick={this.props.retrocederTema}
-              cursor={'pointer'}/>
-              <Button disabled={this.props.tema.inicio} onClick={this.props.empezarTema}>Empezar Tema</Button>
+              cursor={'pointer'}
+              onClick={this.props.retrocederTema}/>
+              <Button disabled={this.props.tema.inicio || !this.props.temaATratar}
+              onClick={this.props.empezarTema}>Empezar Tema</Button>
               <Button disabled={!this.props.temaActivo} onClick={this.props.terminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon
               icon={faCaretRight}

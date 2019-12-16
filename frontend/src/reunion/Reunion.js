@@ -112,6 +112,8 @@ class Reunion extends React.Component {
     return null;
   }
 
+  esElSiguienteTemaATratar = () => this.state.indiceTemaAMostrar === this.indiceTemaATratar()
+
   segundosRestantes = () => {
     const { inicio, fin, cantidadDeMinutosDelTema } = this.temaSeleccionado();
     if (inicio === null) {
@@ -143,7 +145,8 @@ class Reunion extends React.Component {
               segundosRestantes={this.segundosRestantes()}
               temaActivo= {this.temaActivo()}
               avanzarTema= {this.avanzarTema}
-              retrocederTema= {this.retrocederTema} />
+              retrocederTema= {this.retrocederTema}
+              temaATratar= {this.esElSiguienteTemaATratar()} />
             <Sidebar handleSelection={this.handleSelection}
               selectedElement={this.state.selectedElement}
               link={this.temaSeleccionado().linkDePresentacion} />
