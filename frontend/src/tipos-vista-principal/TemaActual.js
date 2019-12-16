@@ -48,13 +48,16 @@ class TemaActual extends React.Component {
               <FontAwesomeIcon
               icon={faCaretLeft}
               size="4x"
+              cursor={'pointer'}
               onClick={this.props.retrocederTema}/>
-              <Button disabled={this.props.tema.inicio || !this.props.temaATratar} onClick={this.props.empezarTema}>Empezar Tema</Button>
+              <Button disabled={this.props.tema.inicio || !this.props.temaATratar}
+              onClick={this.props.empezarTema}>Empezar Tema</Button>
               <Button disabled={!this.props.temaActivo} onClick={this.props.terminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon
               icon={faCaretRight}
               size="4x"
-              onClick={this.props.avanzarTema}/>
+              onClick={this.props.avanzarTema}
+              cursor={'pointer'}/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
               <SecondaryButton disabled={false} onClick={this.handleCerrarReunion}>Cerrar Reunión</SecondaryButton>
