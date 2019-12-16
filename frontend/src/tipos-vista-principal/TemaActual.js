@@ -25,7 +25,7 @@ class TemaActual extends React.Component {
 
   handleCerrarReunion = () => {
     if (this.props.temaActivo) {
-      this.handleTerminarTema();
+      this.props.terminarTema();
     }
     backend.cerrarReunion()
       .then(() => toast.success('Reunión finalizada'))
