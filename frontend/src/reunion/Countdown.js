@@ -50,7 +50,7 @@ export default class Countdown extends React.Component {
 
     return (
             <CountdownContainer>
-                { this.state.segundos <= 0
+                { this.state.segundos === 0
                   ? 'Tiempo Acabado'
                   : <span>{minutos}:{segundos < 10 ? `0${segundos}` : segundos}</span>
                 }
