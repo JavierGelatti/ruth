@@ -1,10 +1,17 @@
 import React from 'react';
+import { Button, TextField } from '@material-ui/core';
+import Vista from './vista';
 
 class Mobile extends React.Component {
-    render(){
-        return(
-            <h1>Mobile</h1>
-        )
+
+    dispatch = (event) => {
+        console.log(event)
+    }
+
+    render() {
+        return (
+            <Vista dispatch={this.dispatch}/>
+        );
     }
 }
 

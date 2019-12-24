@@ -1,11 +1,11 @@
 import React from 'react';
 
 class Oradores extends React.Component {
-    render(){
-        return(
+  render() {
+    return (
             <h1>Oradores</h1>
-        )
-    }
+    );
+  }
 }
 
 
