@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import Oradores from './oradores';
 import Mobile from './mobile';
-import Chart from './chart';
+import TestChart from './chart';
 
 const history = createBrowserHistory();
 
@@ -16,7 +16,7 @@ ReactDOM.render(
     <Route path="/" render={({ location }) => <App location={location}/>}/>
     <Route path="/mobile" render={({ location }) => <Mobile location={location}/>}/>
     <Route path="/oradores" render={({ location }) => <Oradores location={location}/>}/>
-    <Route path="/chart" render={({ location }) => <Chart location={location}/>}/>
+    <Route path="/chart" render={({ location }) => <TestChart location={location}/>}/>
   </Router>,
   document.getElementById('root'),
 );

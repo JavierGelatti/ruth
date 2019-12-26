@@ -1,92 +1,64 @@
 import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import { colors } from '../styles/theme';
+import Chart from './chart';
 
-class Chart extends React.Component {
+class TestChart extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      dataLine: {
-        labels: ['11:00', '12:00', '13:00', '14:00'],
-        datasets: [{
-          label: '+1',
-          data: [
-            2,
-            5,
-            16,
-            42,
-          ],
-          backgroundColor: colors.primary,
-          borderColor: colors.primary,
-          fill: false,
-        },
-        {
-          label: '-1',
-          data: [
-            0,
-            2,
-            3,
-            3,
-          ],
-          backgroundColor: 'red',
-          borderColor: 'red',
-          fill: false,
-        },
-        {
-          label: 'redondear',
-          data: [
-            0,
-            1,
-            3,
-            35,
-          ],
-          backgroundColor: 'blue',
-          borderColor: 'blue',
-          fill: false,
-        }],
-      },
 
-      dataBar: {
-        labels: ['+1', '-1', 'redondear', 'slack'],
-        datasets: [{
-          data: [
-            20,
-            5,
-            16,
-            0,
-          ],
-          backgroundColor: colors.primary,
-        },
+      dataLine2: {
+        horarios: ['11:00', '12:00', '13:00', '14:00'],
+        data: [
+          {
+            label: '+1',
+            borderColor: colors.primary,
+            backgroundColor: colors.primary,
+            data: [2, 5, 16, 42],
+            fill: false,
+          },
+          {
+            label: '-1',
+            borderColor: 'red',
+            backgroundColor: 'red',
+            data: [0, 2, 3, 4],
+            fill: false,
+          },
+          {
+            label: 'redondear',
+            borderColor: 'blue',
+            backgroundColor: 'blue',
+            data: [0, 0, 2, 35],
+            fill: false,
+          },
         ],
       },
 
-      optionsLine: {
-        legend: {
-          display: true,
-        },
+      dataBar2: {
+        data: [
+          { '+1': 20 },
+          { '-1': 5 },
+          { redondear: 16 },
+          { slack: 2 },
+        ],
+        color: colors.primary,
       },
 
-      optionsBar: {
-        legend: {
-          display: false,
-        },
-      },
     };
   }
-
-  // {type: Line/Bar, data: {label: "+1",datos:[{"11:00",1},{"12:00",3}, color:"red"]}}
 
   render() {
     return (
       <>
-        <Line
-          data={this.state.dataLine}
-          options={this.state.optionsLine}
+        <Chart
+          chartType= {Line}
+          data={this.state.dataLine2}
         />
-        <Bar
-          data={this.state.dataBar}
-          options={this.state.optionsBar}
+        <Chart
+          chartType= {Bar}
+          data={this.state.dataBar2}
         />
       </>
     );
@@ -94,4 +66,4 @@ class Chart extends React.Component {
 }
 
 
-export default Chart;
+export default TestChart;
