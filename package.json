@@ -50,6 +50,8 @@
     "sequelize-cli": "^5.5.1"
   },
   "dependencies": {
-    "lodash.pick": "^4.4.0"
+    "chart.js": "^2.9.3",
+    "lodash.pick": "^4.4.0",
+    "react-chartjs-2": "^2.8.0"
   }
 }

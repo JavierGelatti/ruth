@@ -13,6 +13,7 @@
     "history": "latest",
     "http-proxy-middleware": "^0.20.0",
     "react": "^16.11.0",
+    "react-chartjs-2": "^2.8.0",
     "react-dom": "^16.11.0",
     "react-google-slides": "^1.0.2",
     "react-redux": "^7.1.3",
