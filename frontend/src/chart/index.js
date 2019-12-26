@@ -8,35 +8,28 @@ class TestChart extends React.Component {
     super(props);
 
     this.state = {
-
-      dataLine2: {
+      dataLine: {
         horarios: ['11:00', '12:00', '13:00', '14:00'],
         data: [
           {
-            label: '+1',
-            borderColor: colors.primary,
-            backgroundColor: colors.primary,
+            name: '+1',
+            color: colors.primary,
             data: [2, 5, 16, 42],
-            fill: false,
           },
           {
-            label: '-1',
-            borderColor: 'red',
-            backgroundColor: 'red',
+            name: '-1',
+            color: 'red',
             data: [0, 2, 3, 4],
-            fill: false,
           },
           {
-            label: 'redondear',
-            borderColor: 'blue',
-            backgroundColor: 'blue',
+            name: 'redondear',
+            color: 'blue',
             data: [0, 0, 2, 35],
-            fill: false,
           },
         ],
       },
 
-      dataBar2: {
+      dataBar: {
         data: [
           { '+1': 20 },
           { '-1': 5 },
@@ -54,11 +47,11 @@ class TestChart extends React.Component {
       <>
         <Chart
           chartType= {Line}
-          data={this.state.dataLine2}
+          data={this.state.dataLine}
         />
         <Chart
           chartType= {Bar}
-          data={this.state.dataBar2}
+          data={this.state.dataBar}
         />
       </>
     );

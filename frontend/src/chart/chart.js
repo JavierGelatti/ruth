@@ -38,7 +38,13 @@ class Chart extends React.Component {
       if (this.props.chartType.name === 'Line') {
         return {
           labels: this.props.data.horarios,
-          datasets: this.props.data.data,
+          datasets: this.props.data.data.map((data) => ({
+            label: data.name,
+            data: data.data,
+            borderColor: data.color,
+            backgroundColor: data.color,
+            fill: false,
+          })),
         };
       }
       return null;
