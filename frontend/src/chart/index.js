@@ -48,6 +48,10 @@ class TestChart extends React.Component {
         <Chart
           chartType= {Line}
           data={this.state.dataLine}
+          paddingLeft={50}
+          paddingRight={50}
+          paddingTop={30}
+          paddingBottom={30}
         />
         <Chart
           chartType= {Bar}

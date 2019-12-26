@@ -2,8 +2,18 @@ import React from 'react';
 
 class Chart extends React.Component {
     graphOptions = () => {
+      let generalOptions = {
+        layout: {
+          padding: {
+            left: this.props.paddingLeft || 0,
+            right: this.props.paddingRight || 0,
+            top: this.props.paddingTop || 0,
+            bottom: this.props.paddingBottom || 0,
+          },
+        },
+      };
       if (this.props.chartType.name === 'Bar') {
-        return {
+        const barOptions = {
           legend: {
             display: false,
           },
@@ -19,8 +29,9 @@ class Chart extends React.Component {
             ],
           },
         };
+        generalOptions = { ...generalOptions, ...barOptions };
       }
-      return null;
+      return generalOptions;
     }
 
     formattedData = () => {
