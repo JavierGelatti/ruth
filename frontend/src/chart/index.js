@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import { colors } from '../styles/theme';
 
 class Chart extends React.Component {
@@ -7,20 +7,67 @@ class Chart extends React.Component {
     super(props);
 
     this.state = {
-      data: {
-        labels: ['+1', '-1', 'redondear', 'slack'],
+      dataLine: {
+        labels: ['11:00', '12:00', '13:00', '14:00'],
         datasets: [{
+          label: '+1',
           data: [
-            25,
-            14,
-            4,
             2,
+            5,
+            16,
+            42,
           ],
           backgroundColor: colors.primary,
+          borderColor: colors.primary,
+          fill: false,
+        },
+        {
+          label: '-1',
+          data: [
+            0,
+            2,
+            3,
+            3,
+          ],
+          backgroundColor: 'red',
+          borderColor: 'red',
+          fill: false,
+        },
+        {
+          label: 'redondear',
+          data: [
+            0,
+            1,
+            3,
+            35,
+          ],
+          backgroundColor: 'blue',
+          borderColor: 'blue',
+          fill: false,
         }],
       },
 
-      options: {
+      dataBar: {
+        labels: ['+1', '-1', 'redondear', 'slack'],
+        datasets: [{
+          data: [
+            20,
+            5,
+            16,
+            0,
+          ],
+          backgroundColor: colors.primary,
+        },
+        ],
+      },
+
+      optionsLine: {
+        legend: {
+          display: true,
+        },
+      },
+
+      optionsBar: {
         legend: {
           display: false,
         },
@@ -28,12 +75,18 @@ class Chart extends React.Component {
     };
   }
 
+  // {type: Line/Bar, data: {label: "+1",datos:[{"11:00",1},{"12:00",3}, color:"red"]}}
+
   render() {
     return (
       <>
+        <Line
+          data={this.state.dataLine}
+          options={this.state.optionsLine}
+        />
         <Bar
-          data={this.state.data}
-          options={this.state.options}
+          data={this.state.dataBar}
+          options={this.state.optionsBar}
         />
       </>
     );
