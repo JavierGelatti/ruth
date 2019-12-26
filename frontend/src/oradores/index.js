@@ -11,10 +11,10 @@ class Oradores extends React.Component {
       console.log(evento);
       switch (evento.tipo) {
         case 'Quiero Hablar':
-          this.setState(({ oradores }) => ({ oradores: oradores.concat([evento.autor]) }));
+          this.setState(({ oradores }) => ({ oradores: oradores.concat([evento.nombreAutor + ' ' + evento.apellidoAutor]) }));
           break;
         case 'No Quiero Hablar':
-          this.setState(({ oradores }) => ({ oradores: oradores.filter((orador) => orador !== evento.autor) }));
+          this.setState(({ oradores }) => ({ oradores: oradores.filter((orador) => orador !== evento.nombreAutor + ' ' + evento.apellidoAutor) }));
           break;
         default: console.error('No entiendo el evento', evento);
       }
