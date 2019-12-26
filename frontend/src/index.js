@@ -5,12 +5,14 @@ import { Route, Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 import App from './App';
+import Login from './login/Login';
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={history}>
     <Route path="/" render={({ location }) => <App location={location}/>}/>
+    <Route path="/login" render={({ location }) => <Login location={location}/>}/>
   </Router>,
   document.getElementById('root'),
 );
