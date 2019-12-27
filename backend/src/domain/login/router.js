@@ -1,12 +1,10 @@
 import { Router } from 'express';
-
-var Controller = require('./controller');
+import asyncMiddleware from '~/utils/asyncMiddleware';
+import BackofficeController from './controller';
 
 const router = Router({ promise: true });
+const controller = BackofficeController();
 
-
-router.route('/api/auth/callback/')
-  .get(Controller.backofficeCallback)
-
+router.get('/auth/callback', asyncMiddleware(controller.callback));
 
 export default router;

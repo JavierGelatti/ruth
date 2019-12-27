@@ -1,15 +1,15 @@
-export class BackofficeValidator {
+const BackofficeValidator = {
 
-    createUriToValidate = (uid, email, username, fullName, root) => {
+    createUriToValidate: (uid, email, username, fullName, root) => {
 
         return ["uid="+uid.toString(), 
                 "email="+email, 
                 "username="+username, 
                 "full_name="+fullName, 
                 "root="+root.toString()].join("&")
-    }
+    },
 
-    static isFromBackoffice = (uid, email, username, fullName, root, hmac) => {
+    isFromBackoffice: (uid, email, username, fullName, root, hmac) => {
         const hmacBackoffice = hmac.toUpperCase();
         const uriToValidate = this.createUriToValidate(uid, email, username, fullName, root);
 
@@ -22,3 +22,5 @@ export class BackofficeValidator {
         return hmacBackoffice === result;
     }
 }
+
+export default BackofficeValidator;

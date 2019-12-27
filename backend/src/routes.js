@@ -2,6 +2,7 @@ import { Router } from 'express';
 import reunionRouter from '~/domain/reuniones/router';
 import temasRouter from '~/domain/temas/router';
 import pruebasRouter from '~/domain/pruebas/router';
+import loginRouter from '~/domain/login/router';
 
 const router = Router({ promise: true });
 
@@ -12,6 +13,7 @@ router.get('/', (req, res) => {
 
 router.use('/', reunionRouter);
 router.use('/temas', temasRouter);
+router.use('/', loginRouter)
 
 if (process.env.NODE_ENV !== 'production') {
   router.use('/pruebas', pruebasRouter);
