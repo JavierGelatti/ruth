@@ -37,9 +37,9 @@ class Chart extends React.Component {
     formattedData = () => {
       if (this.props.chartType.name === 'Bar') {
         return {
-          labels: this.props.data.data.flatMap((keyValue) => Object.keys(keyValue)),
+          labels: this.props.data.data.map((bar) => bar.name),
           datasets: [{
-            data: this.props.data.data.flatMap((keyValue) => Object.values(keyValue)),
+            data: this.props.data.data.map((bar) => bar.value),
             backgroundColor: this.props.data.color,
             borderColor: this.props.data.color,
           },

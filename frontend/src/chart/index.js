@@ -31,10 +31,22 @@ class TestChart extends React.Component {
 
       dataBar: {
         data: [
-          { '+1': 20 },
-          { '-1': 5 },
-          { redondear: 16 },
-          { slack: 2 },
+          {
+            name: '+1',
+            value: 20,
+          },
+          {
+            name: '-1',
+            value: 5,
+          },
+          {
+            name: 'redondear',
+            value: 16,
+          },
+          {
+            name: '+slack',
+            value: 2,
+          },
         ],
         color: colors.primary,
       },
