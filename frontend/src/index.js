@@ -5,15 +5,15 @@ import { Route, Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 import App from './App';
-import Oradores from './oradores';
-import Mobile from './mobile';
+import Oradores from './oradores'
+import GateKeeper from './mobile/gateKeeper';
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={history}>
     <Route path="/" render={({ location }) => <App location={location}/>}/>
-    <Route path="/mobile" render={({ location }) => <Mobile location={location}/>}/>
+    <Route path="/mobile" render={({ location }) => <GateKeeper location={location}/>}/>
     <Route path="/oradores" render={({ location }) => <Oradores location={location}/>}/>
   </Router>,
   document.getElementById('root'),
