@@ -8,7 +8,7 @@ import Analytics from '../tipos-vista-principal/Analytics';
 import Temario from '../temario/Temario';
 import backend from '../api/backend';
 
-class Reunion extends React.Component {
+class VistaTemas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -157,4 +157,4 @@ class Reunion extends React.Component {
   }
 }
 
-export default Reunion;
+export default VistaTemas;

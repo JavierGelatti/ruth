@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { toast, Slide } from 'react-toastify';
 import GlobalStyle from './GlobalStyle.styled';
-import Reunion from './reunion/Reunion';
+import VistaTemas from './reunion/VistaTemas';
 import EmpezarReunion from './empezar-reunion/EmpezarReunion';
 import backend from './api/backend';
 import './toast.css';
@@ -28,7 +28,7 @@ const App = ({ location }) => {
                render={() => (reunionDeRoots.abierta ? <Redirect to="/reunionDeRoots"/>
                  : <EmpezarReunion {...reunionDeRoots} location={location}/>)}/>
         <Route exact path="/reunionDeRoots"
-               render={() => (reunionDeRoots.abierta ? <Reunion {...reunionDeRoots} location={location}/> : <Redirect to="/"/>)}/>
+               render={() => (reunionDeRoots.abierta ? <VistaTemas {...reunionDeRoots} location={location}/> : <Redirect to="/"/>)}/>
       </Switch>
     </>
   );
