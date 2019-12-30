@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import { toast } from 'react-toastify';
 
 const backendUrl = '/api';
 
@@ -7,6 +8,7 @@ const extractResponse = (response) => response.data;
 const handleError = (error) => {
   // eslint-disable-next-line no-console
   console.error(error);
+  toast.error(error.message);
   return Promise.reject(error);
 };
 
