@@ -81,7 +81,6 @@ class VistaTemas extends React.Component {
   ultimoTema = () => this.indiceTemaATratar() === this.props.temas.length - 1
 
   indiceTemaATratar() {
-    debugger;
     const indiceTemaSinFinalizar = this.props.temas.findIndex((tema) => tema.fin === null);
     const ultimoTema = this.props.temas.length - 1;
     return indiceTemaSinFinalizar >= 0 ? indiceTemaSinFinalizar : ultimoTema;

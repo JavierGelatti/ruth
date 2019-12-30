@@ -36,11 +36,10 @@ class TemasHandler extends React.Component {
   }
 
   render() {
-      debugger;
     // TO DO: Ver qué se debería mostrar en caso de carga o error
     switch (this.state.estadoDeTemas) {
-      case ('cargando'): return null;
-      case ('error'): return null;
+      case ('cargando'): return <h1>Loading...</h1>;
+      case ('error'): return <h1>Error!</h1>;
       case ('ok'): return (
           <VistaTemas temas={this.state.temas}
           actualizarTema={this.requestActualizarTema}/>
