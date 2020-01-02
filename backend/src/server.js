@@ -8,7 +8,7 @@ import webSocketRouter from './webSocket';
 import logger from '~/logger';
 
 const app = express();
-var expressWs = require('express-ws')(app);
+const expressWs = require('express-ws')(app);
 
 
 app.use(morgan('combined', { stream: logger.stream }));
@@ -20,13 +20,9 @@ app.ws('/ws', webSocketRouter(expressWs.getWss()));
 app.use('/api', indexRouter);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, './frontend')));
+  app.use('*', (req, res) => {
+    res.sendfile(`${__dirname}/frontend/index.html`);
+  });
 }
-
-app.use(logger.errorHandler());
-
-app.get('*', (req, res) => {
-  logger.info(`Request not found ${req.url}`);
-  res.status(404).send('Not found');
-});
 
 export default app;
