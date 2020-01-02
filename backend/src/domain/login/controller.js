@@ -9,6 +9,10 @@ const BackofficeController = () => ({
             return "Falló la validación, el backoffice envió una firma incorrecta"
         }
 
+        req.session.usuario = { nombre: query.full_name,
+                                root: query.root === 'true' 
+                            };
+
         return ["\n",
             "<!DOCTYPE html>",
             "<html lang=\"en\">",

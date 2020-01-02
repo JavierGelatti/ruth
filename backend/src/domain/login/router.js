@@ -5,6 +5,6 @@ import BackofficeController from './controller';
 const router = Router({ promise: true });
 const controller = BackofficeController();
 
-router.get('/auth/callback', asyncMiddleware(controller.callback));
+router.get('/callback', asyncMiddleware(controller.callback));
 
 export default router;

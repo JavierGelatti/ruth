@@ -9,8 +9,7 @@ const createUriToValidate = (uid, email, username, fullName, root) => {
 
 const BackofficeValidator = {
 
-    isFromBackoffice: ({uid, email, username, root, hmac}) => {
-        const hmacBackoffice = hmac.toUpperCase();
+    isFromBackoffice: ({uid, email, username, full_name, root, hmac}) => {
         const uriToValidate = createUriToValidate(uid, email, username, full_name, root);
 
         var crypto = require('crypto'),
@@ -18,9 +17,9 @@ const BackofficeValidator = {
         generatedHmac = crypto.createHmac('sha256', 'h0l4s0yunp1n0');
         generatedHmac.update(uriToValidate);
  
-        var result = generatedHmac.digest('hex').toUpperCase();
+        var result = generatedHmac.digest('hex');
 
-        return hmacBackoffice === result;
+        return hmac === result;
     }
 }
 
