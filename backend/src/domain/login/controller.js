@@ -3,14 +3,13 @@ import BackofficeValidator from './backOfficeValidator';
 const BackofficeController = () => ({
 
     callback: (req) => {
-        const  { params }  = req.params;
+        const  { query }  = req;
 
-        if (!BackofficeValidator.isFromBackoffice(params.uid, params.email,
-            params.username, params.fullName, params.root, params.hmac)) {
+        if (!BackofficeValidator.isFromBackoffice(query)) {
             return "Falló la validación, el backoffice envió una firma incorrecta"
         }
 
-        return String.join("\n",
+        return ["\n",
             "<!DOCTYPE html>",
             "<html lang=\"en\">",
             "<head>",
@@ -25,7 +24,7 @@ const BackofficeController = () => ({
             "    </script>",
             "</body>",
             "</html >"
-        );
+        ].join("");
     },
 });
 
