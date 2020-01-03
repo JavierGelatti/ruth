@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../components/Button.styled';
 
+// TODO: redict_url deberia ser el public URL de var de ambiente
 class Login extends React.Component {
   render() {
     return (
