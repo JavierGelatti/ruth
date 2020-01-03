@@ -5,6 +5,7 @@ import perfilRouter from '~/domain/perfil/router';
 import pruebasRouter from '~/domain/pruebas/router';
 import loginRouter from '~/domain/login/router';
 import estaLogueado from '~/domain/login/estaLogueado';
+import logger from '~/logger';
 
 const router = Router({ promise: true });
 
@@ -29,5 +30,12 @@ router.use('/perfil', perfilRouter);
 if (process.env.NODE_ENV !== 'production') {
   router.use('/pruebas', pruebasRouter);
 }
+
+router.use(logger.errorHandler());
+
+router.get('*', (req, res) => {
+  logger.info(`Request not found ${req.url}`);
+  res.status(404).send('Not found');
+});
 
 export default router;

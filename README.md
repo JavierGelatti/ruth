@@ -4,6 +4,8 @@
 ### Desarollo
 1. Instalar `node`. Ver la versión en el archivo `.nvmrc` (o hacer directamente `$ nvm use` y seguir las instruncciones).
 1. Instalar las dependencias con `$ npm install`.
+1. Levantar la DB con Docker con `$ docker-compose up --detach --no-recreate`.
+1. Correr las migraciones con `$ npm run migrate`.
 1. Correr con `$ npm run start:dev`.  La app en `http://localhost:3215`.
 
 El backend corre en  `8760`.
