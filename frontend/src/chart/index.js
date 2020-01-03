@@ -1,7 +1,7 @@
 import React from 'react';
-import { Bar, Line } from 'react-chartjs-2';
 import { colors } from '../styles/theme';
-import Chart from './chart';
+import ChartLine from './chartLine';
+import ChartBar from './chartBar';
 
 class TestChart extends React.Component {
   constructor(props) {
@@ -57,16 +57,10 @@ class TestChart extends React.Component {
   render() {
     return (
       <>
-        <Chart
-          chartType= {Line}
+        <ChartLine
           data={this.state.dataLine}
-          paddingLeft={50}
-          paddingRight={50}
-          paddingTop={30}
-          paddingBottom={30}
         />
-        <Chart
-          chartType= {Bar}
+        <ChartBar
           data={this.state.dataBar}
         />
       </>
