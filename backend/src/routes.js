@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import reunionRouter from '~/domain/reuniones/router';
 import temasRouter from '~/domain/temas/router';
+import perfilRouter from '~/domain/perfil/router';
 import pruebasRouter from '~/domain/pruebas/router';
 import loginRouter from '~/domain/login/router';
 import estaLogueado from '~/domain/login/estaLogueado';
@@ -23,7 +24,7 @@ router.get('/', (req, res) => {
 
 router.use('/', reunionRouter);
 router.use('/temas', temasRouter);
-
+router.use('/perfil', perfilRouter);
 
 if (process.env.NODE_ENV !== 'production') {
   router.use('/pruebas', pruebasRouter);
