@@ -3,52 +3,54 @@ import OradoresVista from './OradoresVista';
 import { colors } from '../styles/theme';
 import ChartBar from '../chart/chartBar';
 
+
+function oradores(state, evento) {
+    switch (evento.data.tipo) {
+      case 'Quiero Hablar':
+        return state.concat([evento.autor]);
+      case 'No Quiero Hablar':
+        return state.filter((orador) => orador !== evento.autor);
+      default: return state;
+    }
+}
+
+function reacciones(state, evento){
+  switch (evento.data.tipo) {
+    case 'Reiniciar reacciones':
+        return [];
+    case 'Reaccionar':
+      const { reaccion } = evento.data;
+        if(state.some(r => r.name === reaccion)){
+          return state.map(r => {
+            if(r.name === reaccion) {
+              return { ...r, value: r.value+1 }
+            }
+            return r;
+          })
+        } else {
+          return state.concat([{ name: reaccion, value: 1 }]);
+        }
+    default: return state;
+  }
+}
+
 class Oradores extends React.Component {
   constructor(props) {
     super(props);
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data);
-      console.log(listaEventos);
-      listaEventos.map(evento => {
-        evento = JSON.parse(evento);
-        switch (evento.tipo) {
-          case 'Quiero Hablar':
-            this.setState(({ oradores }) => ({ oradores: oradores.concat([evento.autor]) }));
-            break;
-          case 'No Quiero Hablar':
-            this.setState(({ oradores }) => ({ oradores: oradores.filter((orador) => orador !== evento.autor) }));
-            break;
-          case 'Up':
-            this.setState({ up: this.state.up+1 });
-            break;
-          case 'Down':
-            this.setState({ down: this.state.down+1 });
-            break;
-          default: console.error('No entiendo el evento', evento);
-        }
-      })
+      this.setState(state => ({ eventos: state.eventos.concat(listaEventos.map(evento => JSON.parse(evento)))}));
     };
 
     this.state = {
-      oradores: [],
-      up: 0,
-      down: 0,
+      eventos: [],
     };
   }
 
   dataBar = () => {
     return {
-      data: [
-        {
-          name: '👍',
-          value: this.state.up,
-        },
-        {
-          name: '👎',
-          value: this.state.down,
-        },
-      ],
+      data: this.state.eventos.reduce(reacciones, []),
       color: colors.primary,
     }
   }
@@ -57,7 +59,7 @@ class Oradores extends React.Component {
     return (
       <>
             <h1>Oradores</h1>
-            <OradoresVista oradores={this.state.oradores}/>
+            <OradoresVista oradores={this.state.eventos.reduce(oradores, [])}/>
             <h1>Reacciones</h1>
             <ChartBar data={this.dataBar()}/>
       </>

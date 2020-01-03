@@ -9,10 +9,10 @@ class Mobile extends React.Component {
     this.socket = new WebSocket('ws://localhost:8760/ws');
   }
 
-    dispatch = (tipo) => {
+    dispatch = (data) => {
       const evento = {
         autor: this.state.nombre,
-        tipo,
+        data,
       };
       console.log(evento);
       this.socket.send(JSON.stringify(evento));
