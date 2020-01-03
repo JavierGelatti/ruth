@@ -1,5 +1,7 @@
 import React from 'react';
-import Vista from './vista';
+import OradoresVista from './OradoresVista';
+import { colors } from '../styles/theme';
+import ChartBar from '../chart/chartBar';
 
 class Oradores extends React.Component {
   constructor(props) {
@@ -17,6 +19,12 @@ class Oradores extends React.Component {
           case 'No Quiero Hablar':
             this.setState(({ oradores }) => ({ oradores: oradores.filter((orador) => orador !== evento.autor) }));
             break;
+          case 'Up':
+            this.setState({ up: this.state.up+1 });
+            break;
+          case 'Down':
+            this.setState({ down: this.state.down+1 });
+            break;
           default: console.error('No entiendo el evento', evento);
         }
       })
@@ -24,14 +32,34 @@ class Oradores extends React.Component {
 
     this.state = {
       oradores: [],
+      up: 0,
+      down: 0,
     };
+  }
+
+  dataBar = () => {
+    return {
+      data: [
+        {
+          name: '+1',
+          value: this.state.up,
+        },
+        {
+          name: '-1',
+          value: this.state.down,
+        },
+      ],
+      color: colors.primary,
+    }
   }
 
   render() {
     return (
       <>
             <h1>Oradores</h1>
-            <Vista oradores={this.state.oradores}/>
+            <OradoresVista oradores={this.state.oradores}/>
+            <h1>Reacciones</h1>
+            <ChartBar data={this.dataBar()}/>
       </>
     );
   }
