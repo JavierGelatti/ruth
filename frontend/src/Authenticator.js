@@ -8,29 +8,28 @@ import Backend from './api/backend';
 
 const history = createBrowserHistory();
 
-export default class Authenticator extends React.Component{
-
+export default class Authenticator extends React.Component {
   state = {
     usuario: null,
-    cargando: true
+    cargando: true,
   }
 
-  componentDidMount(){
+  componentDidMount() {
     Backend.getPerfil()
-      .then(usuario => this.setState({ usuario }))
-      .catch( error => error.response.status !== 403 && Promise.reject(error))
-      .finally(()=> this.setState({ cargando: false}))
+      .then((usuario) => this.setState({ usuario }))
+      .catch((error) => error.response.status !== 403 && Promise.reject(error))
+      .finally(() => this.setState({ cargando: false }));
   }
 
-  render(){
-    const { cargando, usuario } = this.state
+  render() {
+    const { cargando, usuario } = this.state;
 
-    if (cargando) return <h1>Cargando</h1>
-    if (!usuario) return <Login />
+    if (cargando) return <h1>Cargando</h1>;
+    if (!usuario) return <Login />;
     return (
       <Router history={history}>
         <Route path="/" render={({ location }) => <App location={location}/>}/>
       </Router>
-    )
-  };
+    );
+  }
 }
