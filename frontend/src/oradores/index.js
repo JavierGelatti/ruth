@@ -4,20 +4,22 @@ import Vista from './vista';
 class Oradores extends React.Component {
   constructor(props) {
     super(props);
-
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
-      const evento = JSON.parse(mensaje.data);
-      console.log(evento);
-      switch (evento.tipo) {
-        case 'Quiero Hablar':
-          this.setState(({ oradores }) => ({ oradores: oradores.concat([evento.autor]) }));
-          break;
-        case 'No Quiero Hablar':
-          this.setState(({ oradores }) => ({ oradores: oradores.filter((orador) => orador !== evento.autor) }));
-          break;
-        default: console.error('No entiendo el evento', evento);
-      }
+      const listaEventos = JSON.parse(mensaje.data);
+      console.log(listaEventos);
+      listaEventos.map(evento => {
+        evento = JSON.parse(evento);
+        switch (evento.tipo) {
+          case 'Quiero Hablar':
+            this.setState(({ oradores }) => ({ oradores: oradores.concat([evento.autor]) }));
+            break;
+          case 'No Quiero Hablar':
+            this.setState(({ oradores }) => ({ oradores: oradores.filter((orador) => orador !== evento.autor) }));
+            break;
+          default: console.error('No entiendo el evento', evento);
+        }
+      })
     };
 
     this.state = {
