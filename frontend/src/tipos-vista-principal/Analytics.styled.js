@@ -8,9 +8,31 @@ export const SidebarIzquierdo = styled.div`
               url('./fondo-pino.png');
 `;
 
-export const AnalyticsContainter = styled.div`  
+export const AnalyticsContainer = styled.div`  
     display: flex;
     flex: 1;
+`;
+
+export const SubAnalyticsContainer = styled.div`  
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+`;
+
+export const TitleContainer = styled.div`  
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+`;
+
+export const GraphsContainer = styled.div`  
+    display: flex;
+    background-color: blue;
+`;
+
+export const ParticipantsContainer = styled.div`  
+    display: flex;
+    background-color: green;
 `;
 
 export const WorkInProgressContainer = styled.div` 
