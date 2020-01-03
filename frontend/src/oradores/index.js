@@ -41,11 +41,11 @@ class Oradores extends React.Component {
     return {
       data: [
         {
-          name: '+1',
+          name: '👍',
           value: this.state.up,
         },
         {
-          name: '-1',
+          name: '👎',
           value: this.state.down,
         },
       ],
