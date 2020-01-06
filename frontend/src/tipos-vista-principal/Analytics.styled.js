@@ -17,22 +17,35 @@ export const SubAnalyticsContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
+    height: 100vh;
+    overflow: hidden;
 `;
 
 export const TitleContainer = styled.div`  
     display: flex;
     flex-direction: column;
-    background-color: red;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const GraphsContainer = styled.div`  
     display: flex;
-    background-color: blue;
+    flex-direction: row;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    height: 45%;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const ParticipantsContainer = styled.div`  
     display: flex;
-    background-color: green;
+    flex-direction: column;
+    background-color: white;
+    height: 45%
+    align-items: center;
+    justify-content: center;
 `;
 
 export const WorkInProgressContainer = styled.div` 
