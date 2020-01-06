@@ -10,6 +10,14 @@ class ParticipantTimer extends React.Component {
     this.state = { secondsElapsed: this.props.participant.secondsElapsed };
   }
 
+  componentDidUpdate = (prevProps) => {
+    if (this.props !== prevProps) {
+      this.setState({
+        secondsElapsed: this.props.participant.secondsElapsed
+      });
+    }
+  }
+  
   componentDidMount() {
     if (this.props.participant.isTalking) {
       this.runWatch();

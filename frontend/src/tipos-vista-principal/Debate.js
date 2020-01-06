@@ -54,32 +54,32 @@ const dataBar = {
 
 const pines = [
   {
-    secondsElapsed: 0,
+    secondsElapsed: 120,
     isTalking: false,
     nombre: 'Ailén Muñoz',
   },
   {
-    secondsElapsed: 0,
+    secondsElapsed: 320,
     isTalking: false,
     nombre: 'Ariel Umansky',
   },
   {
-    secondsElapsed: 0,
-    isTalking: false,
+    secondsElapsed: 43,
+    isTalking: true,
     nombre: 'Joaquín Azcarate',
   },
   {
-    secondsElapsed: 110,
-    isTalking: true,
+    secondsElapsed: 0,
+    isTalking: false,
     nombre: 'Ornella Mosca',
   },
   {
-    secondsElapsed: 230,
+    secondsElapsed: 0,
     isTalking: false,
     nombre: 'Federico Martinez Fonseca',
   },
   {
-    secondsElapsed: 154,
+    secondsElapsed: 0,
     isTalking: false,
     nombre: 'Carolina Destuet',
   },
@@ -103,6 +103,9 @@ class Debate extends React.Component {
 
     onNextParticipant = () => {
       const talkingParticipantIndex = this.findTalkingParticipantIndex();
+      if(talkingParticipantIndex === this.state.participants.length - 1){
+        return;
+      }
       this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex], isTalking: false }, talkingParticipantIndex);
       this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex + 1], isTalking: true }, talkingParticipantIndex + 1);
     };

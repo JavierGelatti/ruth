@@ -5,7 +5,7 @@ import {
 import ParticipantsCard from './ParticipantsCard';
 
 class ParticipantsQueue extends React.Component {
-    getQueuedParticipants = () => this.props.participants.filter((participant) => participant.secondsElapsed === 0);
+    getQueuedParticipants = () => this.props.participants.filter((participant) => participant.secondsElapsed === 0 && !participant.isTalking);
 
     getParticipantsThatAlreadyTalked = () => this.props.participants.filter((participant) => participant.secondsElapsed !== 0 && !participant.isTalking);
 
@@ -19,7 +19,7 @@ class ParticipantsQueue extends React.Component {
                 { this.getQueuedParticipants().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}
               </QueuedCardsLeftContainerStyle>
             </QueuedLeftCardsStyle>
-            <ParticipantsCard participant={this.getTalkingParticipant()}/>
+            <ParticipantsCard participant={this.getTalkingParticipant()} onNext={this.props.onNext}/>
             <QueuedRightCardsStyle>
               <QueuedCardsRightContainerStyle>
                 { this.getParticipantsThatAlreadyTalked().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}
