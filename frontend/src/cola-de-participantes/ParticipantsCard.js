@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import { QueueContainer } from './ParticipantsQueue.styled';
 import ParticipantTimer from './ParticipantTimer';
 
 const userAvatarStyle = (isTalking) => ({

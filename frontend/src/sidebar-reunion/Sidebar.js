@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
 
   menu = [{ icon: faBroadcastTower, title: 'Tema Actual', habilitado: true },
     { icon: faComment, title: 'Presentación', habilitado: false },
-    { icon: faChartBar, title: 'Analytics', habilitado: true }];
+    { icon: faChartBar, title: 'Debate', habilitado: true }];
 
   habilitarPresentacion = () => this.props.link !== null
 

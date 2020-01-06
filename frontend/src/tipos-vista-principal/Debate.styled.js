@@ -8,12 +8,12 @@ export const SidebarIzquierdo = styled.div`
               url('./fondo-pino.png');
 `;
 
-export const AnalyticsContainer = styled.div`  
+export const DebateContainer = styled.div`  
     display: flex;
     flex: 1;
 `;
 
-export const SubAnalyticsContainer = styled.div`  
+export const SubDebateContainer = styled.div`  
     display: flex;
     flex-direction: column;
     flex: 1;

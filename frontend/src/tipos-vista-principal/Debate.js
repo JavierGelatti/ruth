@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  AnalyticsContainer, SidebarIzquierdo, WorkInProgressContainer, Titulo, ImagenContainer,
-  TitleContainer, SubAnalyticsContainer, GraphsContainer, ParticipantsContainer,
-} from './Analytics.styled';
+  DebateContainer, SidebarIzquierdo, WorkInProgressContainer, Titulo, ImagenContainer,
+  TitleContainer, SubDebateContainer, GraphsContainer, ParticipantsContainer,
+} from './Debate.styled';
 import Countdown from '../reunion/Countdown';
 import ChartLine from '../chart/chartLine';
 import ChartBar from '../chart/chartBar';
@@ -86,10 +86,10 @@ const pines = [
 ];
 
 
-class Analytics extends React.Component {
+class Debate extends React.Component {
     state = { participants: pines };
 
-    static canHandleView = (view) => view === 'Analytics'
+    static canHandleView = (view) => view === 'Debate'
 
     mensaje = 'Pagina en desarrollo';
 
@@ -110,18 +110,18 @@ class Analytics extends React.Component {
     render() {
       if (process.env.NODE_ENV === 'production') {
         return (
-          <AnalyticsContainer>
+          <DebateContainer>
             <SidebarIzquierdo/>
             <WorkInProgressContainer>
               <Titulo>{this.mensaje}</Titulo>
               <ImagenContainer src='./working.png'/>
             </WorkInProgressContainer>
-          </AnalyticsContainer>
+          </DebateContainer>
         );
       }
       return (
-          <AnalyticsContainer>
-            <SubAnalyticsContainer>
+          <DebateContainer>
+            <SubDebateContainer>
               <TitleContainer>
                 <Titulo>{this.props.tema.titulo}</Titulo>
               </TitleContainer>
@@ -134,10 +134,10 @@ class Analytics extends React.Component {
                       segundos={this.props.segundosRestantes}/>
                 <ParticipantsQueue participants={this.state.participants} onNext={this.onNextParticipant}/>
               </ParticipantsContainer>
-            </SubAnalyticsContainer>
-          </AnalyticsContainer>
+            </SubDebateContainer>
+          </DebateContainer>
       );
     }
 }
 
-export default Analytics;
+export default Debate;
