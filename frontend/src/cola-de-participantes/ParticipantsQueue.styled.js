@@ -8,40 +8,40 @@ export const QueueContainer = styled.div`
 `;
 
 export const QueuedLeftCardsStyle = styled.div`
-  display: 'flex',
-  flexDirection: 'column',
-  width: '40rem',
-  justifyContent: 'center',
-  paddingTop: '1rem',
-  alignItems: 'center',
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  justify-content: center;
+  padding-top: 1rem;
+  align-items: center;
 `;
 
 export const QueuedRightCardsStyle = styled.div`
-  display: 'flex',
-  flexDirection: 'column',
-  width: '40rem',
-  justifyContent: 'center',
-  paddingTop: '1rem',
-  alignItems: 'center',
-  opacity: '0.5',
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  justify-content: center;
+  padding-top: 1rem;
+  align-items: center;
+  opacity: 0.5;
 `;
 
 export const QueuedCardsLeftContainerStyle = styled.div`
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  borderRight: '1px solid silver',
-  paddingRight: '1rem',
-  justifyContent: 'flex-end',
-  width: '100%',
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-right: 1px solid silver;
+  padding-right: 1rem;
+  justify-content: flex-end;
+  width: 100%;
 `;
 
 export const QueuedCardsRightContainerStyle = styled.div`
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  borderLeft: '1px solid silver',
-  paddingLeft: '1rem',
-  width: '100%',
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-left: 1px solid silver;
+  padding-left: 1rem;
+  width: 100%;
 
 `;
