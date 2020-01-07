@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Vista extends React.Component {
+class OradoresVista extends React.Component {
   render() {
     return (
       <>
@@ -11,4 +11,4 @@ class Vista extends React.Component {
 }
 
 
-export default Vista;
+export default OradoresVista;

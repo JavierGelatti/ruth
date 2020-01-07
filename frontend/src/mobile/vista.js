@@ -6,9 +6,11 @@ class Vista extends React.Component {
     return (
             <div>
                 <h1>Mobile</h1>
-
-                <Button onClick={() => this.props.dispatch('Quiero Hablar')}>Quiero hablar</Button>
-                <Button onClick={() => this.props.dispatch('No Quiero Hablar')}>NO quiero hablar</Button>
+                <Button onClick={() => this.props.dispatch({tipo:'Quiero Hablar'})}>Quiero hablar</Button>
+                <Button onClick={() => this.props.dispatch({tipo:'No Quiero Hablar'})}>No quiero hablar</Button>
+                <Button onClick={() => this.props.dispatch({tipo:'Reiniciar reacciones'})}>Reiniciar reacciones</Button>
+                <Button onClick={() => this.props.dispatch({tipo:'Reaccionar', reaccion: '👍'})}>👍</Button>
+                <Button onClick={() => this.props.dispatch({tipo:'Reaccionar', reaccion: '👎'})}>👎</Button>
             </div>
     );
   }
