@@ -23,28 +23,6 @@ const dataLine = {
   ],
 };
 
-const dataBar = {
-  data: [
-    {
-      name: '+1',
-      value: 42,
-    },
-    {
-      name: '-1',
-      value: 4,
-    },
-    {
-      name: 'redondear',
-      value: 35,
-    },
-    {
-      name: 'slack',
-      value: 2,
-    },
-  ],
-  color: colors.primary,
-};
-
 const pines = [
   {
     inicio: Date.now() - 120000,
@@ -78,14 +56,55 @@ const pines = [
   },
 ];
 
+function oradores(state, evento) {
+  switch (evento.data.tipo) {
+    case 'Quiero Hablar':
+      if(state.length === 0){
+        return [...state, {nombre: evento.autor, inicio: Date.now(), fin: null}];
+      } else {
+        return [...state, {nombre: evento.autor, inicio: null, fin: null}];
+      }
+    case 'No Quiero Hablar':
+      return state.filter((orador) => orador.nombre !== evento.autor);
+    default: return state;
+  }
+}
+
+function reacciones(state, evento){
+switch (evento.data.tipo) {
+  case 'Reiniciar reacciones':
+      return [];
+  case 'Reaccionar':
+    const { reaccion: eventReaction } = evento.data;
+      if(state.some(stateReaction => stateReaction.name === eventReaction)){
+        return state.map(stateReaction => {
+          if(stateReaction.name === eventReaction) {
+            return { ...stateReaction, value: stateReaction.value+1 }
+          }
+          return stateReaction;
+        })
+      } else {
+        return state.concat([{ name: eventReaction, value: 1 }]);
+      }
+  default: return state;
+}
+}
 
 class DebateHandler extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-        participants: [],
-        dataBar: { data: [] },
-        dataLine: { data: [] },
+
+  dataBar = () => {
+    return {
+      data: this.props.eventos.reduce(reacciones, []),
+      color: colors.primary,
+    }
+  }
+
+  debateData() {
+    debugger;
+    return { 
+      participants: this.props.eventos.reduce(oradores, []),
+      dataBar: this.dataBar(),
+      dataLine: { data: [] },
     };
   }
 
@@ -114,7 +133,7 @@ class DebateHandler extends React.Component {
   render() {
     return (
         <DebateView 
-          debateData={this.state}
+          debateData={this.debateData()}
           segundosRestantes={this.props.segundosRestantes}
           temaActivo={this.props.temaActivo}
           tema={this.props.tema}

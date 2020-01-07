@@ -12,7 +12,7 @@ class ParticipantsQueue extends React.Component {
     getTalkingParticipant = () => this.props.participants.find((participant) => this.props.isTalking(participant));
 
     render() {
-      if(this.props.participants) { 
+      if(this.props.participants.length === 0) { 
         return(<></>); 
       }
       return (
