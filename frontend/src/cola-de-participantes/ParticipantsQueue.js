@@ -12,6 +12,9 @@ class ParticipantsQueue extends React.Component {
     getTalkingParticipant = () => this.props.participants.find((participant) => this.props.isTalking(participant));
 
     render() {
+      if(this.props.participants) { 
+        return(<></>); 
+      }
       return (
           <QueueContainer>
             <QueuedLeftCardsStyle>

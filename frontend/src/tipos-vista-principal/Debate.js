@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  DebateContainer, SidebarIzquierdo, WorkInProgressContainer, Titulo, ImagenContainer,
-  TitleContainer, SubDebateContainer, GraphsContainer, ParticipantsContainer,
-} from './Debate.styled';
-import Countdown from '../reunion/Countdown';
-import ChartLine from '../chart/chartLine';
-import ChartBar from '../chart/chartBar';
 import { colors } from '../styles/theme';
-import ParticipantsQueue from '../cola-de-participantes/ParticipantsQueue';
+import DebateView from './DebateView';
 
 const dataLine = {
   horarios: ['11:00', '12:00', '13:00', '14:00'],
@@ -87,11 +80,21 @@ const pines = [
 
 
 class Debate extends React.Component {
-    state = { participants: pines };
+
+    constructor(props) {
+        super(props);
+        this.state = { 
+            participants: [],
+            dataBar: { data: [] },
+            dataLine: { data: [] },
+        };
+    }
 
     static canHandleView = (view) => view === 'Debate'
 
-    mensaje = 'Pagina en desarrollo';
+    componentDidMount(){
+        this.setState({});
+    }
 
     replaceParticipantByIndex = (participant, index) => {
       const updatedParticipants = this.state.participants;
@@ -116,36 +119,15 @@ class Debate extends React.Component {
     }
 
     render() {
-      if (process.env.NODE_ENV === 'production') {
-        return (
-          <DebateContainer>
-            <SidebarIzquierdo/>
-            <WorkInProgressContainer>
-              <Titulo>{this.mensaje}</Titulo>
-              <ImagenContainer src='./working.png'/>
-            </WorkInProgressContainer>
-          </DebateContainer>
-        );
-      }
       return (
-          <DebateContainer>
-            <SubDebateContainer>
-              <TitleContainer>
-                <Titulo>{this.props.tema.titulo}</Titulo>
-              </TitleContainer>
-              <GraphsContainer>
-                <ChartLine data={dataLine}/>
-                <ChartBar data={dataBar}/>
-              </GraphsContainer>
-              <ParticipantsContainer>
-                <Countdown activo={this.props.temaActivo}
-                      segundos={this.props.segundosRestantes}/>
-                <ParticipantsQueue participants={this.state.participants} onNext={this.onNextParticipant} isTalking={this.isTalking}/>
-              </ParticipantsContainer>
-            </SubDebateContainer>
-          </DebateContainer>
-      );
-    }
+          <DebateView 
+            debateData={this.state}
+            segundosRestantes={this.props.segundosRestantes}
+            temaActivo={this.props.temaActivo}
+            tema={this.props.tema}
+            onNext={this.onNextParticipant} 
+            isTalking={this.isTalking}/>
+      )}
 }
 
 export default Debate;
