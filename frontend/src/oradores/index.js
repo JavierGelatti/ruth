@@ -19,16 +19,16 @@ function reacciones(state, evento){
     case 'Reiniciar reacciones':
         return [];
     case 'Reaccionar':
-      const { reaccion } = evento.data;
-        if(state.some(r => r.name === reaccion)){
-          return state.map(r => {
-            if(r.name === reaccion) {
-              return { ...r, value: r.value+1 }
+      const { reaccion: eventReaction } = evento.data;
+        if(state.some(stateReaction => stateReaction.name === eventReaction)){
+          return state.map(stateReaction => {
+            if(stateReaction.name === eventReaction) {
+              return { ...stateReaction, value: stateReaction.value+1 }
             }
-            return r;
+            return stateReaction;
           })
         } else {
-          return state.concat([{ name: reaccion, value: 1 }]);
+          return state.concat([{ name: eventReaction, value: 1 }]);
         }
     default: return state;
   }
