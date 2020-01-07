@@ -54,33 +54,33 @@ const dataBar = {
 
 const pines = [
   {
-    secondsElapsed: 120,
-    isTalking: false,
+    inicio: Date.now() - 120000,
+    fin: Date.now() - 110000,
     nombre: 'Ailén Muñoz',
   },
   {
-    secondsElapsed: 320,
-    isTalking: false,
+    inicio: Date.now() - 110000,
+    fin: Date.now() - 10000,
     nombre: 'Ariel Umansky',
   },
   {
-    secondsElapsed: 43,
-    isTalking: true,
+    inicio: Date.now() - 10000,
+    fin: null,
     nombre: 'Joaquín Azcarate',
   },
   {
-    secondsElapsed: 0,
-    isTalking: false,
+    inicio: null,
+    fin: null,
     nombre: 'Ornella Mosca',
   },
   {
-    secondsElapsed: 0,
-    isTalking: false,
+    inicio: null,
+    fin: null,
     nombre: 'Federico Martinez Fonseca',
   },
   {
-    secondsElapsed: 0,
-    isTalking: false,
+    inicio: null,
+    fin: null,
     nombre: 'Carolina Destuet',
   },
 ];
@@ -99,16 +99,21 @@ class Debate extends React.Component {
       this.setState({ participants: updatedParticipants });
     };
 
-    findTalkingParticipantIndex = () => this.state.participants.findIndex((participant) => participant.isTalking);
+    findTalkingParticipantIndex = () => this.state.participants.findIndex((participant) => this.isTalking(participant));
 
     onNextParticipant = () => {
       const talkingParticipantIndex = this.findTalkingParticipantIndex();
+      // TODO: Ver qué hacer cuando se trata del último en hablar
       if(talkingParticipantIndex === this.state.participants.length - 1){
         return;
       }
-      this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex], isTalking: false }, talkingParticipantIndex);
-      this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex + 1], isTalking: true }, talkingParticipantIndex + 1);
+      this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex], fin: Date.now() }, talkingParticipantIndex);
+      this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex + 1], inicio: Date.now() }, talkingParticipantIndex + 1);
     };
+
+    isTalking(participant) {
+      return participant.inicio !== null && participant.fin === null;
+    }
 
     render() {
       if (process.env.NODE_ENV === 'production') {
@@ -135,7 +140,7 @@ class Debate extends React.Component {
               <ParticipantsContainer>
                 <Countdown activo={this.props.temaActivo}
                       segundos={this.props.segundosRestantes}/>
-                <ParticipantsQueue participants={this.state.participants} onNext={this.onNextParticipant}/>
+                <ParticipantsQueue participants={this.state.participants} onNext={this.onNextParticipant} isTalking={this.isTalking}/>
               </ParticipantsContainer>
             </SubDebateContainer>
           </DebateContainer>

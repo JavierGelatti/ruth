@@ -5,11 +5,11 @@ import {
 import ParticipantsCard from './ParticipantsCard';
 
 class ParticipantsQueue extends React.Component {
-    getQueuedParticipants = () => this.props.participants.filter((participant) => participant.secondsElapsed === 0 && !participant.isTalking);
+    getQueuedParticipants = () => this.props.participants.filter((participant) => participant.inicio === null && !this.props.isTalking(participant));
 
-    getParticipantsThatAlreadyTalked = () => this.props.participants.filter((participant) => participant.secondsElapsed !== 0 && !participant.isTalking);
+    getParticipantsThatAlreadyTalked = () => this.props.participants.filter((participant) => participant.inicio !== null && !this.props.isTalking(participant));
 
-    getTalkingParticipant = () => this.props.participants.find((participant) => participant.isTalking);
+    getTalkingParticipant = () => this.props.participants.find((participant) => this.props.isTalking(participant));
 
     render() {
       return (
@@ -19,7 +19,7 @@ class ParticipantsQueue extends React.Component {
                 { this.getQueuedParticipants().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}
               </QueuedCardsLeftContainerStyle>
             </QueuedLeftCardsStyle>
-            <ParticipantsCard participant={this.getTalkingParticipant()} onNext={this.props.onNext}/>
+            <ParticipantsCard participant={this.getTalkingParticipant()} onNext={this.props.onNext} isParticipantTalking={this.props.isTalking(this.getTalkingParticipant())}/>
             <QueuedRightCardsStyle>
               <QueuedCardsRightContainerStyle>
                 { this.getParticipantsThatAlreadyTalked().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}

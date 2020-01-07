@@ -4,22 +4,22 @@ const timerStyle = {
   fontColor: 'grey',
 };
 
-class ParticipantTimer extends React.Component {
+class ParticipantCounter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { secondsElapsed: this.props.participant.secondsElapsed };
+    this.state = { secondsElapsed: this.props.seconds };
   }
 
   componentDidUpdate = (prevProps) => {
     if (this.props !== prevProps) {
       this.setState({
-        secondsElapsed: this.props.participant.secondsElapsed
+        secondsElapsed: this.props.seconds
       });
     }
   }
-  
+
   componentDidMount() {
-    if (this.props.participant.isTalking) {
+    if (this.props.isActive) {
       this.runWatch();
     }
   }
@@ -48,4 +48,4 @@ class ParticipantTimer extends React.Component {
     }
 }
 
-export default ParticipantTimer;
+export default ParticipantCounter;
