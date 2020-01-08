@@ -1,4 +1,5 @@
 import React from 'react';
+import Clock from '../clock/Clock'
 
 const timerStyle = {
   fontColor: 'grey',
@@ -24,30 +25,25 @@ class ParticipantCounter extends React.Component {
     }
   }
 
-    getMinutes = () => Math.floor(this.state.secondsElapsed / 60);
+  runWatch = () => {
+    this.incrementer = setInterval(() => { this.setState({ secondsElapsed: this.state.secondsElapsed + 1 }); }, 1000);
+  };
 
-    getSeconds = () => (`0${this.state.secondsElapsed % 60}`).slice(-2);
+  stopWatch = () => {
+    clearInterval(this.incrementer);
+  };
 
-    runWatch = () => {
-      this.incrementer = setInterval(() => { this.setState({ secondsElapsed: this.state.secondsElapsed + 1 }); }, 1000);
-    };
-
-    stopWatch = () => {
-      clearInterval(this.incrementer);
-    };
-
-    render() {
-      if(this.props.seconds === null){
-        return (<></>);
-      }
-      return (
-          <div>
-            <span style={timerStyle}>
-              {this.getMinutes()} : {this.getSeconds()}
-            </span>
-          </div>
-      );
+  render() {
+    if(this.props.seconds === null){
+      return (<></>);
     }
+    return (
+        <div style={timerStyle}>
+          <Clock seconds={this.state.secondsElapsed}/>
+        </div>
+    );
+  }
+  
 }
 
 export default ParticipantCounter;
