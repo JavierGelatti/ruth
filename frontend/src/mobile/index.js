@@ -16,6 +16,7 @@ class Mobile extends React.Component {
       };
       console.log(evento);
       this.socket.send(JSON.stringify(evento));
+      this.setState({ nombre: '' });
     }
 
     state = {
@@ -30,7 +31,7 @@ class Mobile extends React.Component {
       return (
         <>
                 <TextField value={this.state.nombre} onChange={this.handleNameChange} />
-                <Vista dispatch={this.dispatch} />
+                <Vista dispatch={this.dispatch}/>
         </>
       );
     }
