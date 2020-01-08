@@ -22,7 +22,7 @@ class ParticipantsQueue extends React.Component {
                 { this.getQueuedParticipants().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}
               </QueuedCardsLeftContainerStyle>
             </QueuedLeftCardsStyle>
-            <ParticipantsCard participant={this.getTalkingParticipant()} onNext={this.props.onNext} isParticipantTalking={this.props.isTalking(this.getTalkingParticipant())}/>
+            <ParticipantsCard participant={this.getTalkingParticipant()} isParticipantTalking={this.props.isTalking(this.getTalkingParticipant())}/>
             <QueuedRightCardsStyle>
               <QueuedCardsRightContainerStyle>
                 { this.getParticipantsThatAlreadyTalked().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}

@@ -57,6 +57,9 @@ const pines = [
 ];
 
 function oradores(state, evento) {
+  // TODO: Ver qué hacer cuando se vuelve a encolar una misma persona
+  // TODO: Cambiar el Date.now() por el timestamp del evento
+  // TODO: Ver qué hacer cuando se trata de la ultima persona
   switch (evento.data.tipo) {
     case 'Quiero Hablar':
       if(state.length === 0){
@@ -64,8 +67,21 @@ function oradores(state, evento) {
       } else {
         return [...state, {nombre: evento.autor, inicio: null, fin: null}];
       }
-    case 'No Quiero Hablar':
+    case 'Quiero Desencolarme':
+      if(state.some(orador => orador.nombre === evento.autor && orador.inicio != null)) return state;
       return state.filter((orador) => orador.nombre !== evento.autor);
+    case 'Quiero Dejar de Hablar':
+      let proximoOrador = null;
+      return state.map((orador, index) => {
+        if(index === proximoOrador){
+          return { ...orador, inicio: Date.now() }
+        }
+        if(orador.nombre === evento.autor) {
+          proximoOrador = index + 1;
+          return { ...orador, fin: Date.now() }
+        }
+        return orador;
+      });
     default: return state;
   }
 }
@@ -100,31 +116,12 @@ class DebateHandler extends React.Component {
   }
 
   debateData() {
-    debugger;
     return { 
       participants: this.props.eventos.reduce(oradores, []),
       dataBar: this.dataBar(),
       dataLine: { data: [] },
     };
   }
-
-  replaceParticipantByIndex = (participant, index) => {
-    const updatedParticipants = this.state.participants;
-    updatedParticipants[index] = participant;
-    this.setState({ participants: updatedParticipants });
-  };
-
-  findTalkingParticipantIndex = () => this.state.participants.findIndex((participant) => this.isTalking(participant));
-
-  onNextParticipant = () => {
-    const talkingParticipantIndex = this.findTalkingParticipantIndex();
-    // TODO: Ver qué hacer cuando se trata del último en hablar
-    if(talkingParticipantIndex === this.state.participants.length - 1){
-      return;
-    }
-    this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex], fin: Date.now() }, talkingParticipantIndex);
-    this.replaceParticipantByIndex({ ...this.state.participants[talkingParticipantIndex + 1], inicio: Date.now() }, talkingParticipantIndex + 1);
-  };
 
   isTalking(participant) {
     return participant.inicio !== null && participant.fin === null;
@@ -137,7 +134,6 @@ class DebateHandler extends React.Component {
           segundosRestantes={this.props.segundosRestantes}
           temaActivo={this.props.temaActivo}
           tema={this.props.tema}
-          onNext={this.onNextParticipant} 
           isTalking={this.isTalking}/>
     )}
 }

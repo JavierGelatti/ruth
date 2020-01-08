@@ -25,7 +25,7 @@ class ParticipantsCard extends React.Component {
 
   render() {
     return (
-          <Card key={this.props.key} style={cardContainerStyle(this.props.isParticipantTalking)} onClick={this.props.onNext}>
+          <Card key={this.props.key} style={cardContainerStyle(this.props.isParticipantTalking)}>
             <CardSubcontainer>
               <UserAvatar isTalking={this.props.isParticipantTalking}/>
               <CardName>

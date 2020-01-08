@@ -37,7 +37,7 @@ class DebateView extends React.Component {
               <ParticipantsContainer>
                 <Countdown activo={this.props.temaActivo}
                       segundos={this.props.segundosRestantes}/>
-                <ParticipantsQueue participants={this.props.debateData.participants} onNext={this.props.onNext} isTalking={this.props.isTalking}/>
+                <ParticipantsQueue participants={this.props.debateData.participants} isTalking={this.props.isTalking}/>
               </ParticipantsContainer>
             </SubDebateContainer>
           </DebateContainer>
