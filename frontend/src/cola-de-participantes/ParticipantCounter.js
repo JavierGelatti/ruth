@@ -1,8 +1,6 @@
 import React from 'react';
-
-const timerStyle = {
-  fontColor: 'grey',
-};
+import Clock from '../clock/Clock';
+import { ClockContainer } from '../clock/Clock.styled';
 
 class ParticipantCounter extends React.Component {
   constructor(props) {
@@ -13,7 +11,7 @@ class ParticipantCounter extends React.Component {
   componentDidUpdate = (prevProps) => {
     if (this.props !== prevProps) {
       this.setState({
-        secondsElapsed: this.props.seconds
+        secondsElapsed: this.props.seconds,
       });
     }
   }
@@ -24,28 +22,24 @@ class ParticipantCounter extends React.Component {
     }
   }
 
-    getMinutes = () => Math.floor(this.state.secondsElapsed / 60);
+  runWatch = () => {
+    this.incrementer = setInterval(() => { this.setState({ secondsElapsed: this.state.secondsElapsed + 1 }); }, 1000);
+  };
 
-    getSeconds = () => (`0${this.state.secondsElapsed % 60}`).slice(-2);
+  stopWatch = () => {
+    clearInterval(this.incrementer);
+  };
 
-    runWatch = () => {
-      const self = this;
-      this.incrementer = setInterval(() => { self.setState({ secondsElapsed: self.state.secondsElapsed + 1 }); }, 1000);
-    };
-
-    stopWatch = () => {
-      clearInterval(this.incrementer);
-    };
-
-    render() {
-      return (
-          <div>
-            <span style={timerStyle}>
-              {this.getMinutes()} : {this.getSeconds()}
-            </span>
-          </div>
-      );
+  render() {
+    if (this.props.seconds === null) {
+      return (<></>);
     }
+    return (
+        <ClockContainer>
+          <Clock seconds={this.state.secondsElapsed}/>
+        </ClockContainer>
+    );
+  }
 }
 
 export default ParticipantCounter;
