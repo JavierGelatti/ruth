@@ -1,9 +1,6 @@
 import React from 'react';
-import Clock from '../clock/Clock'
-
-const timerStyle = {
-  fontColor: 'grey',
-};
+import Clock from '../clock/Clock';
+import { ClockContainer } from '../clock/Clock.styled';
 
 class ParticipantCounter extends React.Component {
   constructor(props) {
@@ -14,7 +11,7 @@ class ParticipantCounter extends React.Component {
   componentDidUpdate = (prevProps) => {
     if (this.props !== prevProps) {
       this.setState({
-        secondsElapsed: this.props.seconds
+        secondsElapsed: this.props.seconds,
       });
     }
   }
@@ -34,16 +31,15 @@ class ParticipantCounter extends React.Component {
   };
 
   render() {
-    if(this.props.seconds === null){
+    if (this.props.seconds === null) {
       return (<></>);
     }
     return (
-        <div style={timerStyle}>
+        <ClockContainer>
           <Clock seconds={this.state.secondsElapsed}/>
-        </div>
+        </ClockContainer>
     );
   }
-  
 }
 
 export default ParticipantCounter;
