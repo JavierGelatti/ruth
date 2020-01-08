@@ -29,8 +29,7 @@ class ParticipantCounter extends React.Component {
     getSeconds = () => (`0${this.state.secondsElapsed % 60}`).slice(-2);
 
     runWatch = () => {
-      const self = this;
-      this.incrementer = setInterval(() => { self.setState({ secondsElapsed: self.state.secondsElapsed + 1 }); }, 1000);
+      this.incrementer = setInterval(() => { this.setState({ secondsElapsed: this.state.secondsElapsed + 1 }); }, 1000);
     };
 
     stopWatch = () => {
@@ -38,6 +37,9 @@ class ParticipantCounter extends React.Component {
     };
 
     render() {
+      if(this.props.seconds === null){
+        return (<></>);
+      }
       return (
           <div>
             <span style={timerStyle}>

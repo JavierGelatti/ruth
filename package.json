@@ -51,7 +51,6 @@
   },
   "dependencies": {
     "chart.js": "^2.9.3",
-    "lint-staged": "^7.3.0",
     "lodash.pick": "^4.4.0",
     "react-chartjs-2": "^2.8.0"
   }

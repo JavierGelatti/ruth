@@ -6,13 +6,21 @@ import { CardSubcontainer, cardContainerStyle, CardName, UserAvatar } from './Pa
 class ParticipantsCard extends React.Component {
 
   secondsElapsed() {
-    if(this.props.participant.inicio === null){
-      return 0;
-    } else if (this.props.participant.fin !== null) {
+    if(this.estaEncolado()){
+      return null;
+    } else if (this.estaHablando()) {
       return Math.round((this.props.participant.fin - this.props.participant.inicio)/1000)
     } else {
       return Math.round((Date.now() - this.props.participant.inicio)/1000)
     }
+  }
+
+  estaHablando() {
+    return this.props.participant.fin !== null;
+  }
+
+  estaEncolado() {
+    return this.props.participant.inicio === null;
   }
 
   render() {
