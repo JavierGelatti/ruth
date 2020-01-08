@@ -1,5 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import { ChartlineContainer } from './Chart.styled';
 
 class ChartLine extends React.Component {
     graphOptions = () => {
@@ -29,12 +30,12 @@ class ChartLine extends React.Component {
 
     render() {
       return (
-        <div style={{ width: '50rem' }}>
+        <ChartlineContainer>
             <Line
               data={this.formattedData()}
               options={this.graphOptions()}
             />
-        </div>
+        </ChartlineContainer>
       );
     }
 }
