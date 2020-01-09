@@ -1,24 +1,20 @@
-// import context from '~/context';
+import context from '~/context';
 
-const eventos = [];
-
-// function buscarTemaActivo() {
-//   return 1;
-// }
+function buscarTemaActivo() {
+  return 2;
+}
 
 export default function (wss) {
   return (ws) => {
     ws.on('message', (message) => {
-      eventos.push(message);
-      // context.eventosRepo.guardarEvento(message, buscarTemaActivo());
+      context.eventosRepo.guardarEvento(message, buscarTemaActivo());
       wss.clients.forEach((client) => {
         client.send(JSON.stringify([message]));
       });
     });
-    ws.send(JSON.stringify(eventos));
-    // context.eventosRepo.findEventosDeTema(buscarTemaActivo())
-    //   .then(eventos => {
-    //     ws.send(JSON.stringify(eventos));
-    //   });
+    context.eventosRepo.findEventosDeTema(buscarTemaActivo())
+      .then((data) => {
+        ws.send(JSON.stringify(data.map((eventData) => eventData.evento)));
+      });
   };
 }
