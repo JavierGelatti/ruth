@@ -1,7 +1,7 @@
 import context from '~/context';
 
 function buscarTemaActivo() {
-  return 2;
+  return 3;
 }
 
 export default function (wss) {
