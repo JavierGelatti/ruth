@@ -7,9 +7,6 @@ class Clock extends React.Component {
   getSeconds = () => (`0${this.props.seconds % 60}`).slice(-2);
 
   render() {
-    if(this.props.seconds === null){
-      return (<></>);
-    }
     if(this.props.seconds < 0){
       return ('Tiempo Acabado');
     }
