@@ -5,19 +5,19 @@ import { ClockContainer } from '../clock/Clock.styled';
 class ParticipantCounter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { secondsElapsed: this.props.seconds };
+    this.state = { secondsElapsed: this.props.estadoOrador.seconds };
   }
 
   componentDidUpdate = (prevProps) => {
     if (this.props !== prevProps) {
       this.setState({
-        secondsElapsed: this.props.seconds,
+        secondsElapsed: this.props.estadoOrador.seconds,
       });
     }
   }
 
   componentDidMount() {
-    if (this.props.isActive) {
+    if (this.props.estadoOrador.detalle === "hablando") {
       this.runWatch();
     }
   }
@@ -31,7 +31,7 @@ class ParticipantCounter extends React.Component {
   };
 
   render() {
-    if (this.props.seconds === null) {
+    if (this.props.estadoOrador.detalle === "encolado") {
       return (<></>);
     }
     return (
