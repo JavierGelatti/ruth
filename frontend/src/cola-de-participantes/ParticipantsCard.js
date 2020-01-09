@@ -5,17 +5,17 @@ import { CardSubcontainer, cardContainerStyle, CardName, UserAvatar } from './Pa
 
 class ParticipantsCard extends React.Component {
 
-  secondsElapsed() {
+  estadoOrador() {
     if(this.estaEncolado()){
-      return null;
-    } else if (this.estaHablando()) {
-      return Math.round((this.props.participant.fin - this.props.participant.inicio)/1000)
+      return { detalle: "encolado"};
+    } else if (this.hablo()) {
+      return { detalle: "hablo", seconds: Math.round((this.props.participant.fin - this.props.participant.inicio)/1000)}
     } else {
-      return Math.round((Date.now() - this.props.participant.inicio)/1000)
+      return { detalle: "hablando", seconds: Math.round((Date.now() - this.props.participant.inicio)/1000)}
     }
   }
 
-  estaHablando() {
+  hablo() {
     return this.props.participant.fin !== null;
   }
 
@@ -32,7 +32,7 @@ class ParticipantsCard extends React.Component {
                 {this.props.participant.nombre}
               </CardName>
             </CardSubcontainer>
-            <ParticipantCounter key={this.props.key} seconds={this.secondsElapsed()} isActive={this.props.isParticipantTalking}/>
+            <ParticipantCounter key={this.props.key} estadoOrador={this.estadoOrador()} />
           </Card>
     );
   }
