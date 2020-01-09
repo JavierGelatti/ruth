@@ -58,12 +58,11 @@ const pines = [
 
 function oradores(state, evento) {
   // TODO: Ver qué hacer cuando se vuelve a encolar una misma persona
-  // TODO: Cambiar el Date.now() por el timestamp del evento
   // TODO: Ver qué hacer cuando se trata de la ultima persona
   switch (evento.data.tipo) {
     case 'Quiero Hablar':
       if(state.length === 0){
-        return [...state, {nombre: evento.autor, inicio: Date.now(), fin: null}];
+        return [...state, {nombre: evento.autor, inicio: evento.fecha, fin: null}];
       } else {
         return [...state, {nombre: evento.autor, inicio: null, fin: null}];
       }
@@ -74,11 +73,11 @@ function oradores(state, evento) {
       let proximoOrador = null;
       return state.map((orador, index) => {
         if(index === proximoOrador){
-          return { ...orador, inicio: Date.now() }
+          return { ...orador, inicio: evento.fecha }
         }
         if(orador.nombre === evento.autor) {
           proximoOrador = index + 1;
-          return { ...orador, fin: Date.now() }
+          return { ...orador, fin: evento.fecha }
         }
         return orador;
       });

@@ -12,6 +12,7 @@ class Mobile extends React.Component {
     dispatch = (data) => {
       const evento = {
         autor: this.state.nombre,
+        fecha: Date.now(),
         data,
       };
       console.log(evento);
