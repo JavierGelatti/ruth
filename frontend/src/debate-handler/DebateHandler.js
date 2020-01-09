@@ -23,39 +23,6 @@ const dataLine = {
   ],
 };
 
-const pines = [
-  {
-    inicio: Date.now() - 120000,
-    fin: Date.now() - 110000,
-    nombre: 'Ailén Muñoz',
-  },
-  {
-    inicio: Date.now() - 110000,
-    fin: Date.now() - 10000,
-    nombre: 'Ariel Umansky',
-  },
-  {
-    inicio: Date.now() - 10000,
-    fin: null,
-    nombre: 'Joaquín Azcarate',
-  },
-  {
-    inicio: null,
-    fin: null,
-    nombre: 'Ornella Mosca',
-  },
-  {
-    inicio: null,
-    fin: null,
-    nombre: 'Federico Martinez Fonseca',
-  },
-  {
-    inicio: null,
-    fin: null,
-    nombre: 'Carolina Destuet',
-  },
-];
-
 function oradores(state, evento) {
   // TODO: Ver qué hacer cuando se vuelve a encolar una misma persona
   // TODO: Ver qué hacer cuando se trata de la ultima persona
