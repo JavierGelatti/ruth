@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 class VistaTemas extends React.Component {
   constructor(props) {
     super(props);
+    this.socket = new WebSocket('ws://localhost:8760/ws');
     this.state = {
       selectedElement: 'Tema Actual',
       indiceTemaAMostrar: this.indiceTemaATratar(),

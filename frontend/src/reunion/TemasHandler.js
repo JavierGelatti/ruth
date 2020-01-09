@@ -7,10 +7,31 @@ class TemasHandler extends React.Component {
 
   constructor(props) {
     super(props);
+    this.socket = new WebSocket('ws://localhost:8760/ws');
+    this.socket.onmessage = (mensaje) => {
+      const listaEventos = JSON.parse(mensaje.data);
+      if(listaEventos.length === 1 && this.cambioElTema(listaEventos)){
+        this.obtenerTemas();
+      }
+    };
     this.state = {
       temas: [],
       estadoDeTemas: 'cargando',
     };
+  }
+
+  dispatch = (data) => {
+    const evento = {
+      autor: "PRESENTADOR",
+      fecha: Date.now(),
+      data,
+    };
+    console.log(evento);
+    this.socket.send(JSON.stringify(evento));
+  }
+
+  cambioElTema(listaEventos) {
+    return ["Empezar Tema", "Terminar Tema"].includes(JSON.parse(listaEventos[0]).data.tipo);
   }
 
   componentDidMount() {
@@ -29,7 +50,10 @@ class TemasHandler extends React.Component {
 
   requestActualizarTema = (datosTema) => {
     backend.actualizarTema(datosTema)
-      .then(() => this.obtenerTemas())
+      .then(() => {
+        this.obtenerTemas();
+        this.dispatch( { tipo: datosTema.fin ? 'Terminar Tema' : 'Empezar Tema', idTema: datosTema.id })
+      })
       .catch(() => {
         toast.error('No se pudo actualizar el tema');
       });
