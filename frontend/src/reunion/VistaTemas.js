@@ -4,7 +4,7 @@ import Sidebar from '../sidebar-reunion/Sidebar';
 import { ReunionContainer } from './Reunion.styled';
 import TemaActual from '../tipos-vista-principal/TemaActual';
 import Presentacion from '../tipos-vista-principal/Presentacion';
-import Analytics from '../tipos-vista-principal/Analytics';
+import Debate from '../tipos-vista-principal/Debate';
 import Temario from '../temario/Temario';
 
 class VistaTemas extends React.Component {
@@ -24,7 +24,7 @@ class VistaTemas extends React.Component {
     }
   }
 
-  vistas = [TemaActual, Presentacion, Analytics]
+  vistas = [TemaActual, Presentacion, Debate]
 
   obtenerVista = () => this.vistas.find((vista) => vista.canHandleView(this.state.selectedElement))
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CountdownContainer } from './Countdown.styled';
+import Clock from '../clock/Clock';
 
 export default class Countdown extends React.Component {
   constructor(props) {
@@ -45,15 +46,9 @@ export default class Countdown extends React.Component {
   }
 
   render() {
-    const segundos = this.state.segundos % 60;
-    const minutos = Math.floor(this.state.segundos / 60);
-
     return (
             <CountdownContainer>
-                { this.state.segundos <= 0
-                  ? 'Tiempo Acabado'
-                  : <span>{minutos}:{segundos < 10 ? `0${segundos}` : segundos}</span>
-                }
+                <Clock seconds={this.state.segundos}/>
             </CountdownContainer>
     );
   }

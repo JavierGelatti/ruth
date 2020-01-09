@@ -3,13 +3,13 @@ import { Bar } from 'react-chartjs-2';
 
 class ChartBar extends React.Component {
     graphOptions = () => {
-      let barOptions = {
+      const barOptions = {
         layout: {
           padding: {
             left: 50,
             right: 50,
             top: 10,
-            bottom: 10
+            bottom: 10,
           },
         },
         legend: {
@@ -30,26 +30,24 @@ class ChartBar extends React.Component {
       return barOptions;
     }
 
-    formattedData = () => {
-      return {
-        labels: this.props.data.data.map((bar) => bar.name),
-        datasets: [{
-          data: this.props.data.data.map((bar) => bar.value),
-          backgroundColor: this.props.data.color,
-          borderColor: this.props.data.color,
-        },
-        ],
-      };
-    }
+    formattedData = () => ({
+      labels: this.props.data.data.map((bar) => bar.name),
+      datasets: [{
+        data: this.props.data.data.map((bar) => bar.value),
+        backgroundColor: this.props.data.color,
+        borderColor: this.props.data.color,
+      },
+      ],
+    })
 
     render() {
       return (
-        <>
+        <div style={{ width: '50rem' }}>
             <Bar
               data={this.formattedData()}
               options={this.graphOptions()}
             />
-        </>
+        </div>
       );
     }
 }
