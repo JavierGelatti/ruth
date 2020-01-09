@@ -9,6 +9,10 @@ export default class EventosRepo {
     });
   }
 
+  findAllEventos() {
+    return models.Evento.findAll();
+  }
+
   guardarEvento(evento, temaId) {
     return models.Evento.create({ evento, temaId });
   }

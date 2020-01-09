@@ -19,7 +19,7 @@ class DebateSocket extends React.Component {
   render() {
     return (
         <DebateHandler
-          eventos={this.state.eventos}
+          eventos={this.state.eventos.filter(evento => evento.idTema === this.props.tema.id)}
           segundosRestantes={this.props.segundosRestantes}
           temaActivo={this.props.temaActivo}
           tema={this.props.tema}/>

@@ -5,7 +5,7 @@ import Vista from './vista';
 function temas(state, evento){
   switch (evento.data.tipo) {
     case 'Empezar Tema':
-      return evento.data.idTema;
+      return evento.idTema;
     case 'Terminar Tema':
       return null;
     default: return state;
@@ -19,7 +19,7 @@ class Mobile extends React.Component {
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data).map(evento => JSON.parse(evento));
-      this.setState({ tema: listaEventos.reduce(temas, null) });
+      this.setState(state => ({ tema: listaEventos.reduce(temas, state.tema) }));
     };
   }
 
@@ -27,9 +27,9 @@ class Mobile extends React.Component {
     const evento = {
       autor: this.state.nombre,
       fecha: Date.now(),
+      idTema: this.state.tema,
       data,
     };
-    console.log(evento);
     this.socket.send(JSON.stringify(evento));
     this.setState({ nombre: '' });
   }

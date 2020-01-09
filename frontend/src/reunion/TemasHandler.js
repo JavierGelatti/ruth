@@ -24,14 +24,14 @@ class TemasHandler extends React.Component {
     const evento = {
       autor: "PRESENTADOR",
       fecha: Date.now(),
-      data,
+      idTema: data.idTema,
+      data: {tipo: data.tipo},
     };
-    console.log(evento);
     this.socket.send(JSON.stringify(evento));
   }
 
   cambioElTema(listaEventos) {
-    return ["Empezar Tema", "Terminar Tema"].includes(JSON.parse(listaEventos[0]).data.tipo);
+    return ['Empezar Tema', 'Terminar Tema'].includes(JSON.parse(listaEventos[0]).data.tipo);
   }
 
   componentDidMount() {

@@ -1,18 +1,14 @@
 import context from '~/context';
 
-function buscarTemaActivo() {
-  return 3;
-}
-
 export default function (wss) {
   return (ws) => {
     ws.on('message', (message) => {
-      context.eventosRepo.guardarEvento(message, buscarTemaActivo());
+      context.eventosRepo.guardarEvento(message, JSON.parse(message).idTema);
       wss.clients.forEach((client) => {
         client.send(JSON.stringify([message]));
       });
     });
-    context.eventosRepo.findEventosDeTema(buscarTemaActivo())
+    context.eventosRepo.findAllEventos()
       .then((data) => {
         ws.send(JSON.stringify(data.map((eventData) => eventData.evento)));
       });
