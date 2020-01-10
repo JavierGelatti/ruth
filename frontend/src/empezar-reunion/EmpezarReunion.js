@@ -10,10 +10,32 @@ import BotonParaIniciarReunion from './BotonParaIniciarReunion';
 class EmpezarReunion extends React.Component {
   constructor(props) {
     super(props);
+    this.socket = new WebSocket('ws://localhost:8760/ws');
+    this.socket.onmessage = (mensaje) => {
+      const listaEventos = JSON.parse(mensaje.data);
+      debugger;
+      // TODO: Existen condiciones de carrera que podrían hacer que no se ejecuten las tareas correspondientes
+      if(this.seCreoReunion(listaEventos)){
+        this.setState({ redirect: true });
+      }
+    };
     this.state = {
       redirect: false,
       cargando: false,
     };
+  }
+
+  seCreoReunion(listaEventos){
+    return listaEventos.length === 1 && ['Crear Reunion'].includes(JSON.parse(listaEventos[0]).data.tipo);
+  }
+
+  dispatchReunion = (data) => {
+    const evento = {
+      autor: "PRESENTADOR",
+      fecha: Date.now(),
+      data: {tipo: data.tipo},
+    };
+    this.socket.send(JSON.stringify(evento));
   }
 
   handleEmpezarReunion = () => {
@@ -24,6 +46,7 @@ class EmpezarReunion extends React.Component {
   requestEmpezarReunion = () => {
     backend.empezarReunion().then(() => {
       this.setState({ redirect: true });
+      this.dispatchReunion({ tipo:'Crear Reunion' });
       toast.success('Reunión iniciada');
     })
       .catch(() => {
