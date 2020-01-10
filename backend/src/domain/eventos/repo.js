@@ -1,4 +1,5 @@
 import models from '~/database/models';
+import { getLastElement } from '../helpers/listHelper';
 
 export default class EventosRepo {
   findEventosDeTema(id) {
@@ -7,6 +8,21 @@ export default class EventosRepo {
         temaId: id,
       },
     });
+  }
+
+  findEventosUltimaReunion(){
+    return models.Reunion.findAll()
+      .then((reuniones) => getLastElement(reuniones))
+      .then(reunion => {
+        return models.Evento.findAll({
+          include: [{
+            model: models.Tema,
+            as: 'tema',
+            where: {reunionId: reunion.id}
+           }]
+        });
+      }
+      );
   }
 
   findAllEventos() {

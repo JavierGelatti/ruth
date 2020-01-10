@@ -8,7 +8,7 @@ export default function (wss) {
         client.send(JSON.stringify([message]));
       });
     });
-    context.eventosRepo.findAllEventos()
+    context.eventosRepo.findEventosUltimaReunion()
       .then((data) => {
         ws.send(JSON.stringify(data.map((eventData) => eventData.evento)));
       });
