@@ -6,8 +6,6 @@ import TemaActual from '../tipos-vista-principal/TemaActual';
 import Presentacion from '../tipos-vista-principal/Presentacion';
 import Debate from '../tipos-vista-principal/Debate';
 import Temario from '../temario/Temario';
-import backend from '../api/backend';
-import { Redirect } from 'react-router-dom';
 
 class VistaTemas extends React.Component {
   constructor(props) {
@@ -16,7 +14,6 @@ class VistaTemas extends React.Component {
     this.state = {
       selectedElement: 'Tema Actual',
       indiceTemaAMostrar: this.indiceTemaATratar(),
-      redirect: false,
     };
   }
 
@@ -59,10 +56,7 @@ class VistaTemas extends React.Component {
     if (this.temaActivo()) {
       this.terminarTema();
     }
-    backend.cerrarReunion()
-      .then(() => toast.success('Reunión finalizada'))
-      .then(() => this.setState({ redirect: true }))
-      .catch(() => toast.error('No se pudo finalizar la reunión'));
+    this.props.cerrarReunion();
   }
 
   handleSelection = (name) => {
@@ -119,7 +113,6 @@ class VistaTemas extends React.Component {
 
   render() {
     const VistaSeleccionada = this.obtenerVista();
-    if (this.state.redirect) return <Redirect to="/" />;
     return (
           <ReunionContainer>
             <Temario temas={this.props.temas}

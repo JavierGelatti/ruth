@@ -2,6 +2,7 @@ import React from 'react';
 import backend from '../api/backend';
 import VistaTemas from './VistaTemas';
 import { toast } from 'react-toastify';
+import { Redirect } from 'react-router-dom';
 
 class TemasHandler extends React.Component {
 
@@ -10,17 +11,18 @@ class TemasHandler extends React.Component {
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data);
-      if(listaEventos.length === 1 && this.cambioElTema(listaEventos)){
+      if(this.cambioElTema(listaEventos)){
         this.obtenerTemas();
       }
     };
     this.state = {
       temas: [],
       estadoDeTemas: 'cargando',
+      redirect: false,
     };
   }
 
-  dispatch = (data) => {
+  dispatchTema = (data) => {
     const evento = {
       autor: "PRESENTADOR",
       fecha: Date.now(),
@@ -31,7 +33,7 @@ class TemasHandler extends React.Component {
   }
 
   cambioElTema(listaEventos) {
-    return ['Empezar Tema', 'Terminar Tema'].includes(JSON.parse(listaEventos[0]).data.tipo);
+    return listaEventos.length === 1 && ['Empezar Tema', 'Terminar Tema'].includes(JSON.parse(listaEventos[0]).data.tipo);
   }
 
   componentDidMount() {
@@ -52,21 +54,32 @@ class TemasHandler extends React.Component {
     backend.actualizarTema(datosTema)
       .then(() => {
         this.obtenerTemas();
-        this.dispatch( { tipo: datosTema.fin ? 'Terminar Tema' : 'Empezar Tema', idTema: datosTema.id })
+        this.dispatchTema( { tipo: datosTema.fin ? 'Terminar Tema' : 'Empezar Tema', idTema: datosTema.id })
       })
       .catch(() => {
         toast.error('No se pudo actualizar el tema');
       });
   }
 
+  cerrarReunion = () => {
+    backend.cerrarReunion()
+      .then(() => toast.success('Reunión finalizada'))
+      .then(() => {
+        this.setState({ redirect: true });
+      })
+      .catch(() => toast.error('No se pudo finalizar la reunión'));
+  }
+
   render() {
     // TO DO: Ver qué se debería mostrar en caso de carga o error
+    if (this.state.redirect) return <Redirect to="/" />;
     switch (this.state.estadoDeTemas) {
       case ('cargando'): return <h1>Loading...</h1>;
       case ('error'): return <h1>Error!</h1>;
       case ('ok'): return (
           <VistaTemas temas={this.state.temas}
-          actualizarTema={this.requestActualizarTema}/>
+          actualizarTema={this.requestActualizarTema}
+          cerrarReunion={this.cerrarReunion}/>
       );
       default: return null;
     }
