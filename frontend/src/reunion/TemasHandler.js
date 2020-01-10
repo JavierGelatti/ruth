@@ -11,6 +11,10 @@ class TemasHandler extends React.Component {
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data);
+      // TODO: Existen condiciones de carrera que podrían hacer que no se ejecuten las tareas correspondientes
+      if(this.seCerroReunion(listaEventos)){
+        this.setState({ redirect: true });
+      }
       if(this.cambioElTema(listaEventos)){
         this.obtenerTemas();
       }
@@ -30,6 +34,19 @@ class TemasHandler extends React.Component {
       data: {tipo: data.tipo},
     };
     this.socket.send(JSON.stringify(evento));
+  }
+
+  dispatchReunion = (data) => {
+    const evento = {
+      autor: "PRESENTADOR",
+      fecha: Date.now(),
+      data: {tipo: data.tipo},
+    };
+    this.socket.send(JSON.stringify(evento));
+  }
+
+  seCerroReunion(listaEventos){
+    return listaEventos.length === 1 && ['Cerrar Reunion'].includes(JSON.parse(listaEventos[0]).data.tipo);
   }
 
   cambioElTema(listaEventos) {
@@ -66,6 +83,7 @@ class TemasHandler extends React.Component {
       .then(() => toast.success('Reunión finalizada'))
       .then(() => {
         this.setState({ redirect: true });
+        this.dispatchReunion({ tipo: 'Cerrar Reunion' });
       })
       .catch(() => toast.error('No se pudo finalizar la reunión'));
   }
