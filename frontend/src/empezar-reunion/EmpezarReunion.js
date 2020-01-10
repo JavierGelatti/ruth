@@ -13,9 +13,9 @@ class EmpezarReunion extends React.Component {
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data);
-      debugger;
-      // TODO: Existen condiciones de carrera que podrían hacer que no se ejecuten las tareas correspondientes
       if(this.seCreoReunion(listaEventos)){
+        //TODO: Acá idealmente habría un toast de reunión iniciada pero por 
+        //alguna razón se ejecuta más de una vez cuando abrís y cerrás reuniones
         this.setState({ redirect: true });
       }
     };
@@ -26,7 +26,7 @@ class EmpezarReunion extends React.Component {
   }
 
   seCreoReunion(listaEventos){
-    return listaEventos.length === 1 && ['Crear Reunion'].includes(JSON.parse(listaEventos[0]).data.tipo);
+    return listaEventos.length === 1 && ['Crear Reunion'].includes(JSON.parse(listaEventos[listaEventos.length-1]).data.tipo);
   }
 
   dispatchReunion = (data) => {

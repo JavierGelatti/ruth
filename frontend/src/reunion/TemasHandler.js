@@ -11,8 +11,9 @@ class TemasHandler extends React.Component {
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data);
-      // TODO: Existen condiciones de carrera que podrían hacer que no se ejecuten las tareas correspondientes
       if(this.seCerroReunion(listaEventos)){
+        //TODO: Acá idealmente habría un toast de reunión cerrada pero por 
+        //alguna razón se ejecuta más de una vez cuando abrís y cerrás reuniones
         this.setState({ redirect: true });
       }
       if(this.cambioElTema(listaEventos)){
@@ -46,11 +47,11 @@ class TemasHandler extends React.Component {
   }
 
   seCerroReunion(listaEventos){
-    return listaEventos.length === 1 && ['Cerrar Reunion'].includes(JSON.parse(listaEventos[0]).data.tipo);
+    return listaEventos.length === 1 && ['Cerrar Reunion'].includes(JSON.parse(listaEventos[listaEventos.length-1]).data.tipo);
   }
 
   cambioElTema(listaEventos) {
-    return listaEventos.length === 1 && ['Empezar Tema', 'Terminar Tema'].includes(JSON.parse(listaEventos[0]).data.tipo);
+    return listaEventos.length === 1 && ['Empezar Tema', 'Terminar Tema'].includes(JSON.parse(listaEventos[listaEventos.length-1]).data.tipo);
   }
 
   componentDidMount() {
