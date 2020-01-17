@@ -22,6 +22,10 @@ const Backend = {
   getTemas() {
     return requester.get('/temas/obtener');
   },
+
+  getPerfil() {
+    return requester.get('/perfil/me');
+  },
 };
 
 export default Backend;
