@@ -121,8 +121,9 @@ class VistaTemas extends React.Component {
               selectedElement={this.state.selectedElement}
               link={this.temaSeleccionado().linkDePresentacion} />
           </ReunionContainer>
-    );
+      );
   }
+
 }
 
 export default VistaTemas;
