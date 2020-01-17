@@ -42,12 +42,12 @@ class ChartBar extends React.Component {
 
     render() {
       return (
-        <>
+        <div style={{ width: '50rem' }}>
             <Bar
               data={this.formattedData()}
               options={this.graphOptions()}
             />
-        </>
+        </div>
       );
     }
 }

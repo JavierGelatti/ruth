@@ -33,18 +33,18 @@ class TestChart extends React.Component {
         data: [
           {
             name: '+1',
-            value: 20,
+            value: 42,
           },
           {
             name: '-1',
-            value: 5,
+            value: 4,
           },
           {
             name: 'redondear',
-            value: 16,
+            value: 35,
           },
           {
-            name: '+slack',
+            name: 'slack',
             value: 2,
           },
         ],
