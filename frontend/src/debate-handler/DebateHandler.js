@@ -2,9 +2,8 @@ import React from 'react';
 import DebateView from './DebateView';
 import { colors } from '../styles/theme';
 
-function oradores(state, evento) {
+export function oradores(state, evento) {
   // TODO: Ver qué hacer cuando se vuelve a encolar una misma persona
-  // TODO: Ver qué hacer cuando se trata de la ultima persona
   switch (evento.data.tipo) {
     case 'Quiero Hablar':
       if (state.length === 0) {
@@ -31,7 +30,7 @@ function oradores(state, evento) {
   }
 }
 
-function reacciones(state, evento) {
+export function reacciones(state, evento) {
   switch (evento.data.tipo) {
     case 'Reiniciar reacciones':
       return [];
