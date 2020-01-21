@@ -12,20 +12,20 @@ class ParticipantsQueue extends React.Component {
     getTalkingParticipant = () => this.props.participants.find((participant) => this.props.isTalking(participant));
 
     render() {
-      if(this.props.participants.length === 0) { 
-        return(<></>); 
+      if (this.props.participants.length === 0) {
+        return (<></>);
       }
       return (
           <QueueContainer>
             <QueuedLeftCardsStyle>
               <QueuedCardsLeftContainerStyle>
-                { this.getQueuedParticipants().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}
+                { this.getQueuedParticipants().map((participant, index) => <ParticipantsCard interactive={false} participant={participant} key={index}/>)}
               </QueuedCardsLeftContainerStyle>
             </QueuedLeftCardsStyle>
-            <ParticipantsCard participant={this.getTalkingParticipant()} isParticipantTalking={this.props.isTalking(this.getTalkingParticipant())}/>
+            <ParticipantsCard interactive={false} participant={this.getTalkingParticipant()} isParticipantTalking={this.props.isTalking(this.getTalkingParticipant())}/>
             <QueuedRightCardsStyle>
               <QueuedCardsRightContainerStyle>
-                { this.getParticipantsThatAlreadyTalked().map((participant, index) => <ParticipantsCard participant={participant} key={index}/>)}
+                { this.getParticipantsThatAlreadyTalked().map((participant, index) => <ParticipantsCard interactive={false} participant={participant} key={index}/>)}
               </QueuedCardsRightContainerStyle>
             </QueuedRightCardsStyle>
           </QueueContainer>

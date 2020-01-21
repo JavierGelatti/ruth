@@ -12,26 +12,35 @@ export const cardContainerStyle = (isTalking) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
-  height: !isTalking ? '15rem' : '18rem',
-  width: !isTalking ? '10rem' : '12rem',
+  background: 'grey',
+  justifyContent: 'space-between',
+  height: !isTalking ? '17rem' : '20rem',
+  width: !isTalking ? '12rem' : '14rem',
   cursor: isTalking ? 'pointer' : '',
 });
+
+export const CardInteractionsContainer = styled.div`
+  display: 'flex',
+  flex-direction: 'column',
+  align-items: 'center',
+  justify-content: 'space-between',
+  height: '18rem',
+  width: '12rem'
+`;
 
 export const UserAvatar = styled.div(({ isTalking }) => `
   background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9QRApUFMY11IHznfAbkthPa7HYm6bE1qlZbZTHV8EIK7_FAlx&s');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  margin: ${!isTalking ? '-2rem 0rem 1rem 0rem' : '-3rem -2rem 1rem -2rem'};
+  margin: ${!isTalking ? '0 0rem 1rem 0rem' : '0 -2rem 1rem -2rem'};
   height: 10rem;
-  width: ${!isTalking ? '10rem' : '12rem'};
+  width: ${!isTalking ? '12rem' : '14rem'};
 `);
 
-export const CardName = styled.h4`
+export const CardName = styled.span`
   width: 10rem;
   text-align: center;
-  height: 2rem;
-  margin-bottom: 1rem;
   margin-top: 0;
+  font-weight: 700;
 `;
