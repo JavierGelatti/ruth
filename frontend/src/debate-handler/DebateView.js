@@ -9,7 +9,6 @@ import ChartBar from '../chart/chartBar';
 import ParticipantsQueue from '../cola-de-participantes/ParticipantsQueue';
 
 class DebateView extends React.Component {
-    
     mensaje = 'Pagina en desarrollo';
 
     render() {

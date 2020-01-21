@@ -57,17 +57,13 @@ class DebateHandler extends React.Component {
     color: colors.primary,
   });
 
-  debateData =() => {
-    return {
-      participants: this.props.eventos.reduce(oradores, []),
-      dataBar: this.dataBar(),
-      dataLine: { data: [] },
-    }
-  };
+  debateData =() => ({
+    participants: this.props.eventos.reduce(oradores, []),
+    dataBar: this.dataBar(),
+    dataLine: { data: [] },
+  });
 
-  isTalking = (participant) => {
-    return participant.inicio !== null && participant.fin === null;
-  }
+  isTalking = (participant) => participant.inicio !== null && participant.fin === null
 
   render() {
     return (

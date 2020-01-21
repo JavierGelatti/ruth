@@ -11,7 +11,6 @@ import { Button, SecondaryButton } from '../components/Button.styled';
 import Countdown from '../reunion/Countdown';
 
 class TemaActual extends React.Component {
-
   static canHandleView = (view) => view === 'Tema Actual'
 
   render() {

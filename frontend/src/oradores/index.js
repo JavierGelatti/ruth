@@ -5,31 +5,31 @@ import ChartBar from '../chart/chartBar';
 
 
 function oradores(state, evento) {
-    switch (evento.data.tipo) {
-      case 'Quiero Hablar':
-        return state.concat([evento.autor]);
-      case 'No Quiero Hablar':
-        return state.filter((orador) => orador !== evento.autor);
-      default: return state;
-    }
+  switch (evento.data.tipo) {
+    case 'Quiero Hablar':
+      return state.concat([evento.autor]);
+    case 'No Quiero Hablar':
+      return state.filter((orador) => orador !== evento.autor);
+    default: return state;
+  }
 }
 
-function reacciones(state, evento){
+function reacciones(state, evento) {
   switch (evento.data.tipo) {
     case 'Reiniciar reacciones':
-        return [];
+      return [];
     case 'Reaccionar':
       const { reaccion: eventReaction } = evento.data;
-        if(state.some(stateReaction => stateReaction.name === eventReaction)){
-          return state.map(stateReaction => {
-            if(stateReaction.name === eventReaction) {
-              return { ...stateReaction, value: stateReaction.value+1 }
-            }
-            return stateReaction;
-          })
-        } else {
-          return state.concat([{ name: eventReaction, value: 1 }]);
-        }
+      if (state.some((stateReaction) => stateReaction.name === eventReaction)) {
+        return state.map((stateReaction) => {
+          if (stateReaction.name === eventReaction) {
+            return { ...stateReaction, value: stateReaction.value + 1 };
+          }
+          return stateReaction;
+        });
+      }
+      return state.concat([{ name: eventReaction, value: 1 }]);
+
     default: return state;
   }
 }
@@ -40,7 +40,7 @@ class Oradores extends React.Component {
     this.socket = new WebSocket('ws://localhost:8760/ws');
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data);
-      this.setState(state => ({ eventos: state.eventos.concat(listaEventos.map(evento => JSON.parse(evento)))}));
+      this.setState((state) => ({ eventos: state.eventos.concat(listaEventos.map((evento) => JSON.parse(evento))) }));
     };
 
     this.state = {
@@ -48,12 +48,10 @@ class Oradores extends React.Component {
     };
   }
 
-  dataBar = () => {
-    return {
-      data: this.state.eventos.reduce(reacciones, []),
-      color: colors.primary,
-    }
-  }
+  dataBar = () => ({
+    data: this.state.eventos.reduce(reacciones, []),
+    color: colors.primary,
+  })
 
   render() {
     return (
