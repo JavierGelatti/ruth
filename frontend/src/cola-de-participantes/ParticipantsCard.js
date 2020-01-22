@@ -63,8 +63,10 @@ class ParticipantsCard extends React.Component {
               this.props.interactive
                 && <CardInteractionsContainer>
                   <div style={subjectReactionsContainerStyle}>
-                    <ReactionButton isActive={this.state.subjectThumbsUpClicked} isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} />
-                    <ReactionButton isActive={this.state.subjectThumbsDownClicked} isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} />
+                    <ReactionButton isActive={this.state.subjectThumbsUpClicked} 
+                      isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} />
+                    <ReactionButton isActive={this.state.subjectThumbsDownClicked} 
+                      isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} />
                     <ReactionButton isActive={this.state.subjectRecommendingEndingClicked} icon={faSync}/>
                   </div>
                 </CardInteractionsContainer>

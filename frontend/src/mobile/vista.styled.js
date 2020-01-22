@@ -85,10 +85,13 @@ export const TitleName = styled.span`
 `;
 
 export const StyledButton = styled(Button)`
-    width: 14rem; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between;
+    && {
+        width: 14rem; 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        margin: 0.5rem;
+    }
 `;
 
 export const ActionText = styled.span`

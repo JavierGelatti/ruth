@@ -9,24 +9,13 @@ import {
 
 class SpeakingActions extends React.Component {
 
-    state = {
-        wannaTalk: this.props.wannaTalk,
-      };
-
-    componentDidUpdate(prevProps){
-        if(prevProps.changedProp !== this.props.changedProp){
-            this.setState({          
-                wannaTalk: this.props.wannaTalk
-            });
-        }
-    }
-
+    
     render() {
         return (
             <ActionContainerStyle>
                 {
-                    !this.state.wannaTalk
-                        ? <StyledButton onClick={this.props.onWannaTalk}
+                    !this.props.wannaTalk
+                        ? <StyledButton onClick={this.props.onWannaTalk} 
                             color={'primary'} variant={'contained'} size={'large'} >
                             <ActionText> Quiero Hablar </ActionText>
                             <FontAwesomeIcon icon={faHandPaper} color={'white'} size={'2x'} />

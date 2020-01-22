@@ -79,9 +79,11 @@ class Vista extends React.Component {
           </SubjectTitleStyle>
           <SubjectReactionsContainer>
             <ReactionButton isBig isActive={this.state.subjectThumbsUpClicked} 
-              isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} onClick={this.onSubjectThumbsUpClick} />
+              isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} 
+              onClick={this.onSubjectThumbsUpClick} />
             <ReactionButton isBig isActive={this.state.subjectThumbsDownClicked} 
-              isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} onClick={this.onSubjectThumbsDownClick} />
+              isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} 
+              onClick={this.onSubjectThumbsDownClick} />
             <ReactionButton isBig isActive={this.state.subjectSlackClicked} icon={faHashtag} onClick={this.onSubjectSlackClick} />
             <ReactionButton isBig isActive={this.state.subjectRecommendingEndingClicked} icon={faSync} 
               onClick={this.onSubjectRecommendingEndingClicked} />
