@@ -7,79 +7,14 @@ import {
 import ParticipantsCard from '../cola-de-participantes/ParticipantsCard';
 import { ReactionButton } from './ReactionButton';
 import { SelectPineToTalkPopUp } from './SelectPineToTalkPopUp';
-
-const mobileContainerStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  width: '100%',
-  height: '100%',
-  justifyContent: 'center',
-  background: 'silver',
-};
-
-const mobileUsableAreaStyle = {
-  width: '100%',
-  overflowY: 'hidden',
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  background: 'white',
-};
-
-const titleContainer = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  height: '30%',
-  backgroundImage: "url('https://images.assetsdelivery.com/compings_v2/lexanda/lexanda1704/lexanda170400030.jpg')",
-};
-
-const subjectReactionsContainerStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderTop: '1px solid white',
-  background: 'rgb(0, 0, 0, 0.7)',
-  height: '6rem',
-};
-
-const participantsContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  borderTop: '1px solid grey',
-  paddingTop: '3rem',
-  backgroundImage: "url('https://i.pinimg.com/originals/03/19/d9/0319d925a9df9a2f2bdb58604f300710.jpg')",
-  height: '65%',
-};
-
-const headerContainerStyle = {
-  background: 'black',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  height: '5%',
-};
-
-const actionsContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  background: 'rgb(0, 0, 0, 0.4)',
-  paddingTop: '1rem',
-  width: '100%',
-  marginTop: '1rem',
-  borderTop: '1px solid silver',
-  height: '25%',
-};
+import { 
+  MobileContainer, MobileUsableArea, TitleContainer, 
+  SubjectReactionsContainer, ParticipantsContainer, HeaderContainer,
+  ActionContainerStyle, SubjectTitleStyle
+} from './vista.styled';
 
 const subjectTitleStyle = {
-  color: 'white', fontSize: '2.5rem', fontWeight: '700', paddingTop: '2rem', textAlign: 'center',
+  
 };
 
 const hardcodedParticipant = { inicio: Date.now(), fin: null, nombre: 'Ari Hablando' };
@@ -138,23 +73,25 @@ class Vista extends React.Component {
 
   render() {
     return (
-      <div style={mobileContainerStyle}>
-        <div style={mobileUsableAreaStyle}>
-          <div style={headerContainerStyle}>
+      <MobileContainer>
+        <MobileUsableArea>
+          <HeaderContainer>
             <span style={{ color: 'white', paddingLeft: '1rem' }}> 10Pines Roots </span>
-          </div>
-          <div style={titleContainer}>
-            <span style={subjectTitleStyle}> {getTemaById(this.props.tema)}</span>
-            <div style={subjectReactionsContainerStyle}>
+          </HeaderContainer>
+          <TitleContainer>
+            <SubjectTitleStyle> 
+              {getTemaById(this.props.tema)}
+            </SubjectTitleStyle>
+            <SubjectReactionsContainer>
               <ReactionButton isBig isActive={this.state.subjectThumbsUpClicked} isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} onClick={this.onSubjectThumbsUpClick}/>
               <ReactionButton isBig isActive={this.state.subjectThumbsDownClicked} isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} onClick={this.onSubjectThumbsDownClick}/>
               <ReactionButton isBig isActive={this.state.subjectSlackClicked} icon={faHashtag} onClick={this.onSubjectSlackClick}/>
               <ReactionButton isBig isActive={this.state.subjectRecommendingEndingClicked} icon={faSync} onClick={this.onSubjectRecommendingEndingClicked}/>
-            </div>
-          </div>
-          <div style={participantsContainerStyle}>
+            </SubjectReactionsContainer>
+          </TitleContainer>
+          <ParticipantsContainer>
             <ParticipantsCard interactive={true} participant={hardcodedParticipant} isParticipantTalking={true}/>
-            <div style={actionsContainerStyle}>
+            <ActionContainerStyle>
               {
                 !this.state.wannaTalk
                   ? <Button onClick={this.onWannaTalkClick} style={{
@@ -176,16 +113,16 @@ class Vista extends React.Component {
                 <span style={{ marginRight: '1rem' }}> Que Hable  </span>
                 <FontAwesomeIcon icon={faHandPointRight} color={'black'} size={'2x'}/>
               </Button>
-            </div>
-          </div>
+            </ActionContainerStyle>
+          </ParticipantsContainer>
           <SelectPineToTalkPopUp
             isDisabled={!this.state.wantOtherToTalk}
             onExit={() => this.setState({ wantOtherToTalk: false })}
             availablePines={this.state.availablePines}
             handlePineChange={this.handlePineChange}
           />
-        </div>
-      </div>
+        </MobileUsableArea>
+      </MobileContainer>
     );
   }
 }
