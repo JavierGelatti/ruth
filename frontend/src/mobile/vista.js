@@ -1,18 +1,16 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faThumbsUp, faThumbsDown, faHashtag, faSync, faHandPaper, faHandPointRight,
+  faThumbsUp, faThumbsDown, faHashtag, faSync
 } from '@fortawesome/free-solid-svg-icons';
 import ParticipantsCard from '../cola-de-participantes/ParticipantsCard';
 import { ReactionButton } from './ReactionButton';
 import { SelectPineToTalkPopUp } from './SelectPineToTalkPopUp';
 import {
-  MobileContainer, MobileUsableArea, TitleContainer,
-  SubjectReactionsContainer, ParticipantsContainer, HeaderContainer,
-  ActionContainerStyle, SubjectTitleStyle, TitleName,
-  StyledButton, ActionText
+  MobileUsableArea, TitleContainer, SubjectReactionsContainer, 
+  ParticipantsContainer, HeaderContainer, SubjectTitleStyle, 
+  TitleName
 } from './vista.styled';
+import SpeakingActions from './SpeakingActions';
 
 
 const hardcodedParticipant = { inicio: Date.now(), fin: null, nombre: 'Ari Hablando' };
@@ -80,34 +78,21 @@ class Vista extends React.Component {
             {getTemaById(this.props.tema)}
           </SubjectTitleStyle>
           <SubjectReactionsContainer>
-            <ReactionButton isBig isActive={this.state.subjectThumbsUpClicked} isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} onClick={this.onSubjectThumbsUpClick} />
-            <ReactionButton isBig isActive={this.state.subjectThumbsDownClicked} isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} onClick={this.onSubjectThumbsDownClick} />
+            <ReactionButton isBig isActive={this.state.subjectThumbsUpClicked} 
+              isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} onClick={this.onSubjectThumbsUpClick} />
+            <ReactionButton isBig isActive={this.state.subjectThumbsDownClicked} 
+              isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} onClick={this.onSubjectThumbsDownClick} />
             <ReactionButton isBig isActive={this.state.subjectSlackClicked} icon={faHashtag} onClick={this.onSubjectSlackClick} />
-            <ReactionButton isBig isActive={this.state.subjectRecommendingEndingClicked} icon={faSync} onClick={this.onSubjectRecommendingEndingClicked} />
+            <ReactionButton isBig isActive={this.state.subjectRecommendingEndingClicked} icon={faSync} 
+              onClick={this.onSubjectRecommendingEndingClicked} />
           </SubjectReactionsContainer>
         </TitleContainer>
         <ParticipantsContainer>
           <ParticipantsCard interactive={true} participant={hardcodedParticipant} isParticipantTalking={true} />
-          <ActionContainerStyle>
-            {
-              !this.state.wannaTalk
-                ? <StyledButton onClick={this.onWannaTalkClick}
-                 color={'primary'} variant={'contained'} size={'large'} >
-                  <ActionText> Quiero Hablar </ActionText>
-                  <FontAwesomeIcon icon={faHandPaper} color={'white'} size={'2x'} />
-                </StyledButton>
-                : <StyledButton onClick={this.onWannaStopTalkClick}
-                 color={'secondary'} variant={'contained'} size={'large'} >
-                  <ActionText> Dejar de Hablar </ActionText>
-                  <FontAwesomeIcon icon={faHandPaper} color={'white'} size={'2x'} />
-                </StyledButton>
-            }
-            <StyledButton onClick={this.onWantOtherPersonToTalk}
-              variant={'contained'} size={'large'} >
-              <ActionText> Que Hable  </ActionText>
-              <FontAwesomeIcon icon={faHandPointRight} color={'black'} size={'2x'} />
-            </StyledButton>
-          </ActionContainerStyle>
+          <SpeakingActions onWannaStopTalk = {this.onWannaStopTalkClick}
+            onWannaTalk = {this.onWannaTalkClick} onWantOtherPersonToTalk = {this.onWantOtherPersonToTalk}
+            wannaTalk = {this.state.wannaTalk}
+          />
         </ParticipantsContainer>
         <SelectPineToTalkPopUp
           isDisabled={!this.state.wantOtherToTalk}
