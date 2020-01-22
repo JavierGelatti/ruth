@@ -7,15 +7,13 @@ import {
 import ParticipantsCard from '../cola-de-participantes/ParticipantsCard';
 import { ReactionButton } from './ReactionButton';
 import { SelectPineToTalkPopUp } from './SelectPineToTalkPopUp';
-import { 
-  MobileContainer, MobileUsableArea, TitleContainer, 
+import {
+  MobileContainer, MobileUsableArea, TitleContainer,
   SubjectReactionsContainer, ParticipantsContainer, HeaderContainer,
-  ActionContainerStyle, SubjectTitleStyle
+  ActionContainerStyle, SubjectTitleStyle, TitleName,
+  StyledButton, ActionText
 } from './vista.styled';
 
-const subjectTitleStyle = {
-  
-};
 
 const hardcodedParticipant = { inicio: Date.now(), fin: null, nombre: 'Ari Hablando' };
 
@@ -73,56 +71,51 @@ class Vista extends React.Component {
 
   render() {
     return (
-      <MobileContainer>
-        <MobileUsableArea>
-          <HeaderContainer>
-            <span style={{ color: 'white', paddingLeft: '1rem' }}> 10Pines Roots </span>
-          </HeaderContainer>
-          <TitleContainer>
-            <SubjectTitleStyle> 
-              {getTemaById(this.props.tema)}
-            </SubjectTitleStyle>
-            <SubjectReactionsContainer>
-              <ReactionButton isBig isActive={this.state.subjectThumbsUpClicked} isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} onClick={this.onSubjectThumbsUpClick}/>
-              <ReactionButton isBig isActive={this.state.subjectThumbsDownClicked} isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} onClick={this.onSubjectThumbsDownClick}/>
-              <ReactionButton isBig isActive={this.state.subjectSlackClicked} icon={faHashtag} onClick={this.onSubjectSlackClick}/>
-              <ReactionButton isBig isActive={this.state.subjectRecommendingEndingClicked} icon={faSync} onClick={this.onSubjectRecommendingEndingClicked}/>
-            </SubjectReactionsContainer>
-          </TitleContainer>
-          <ParticipantsContainer>
-            <ParticipantsCard interactive={true} participant={hardcodedParticipant} isParticipantTalking={true}/>
-            <ActionContainerStyle>
-              {
-                !this.state.wannaTalk
-                  ? <Button onClick={this.onWannaTalkClick} style={{
-                    width: '14rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  }} color={'primary'} variant={'contained'} size={'large'} >
-                    <span style={{ marginRight: '1rem' }}> Quiero Hablar </span>
-                    <FontAwesomeIcon icon={faHandPaper} color={'white'} size={'2x'}/>
-                  </Button>
-                  : <Button onClick={this.onWannaStopTalkClick} style={{
-                    width: '14rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  }} color={'secondary'} variant={'contained'} size={'large'} >
-                    <span style={{ marginRight: '1rem' }}> Dejar de Hablar </span>
-                    <FontAwesomeIcon icon={faHandPaper} color={'white'} size={'2x'}/>
-                  </Button>
-              }
-              <Button onClick={this.onWantOtherPersonToTalk} style={{
-                marginTop: '1rem', marginBottom: '1rem', width: '14rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              }} variant={'contained'} size={'large'} >
-                <span style={{ marginRight: '1rem' }}> Que Hable  </span>
-                <FontAwesomeIcon icon={faHandPointRight} color={'black'} size={'2x'}/>
-              </Button>
-            </ActionContainerStyle>
-          </ParticipantsContainer>
-          <SelectPineToTalkPopUp
-            isDisabled={!this.state.wantOtherToTalk}
-            onExit={() => this.setState({ wantOtherToTalk: false })}
-            availablePines={this.state.availablePines}
-            handlePineChange={this.handlePineChange}
-          />
-        </MobileUsableArea>
-      </MobileContainer>
+      <MobileUsableArea>
+        <HeaderContainer>
+          <TitleName> 10Pines Roots </TitleName>
+        </HeaderContainer>
+        <TitleContainer>
+          <SubjectTitleStyle>
+            {getTemaById(this.props.tema)}
+          </SubjectTitleStyle>
+          <SubjectReactionsContainer>
+            <ReactionButton isBig isActive={this.state.subjectThumbsUpClicked} isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} onClick={this.onSubjectThumbsUpClick} />
+            <ReactionButton isBig isActive={this.state.subjectThumbsDownClicked} isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} onClick={this.onSubjectThumbsDownClick} />
+            <ReactionButton isBig isActive={this.state.subjectSlackClicked} icon={faHashtag} onClick={this.onSubjectSlackClick} />
+            <ReactionButton isBig isActive={this.state.subjectRecommendingEndingClicked} icon={faSync} onClick={this.onSubjectRecommendingEndingClicked} />
+          </SubjectReactionsContainer>
+        </TitleContainer>
+        <ParticipantsContainer>
+          <ParticipantsCard interactive={true} participant={hardcodedParticipant} isParticipantTalking={true} />
+          <ActionContainerStyle>
+            {
+              !this.state.wannaTalk
+                ? <StyledButton onClick={this.onWannaTalkClick}
+                 color={'primary'} variant={'contained'} size={'large'} >
+                  <ActionText> Quiero Hablar </ActionText>
+                  <FontAwesomeIcon icon={faHandPaper} color={'white'} size={'2x'} />
+                </StyledButton>
+                : <StyledButton onClick={this.onWannaStopTalkClick}
+                 color={'secondary'} variant={'contained'} size={'large'} >
+                  <ActionText> Dejar de Hablar </ActionText>
+                  <FontAwesomeIcon icon={faHandPaper} color={'white'} size={'2x'} />
+                </StyledButton>
+            }
+            <StyledButton onClick={this.onWantOtherPersonToTalk}
+              variant={'contained'} size={'large'} >
+              <ActionText> Que Hable  </ActionText>
+              <FontAwesomeIcon icon={faHandPointRight} color={'black'} size={'2x'} />
+            </StyledButton>
+          </ActionContainerStyle>
+        </ParticipantsContainer>
+        <SelectPineToTalkPopUp
+          isDisabled={!this.state.wantOtherToTalk}
+          onExit={() => this.setState({ wantOtherToTalk: false })}
+          availablePines={this.state.availablePines}
+          handlePineChange={this.handlePineChange}
+        />
+      </MobileUsableArea>
     );
   }
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from "@material-ui/core/Button";
 
 export const MobileContainer = styled.div`
     display: flex;
@@ -76,4 +77,20 @@ export const SubjectTitleStyle = styled.div`
     font-weight: 700; 
     padding-top: 2rem; 
     text-align: center;
+`;
+
+export const TitleName = styled.span`
+    color: white;
+    padding-left: 1rem;
+`;
+
+export const StyledButton = styled(Button)`
+    width: 14rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+`;
+
+export const ActionText = styled.span`
+    margin-right: 1rem;
 `;
