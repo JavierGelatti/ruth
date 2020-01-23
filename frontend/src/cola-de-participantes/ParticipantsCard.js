@@ -21,6 +21,32 @@ class ParticipantsCard extends React.Component {
     subjectRecommendingEndingClicked: false,
   };
 
+  state = {
+    opinionThumbsUpClicked: false,
+    opinionThumbsDownClicked: false,
+    opinionSlackClicked: false,
+    opinionRecommendingEndingClicked: false,
+    wannaTalk: false,
+    wantOtherToTalk: false,
+    selectedPine: null,
+    availablePines: ['fulanito', 'menganito'], // TODO: cambiar por los pinos logueados
+  };
+
+  onPersonSpeakingThumbsUpClick = () => {
+    this.props.dispatch({ tipo: 'Reaccionar', reaccion: 'thumbsUpOpinionActual👍' });
+    this.setState({ opinionThumbsUpClicked: true, opinionThumbsDownClicked: false });
+  };
+
+  onPersonSpeakingThumbsDownClick = () => {
+    this.props.dispatch({ tipo: 'Reaccionar', reaccion: 'thumbsDownOpinionActual' });
+    this.setState({ opinionThumbsUpClicked: false, opinionThumbsDownClicked: true });
+  };
+
+  onPersonSpeakingRecommendingEndingClicked = () => {
+    this.props.dispatch({ tipo: 'Reaccionar', reaccion: 'redondearOpinionActual' });
+    this.setState({ opinionRecommendingEndingClicked: !this.state.opinionRecommendingEndingClicked });
+  };
+
   estadoOrador() {
     if (this.estaEncolado()) {
       return { detalle: 'encolado' };
@@ -53,11 +79,15 @@ class ParticipantsCard extends React.Component {
               this.props.interactive
                 && <CardInteractionsContainer>
                   <SubjectReactionsContainer height={4.5} >
-                    <ReactionButton isActive={this.state.subjectThumbsUpClicked} 
-                      isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} />
-                    <ReactionButton isActive={this.state.subjectThumbsDownClicked} 
-                      isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} />
-                    <ReactionButton isActive={this.state.subjectRecommendingEndingClicked} icon={faSync}/>
+                    <ReactionButton isActive={this.state.opinionThumbsUpClicked} 
+                      onClick={this.onPersonSpeakingThumbsUpClick}
+                      isDisabled={this.state.opinionThumbsDownClicked} icon={faThumbsUp} />
+                    <ReactionButton isActive={this.state.opinionThumbsDownClicked} 
+                      onClick={this.onPersonSpeakingThumbsDownClick}
+                      isDisabled={this.state.opinionThumbsUpClicked} icon={faThumbsDown} />
+                    <ReactionButton isActive={this.state.opinionRecommendingEndingClicked} 
+                      onClick={this.onPersonSpeakingRecommendingEndingClicked}
+                      icon={faSync}/>
                   </SubjectReactionsContainer>
                 </CardInteractionsContainer>
             }

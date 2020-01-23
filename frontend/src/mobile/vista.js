@@ -90,7 +90,8 @@ class Vista extends React.Component {
           </SubjectReactionsContainer>
         </TitleContainer>
         <ParticipantsContainer>
-          <ParticipantsCard interactive={true} participant={hardcodedParticipant} isParticipantTalking={true} />
+          <ParticipantsCard interactive={true} dispatch={this.props.dispatch}
+            participant={hardcodedParticipant} isParticipantTalking={true} />
           <SpeakingActions onWannaStopTalk = {this.onWannaStopTalkClick}
             onWannaTalk = {this.onWannaTalkClick} onWantOtherPersonToTalk = {this.onWantOtherPersonToTalk}
             wannaTalk = {this.state.wannaTalk}
