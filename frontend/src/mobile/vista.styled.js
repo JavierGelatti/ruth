@@ -20,7 +20,7 @@ export const MobileUsableArea = styled.div`
     background: white;
 `;
 
-export const TitleContainer = styled.div`
+export const SubjectContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;

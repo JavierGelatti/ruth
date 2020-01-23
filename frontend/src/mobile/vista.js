@@ -6,12 +6,12 @@ import ParticipantsCard from '../cola-de-participantes/ParticipantsCard';
 import { ReactionButton } from './ReactionButton';
 import { SelectPineToTalkPopUp } from './SelectPineToTalkPopUp';
 import {
-  MobileUsableArea, TitleContainer, ParticipantsContainer, 
+  MobileUsableArea, SubjectContainer, ParticipantsContainer, 
   HeaderContainer, SubjectTitle, TitleName
 } from './vista.styled';
 import SpeakingActions from './SpeakingActions';
 import { SubjectReactionsContainer } from '../components/SubjectReactionsContainer.styled';
-
+import { InteractionsContainer } from '../components/InteractionsContainer.styled';
 
 const hardcodedParticipant = { inicio: Date.now(), fin: null, nombre: 'Ari Hablando' };
 
@@ -73,7 +73,8 @@ class Vista extends React.Component {
         <HeaderContainer>
           <TitleName> 10Pines Roots </TitleName>
         </HeaderContainer>
-        <TitleContainer>
+        <InteractionsContainer height="30%" 
+          imgURL="url(https://images.assetsdelivery.com/compings_v2/lexanda/lexanda1704/lexanda170400030.jpg)">
           <SubjectTitle>
             {getTemaById(this.props.tema)}
           </SubjectTitle>
@@ -84,11 +85,12 @@ class Vista extends React.Component {
             <ReactionButton isBig isActive={this.state.subjectThumbsDownClicked} 
               isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} 
               onClick={this.onSubjectThumbsDownClick} />
-            <ReactionButton isBig isActive={this.state.subjectSlackClicked} icon={faHashtag} onClick={this.onSubjectSlackClick} />
+            <ReactionButton isBig isActive={this.state.subjectSlackClicked} icon={faHashtag} 
+              onClick={this.onSubjectSlackClick} />
             <ReactionButton isBig isActive={this.state.subjectRecommendingEndingClicked} icon={faSync} 
               onClick={this.onSubjectRecommendingEndingClicked} />
           </SubjectReactionsContainer>
-        </TitleContainer>
+        </InteractionsContainer>
         <ParticipantsContainer>
           <ParticipantsCard interactive={true} dispatch={this.props.dispatch}
             participant={hardcodedParticipant} isParticipantTalking={true} />

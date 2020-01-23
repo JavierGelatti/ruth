@@ -9,10 +9,10 @@ import {
   cardContainerStyle,
   CardName,
   UserAvatar,
-  CardInteractionsContainer,
 } from './ParticipantsCard.styled';
 import { ReactionButton } from '../mobile/ReactionButton';
 import { SubjectReactionsContainer } from '../components/SubjectReactionsContainer.styled';
+import { InteractionsContainer } from '../components/InteractionsContainer.styled';
 
 class ParticipantsCard extends React.Component {
   state = {
@@ -77,7 +77,7 @@ class ParticipantsCard extends React.Component {
             <ParticipantCounter key={this.props.key} estadoOrador={this.estadoOrador()} />
             {
               this.props.interactive
-                && <CardInteractionsContainer>
+                && <InteractionsContainer height="18rem" width="12rem">
                   <SubjectReactionsContainer height={4.5} >
                     <ReactionButton isActive={this.state.opinionThumbsUpClicked} 
                       onClick={this.onPersonSpeakingThumbsUpClick}
@@ -89,7 +89,7 @@ class ParticipantsCard extends React.Component {
                       onClick={this.onPersonSpeakingRecommendingEndingClicked}
                       icon={faSync}/>
                   </SubjectReactionsContainer>
-                </CardInteractionsContainer>
+                </InteractionsContainer>
             }
           </Card>
     );

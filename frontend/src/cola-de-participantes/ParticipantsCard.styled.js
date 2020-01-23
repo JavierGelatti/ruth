@@ -20,12 +20,12 @@ export const cardContainerStyle = (isTalking) => ({
 });
 
 export const CardInteractionsContainer = styled.div`
-  display: 'flex',
-  flex-direction: 'column',
-  align-items: 'center',
-  justify-content: 'space-between',
-  height: '18rem',
-  width: '12rem'
+  display: flex,
+  flex-direction: column,
+  align-items: center;
+  justify-content: space-between;
+  height: 18rem;
+  width: 12rem;
 `;
 
 export const UserAvatar = styled.div(({ isTalking }) => `
