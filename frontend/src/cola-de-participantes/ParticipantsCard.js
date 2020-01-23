@@ -1,8 +1,7 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import { Button } from '@material-ui/core';
 import {
-  faHashtag, faSync, faThumbsDown, faThumbsUp,
+  faSync, faThumbsDown, faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
 import ParticipantCounter from './ParticipantCounter';
 import {
@@ -13,16 +12,7 @@ import {
   CardInteractionsContainer,
 } from './ParticipantsCard.styled';
 import { ReactionButton } from '../mobile/ReactionButton';
-
-const subjectReactionsContainerStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderTop: '1px solid white',
-  background: 'rgb(0, 0, 0, 0.7)',
-  height: '4.5rem',
-};
+import { SubjectReactionsContainer } from '../components/SubjectReactionsContainer.styled';
 
 class ParticipantsCard extends React.Component {
   state = {
@@ -62,13 +52,13 @@ class ParticipantsCard extends React.Component {
             {
               this.props.interactive
                 && <CardInteractionsContainer>
-                  <div style={subjectReactionsContainerStyle}>
+                  <SubjectReactionsContainer height={4.5} >
                     <ReactionButton isActive={this.state.subjectThumbsUpClicked} 
                       isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} />
                     <ReactionButton isActive={this.state.subjectThumbsDownClicked} 
                       isDisabled={this.state.subjectThumbsUpClicked} icon={faThumbsDown} />
                     <ReactionButton isActive={this.state.subjectRecommendingEndingClicked} icon={faSync}/>
-                  </div>
+                  </SubjectReactionsContainer>
                 </CardInteractionsContainer>
             }
           </Card>

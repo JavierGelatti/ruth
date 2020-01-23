@@ -29,16 +29,6 @@ export const TitleContainer = styled.div`
     background-image: url(https://images.assetsdelivery.com/compings_v2/lexanda/lexanda1704/lexanda170400030.jpg);
 `;
 
-export const SubjectReactionsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid white;
-    background: rgb(0; 0; 0; 0.7);
-    height: 6rem;
-`;
-
 export const ParticipantsContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -71,7 +61,7 @@ export const ActionContainerStyle = styled.div`
     height: 25%;
 `;
 
-export const SubjectTitleStyle = styled.div`
+export const SubjectTitle = styled.div`
     color: white; 
     font-size: 2.5rem; 
     font-weight: 700; 

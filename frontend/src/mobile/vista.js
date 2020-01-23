@@ -6,11 +6,11 @@ import ParticipantsCard from '../cola-de-participantes/ParticipantsCard';
 import { ReactionButton } from './ReactionButton';
 import { SelectPineToTalkPopUp } from './SelectPineToTalkPopUp';
 import {
-  MobileUsableArea, TitleContainer, SubjectReactionsContainer, 
-  ParticipantsContainer, HeaderContainer, SubjectTitleStyle, 
-  TitleName
+  MobileUsableArea, TitleContainer, ParticipantsContainer, 
+  HeaderContainer, SubjectTitle, TitleName
 } from './vista.styled';
 import SpeakingActions from './SpeakingActions';
+import { SubjectReactionsContainer } from '../components/SubjectReactionsContainer.styled';
 
 
 const hardcodedParticipant = { inicio: Date.now(), fin: null, nombre: 'Ari Hablando' };
@@ -74,10 +74,10 @@ class Vista extends React.Component {
           <TitleName> 10Pines Roots </TitleName>
         </HeaderContainer>
         <TitleContainer>
-          <SubjectTitleStyle>
+          <SubjectTitle>
             {getTemaById(this.props.tema)}
-          </SubjectTitleStyle>
-          <SubjectReactionsContainer>
+          </SubjectTitle>
+          <SubjectReactionsContainer height={6}>
             <ReactionButton isBig isActive={this.state.subjectThumbsUpClicked} 
               isDisabled={this.state.subjectThumbsDownClicked} icon={faThumbsUp} 
               onClick={this.onSubjectThumbsUpClick} />
