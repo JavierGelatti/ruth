@@ -29,6 +29,7 @@ const App = ({ location }) => {
                  : <EmpezarReunion {...reunionDeRoots} location={location}/>)}/>
         <Route exact path="/reunionDeRoots"
                render={() => (reunionDeRoots.abierta ? <TemasHandler {...reunionDeRoots} location={location}/> : <Redirect to="/"/>)}/>
+
       </Switch>
     </>
   );

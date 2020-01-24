@@ -26,5 +26,8 @@ export const Descripcion = styled.p`
   margin: 0 3em;
 `;
 
+export const ListaTemasARepasar = styled.ul`
+`;
+
 export const ListaPinosPropuestos = styled.ul`
 `;
