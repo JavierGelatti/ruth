@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
 export const MobileContainer = styled.div`
     display: flex;
@@ -35,7 +35,7 @@ export const ParticipantsContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid grey;
-    padding-top: 3rem;
+    padding-top: 2rem;
     background-image: url(https://i.pinimg.com/originals/03/19/d9/0319d925a9df9a2f2bdb58604f300710.jpg);
     height: 65%;
 `;
@@ -53,7 +53,7 @@ export const ActionContainerStyle = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgb(0; 0; 0; 0.4);
+    background: rgb(0, 0, 0, 0.5);
     padding-top: 1rem;
     width: 100%;
     margin-top: 1rem;
