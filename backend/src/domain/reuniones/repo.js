@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import models from '~/database/models';
-import { getLastElement } from './helpers/listHelper';
+import { getLastElement } from '../helpers/listHelper';
 
 export default class ReunionesRepo {
   findAll() {

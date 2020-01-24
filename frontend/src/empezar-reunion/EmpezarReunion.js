@@ -10,7 +10,7 @@ import BotonParaIniciarReunion from './BotonParaIniciarReunion';
 class EmpezarReunion extends React.Component {
   constructor(props) {
     super(props);
-    this.socket = new WebSocket('ws://localhost:8760/ws');
+    this.socket = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? window.location.host : 'localhost:8760'}/ws`);
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data);
       if (this.seCreoReunion(listaEventos)) {
