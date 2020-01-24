@@ -1,14 +1,16 @@
-const eventos = [];
+import context from '~/context';
 
 export default function (wss) {
   return (ws) => {
     ws.on('message', (message) => {
-      // log the received message and send it back to the client
-      eventos.push(message);
+      context.eventosRepo.guardarEvento(message, JSON.parse(message).idTema);
       wss.clients.forEach((client) => {
         client.send(JSON.stringify([message]));
       });
     });
-    ws.send(JSON.stringify(eventos));
+    context.eventosRepo.findEventosUltimaReunion()
+      .then((data) => {
+        ws.send(JSON.stringify(data.map((eventData) => eventData.evento)));
+      });
   };
 }

@@ -9,9 +9,10 @@ class ParticipantsCard extends React.Component {
     if(this.estaEncolado()){
       return { detalle: "encolado"};
     } else if (this.hablo()) {
-      return { detalle: "hablo", seconds: Math.round((this.props.participant.fin - this.props.participant.inicio)/1000)}
+      return { detalle: "hablo", seconds: Math.ceil((this.props.participant.fin - this.props.participant.inicio)/1000)}
     } else {
-      return { detalle: "hablando", seconds: Math.round((Date.now() - this.props.participant.inicio)/1000)}
+      // TODO: Algunas veces cuando hay reacciones el número avanza o retrocede.
+      return { detalle: "hablando", seconds: Math.ceil((Date.now() - this.props.participant.inicio)/1000)}
     }
   }
 
@@ -25,7 +26,7 @@ class ParticipantsCard extends React.Component {
 
   render() {
     return (
-          <Card key={this.props.key} style={cardContainerStyle(this.props.isParticipantTalking)} onClick={this.props.onNext}>
+          <Card key={this.props.key} style={cardContainerStyle(this.props.isParticipantTalking)}>
             <CardSubcontainer>
               <UserAvatar isTalking={this.props.isParticipantTalking}/>
               <CardName>

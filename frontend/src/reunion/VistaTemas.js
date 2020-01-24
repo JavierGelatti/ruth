@@ -10,6 +10,7 @@ import Temario from '../temario/Temario';
 class VistaTemas extends React.Component {
   constructor(props) {
     super(props);
+    this.socket = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? window.location.host : 'localhost:8760'}/ws`);
     this.state = {
       selectedElement: 'Tema Actual',
       indiceTemaAMostrar: this.indiceTemaATratar(),
@@ -27,12 +28,6 @@ class VistaTemas extends React.Component {
   vistas = [TemaActual, Presentacion, Debate]
 
   obtenerVista = () => this.vistas.find((vista) => vista.canHandleView(this.state.selectedElement))
-
-  handleSelection = (name) => {
-    this.setState({
-      selectedElement: name,
-    });
-  }
 
   empezarTema = () => {
     if (this.temaSeleccionado().inicio !== null) {
@@ -55,6 +50,19 @@ class VistaTemas extends React.Component {
       fin: Date.now(),
     });
     toast.success('Tema finalizado');
+  }
+
+  handleCerrarReunion = () => {
+    if (this.temaActivo()) {
+      this.terminarTema();
+    }
+    this.props.cerrarReunion();
+  }
+
+  handleSelection = (name) => {
+    this.setState({
+      selectedElement: name,
+    });
   }
 
   temaSeleccionado() {
@@ -116,7 +124,8 @@ class VistaTemas extends React.Component {
               temaActivo= {this.temaActivo()}
               avanzarTema= {this.avanzarTema}
               retrocederTema= {this.retrocederTema}
-              temaATratar= {this.esElSiguienteTemaATratar()} />
+              temaATratar= {this.esElSiguienteTemaATratar()}
+              handleCerrarReunion= {this.handleCerrarReunion} />
             <Sidebar handleSelection={this.handleSelection}
               selectedElement={this.state.selectedElement}
               link={this.temaSeleccionado().linkDePresentacion} />
