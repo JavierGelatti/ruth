@@ -2,15 +2,15 @@ import BackofficeValidator from './backOfficeValidator';
 
 const BackofficeController = () => ({
 
-    callback: (req) => {
+    callback: (req, res) => {
         const  { query }  = req;
 
         if (!BackofficeValidator.isFromBackoffice(query)) {
-            return "Falló la validación, el backoffice envió una firma incorrecta"
+            return res.send("Falló la validación, el backoffice envió una firma incorrecta").status(500)
         }
 
         req.session.usuario = { nombre: query.full_name,
-                                root: query.root === 'true' 
+                                root: query.root === 'true'
                             };
 
         return ["\n",
