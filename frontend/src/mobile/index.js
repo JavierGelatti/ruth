@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import Vista from './vista';
 
-function temas(state, evento){
+function temas(state, evento) {
   switch (evento.data.tipo) {
     case 'Empezar Tema':
       return evento.idTema;
@@ -16,10 +16,10 @@ class Mobile extends React.Component {
   constructor(props) {
     super(props);
 
-    this.socket = new WebSocket('ws://localhost:8760/ws');
+    this.socket = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? window.location.host : 'localhost:8760'}/ws`);
     this.socket.onmessage = (mensaje) => {
-      const listaEventos = JSON.parse(mensaje.data).map(evento => JSON.parse(evento));
-      this.setState(state => ({ tema: listaEventos.reduce(temas, state.tema) }));
+      const listaEventos = JSON.parse(mensaje.data).map((evento) => JSON.parse(evento));
+      this.setState((state) => ({ tema: listaEventos.reduce(temas, state.tema) }));
     };
   }
 
