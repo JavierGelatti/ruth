@@ -1,35 +1,25 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
 import {
   faSync, faThumbsDown, faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
 import ParticipantCounter from './ParticipantCounter';
+
 import {
   CardSubcontainer,
-  cardContainerStyle,
+  CardContainer,
+  CardInteractionsContainer,
+  CardInfoContainer,
   CardName,
   UserAvatar,
 } from './ParticipantsCard.styled';
 import { ReactionButton } from '../mobile/ReactionButton';
-import { SubjectReactionsContainer } from '../components/SubjectReactionsContainer.styled';
-import { InteractionsContainer } from '../components/InteractionsContainer.styled';
+import { ReactionsContainer } from '../components/SubjectReactionsContainer.styled';
 
 class ParticipantsCard extends React.Component {
   state = {
-    subjectThumbsUpClicked: false,
-    subjectThumbsDownClicked: false,
-    subjectRecommendingEndingClicked: false,
-  };
-
-  state = {
     opinionThumbsUpClicked: false,
     opinionThumbsDownClicked: false,
-    opinionSlackClicked: false,
     opinionRecommendingEndingClicked: false,
-    wannaTalk: false,
-    wantOtherToTalk: false,
-    selectedPine: null,
-    availablePines: ['fulanito', 'menganito'], // TODO: cambiar por los pinos logueados
   };
 
   onPersonSpeakingThumbsUpClick = () => {
@@ -65,33 +55,48 @@ class ParticipantsCard extends React.Component {
     return this.props.participant.inicio === null;
   }
 
+  getCardHeight() {
+    if (this.props.interactive) return '21rem';
+    if (this.props.isParticipantTalking) return '18rem';
+    return '16rem';
+  }
+
+  getCardWidth() {
+    if (this.props.isParticipantTalking) return '15rem';
+    return '13rem';
+  }
+
   render() {
     return (
-          <Card key={this.props.key} style={cardContainerStyle(this.props.isParticipantTalking)}>
-            <CardSubcontainer>
-              <UserAvatar isTalking={this.props.isParticipantTalking}/>
-              <CardName>
-                {this.props.participant.nombre}
-              </CardName>
-            </CardSubcontainer>
-            <ParticipantCounter key={this.props.key} estadoOrador={this.estadoOrador()} />
-            {
-              this.props.interactive
-                && <InteractionsContainer height="18rem" width="12rem">
-                  <SubjectReactionsContainer height={4.5} >
-                    <ReactionButton isActive={this.state.opinionThumbsUpClicked} 
-                      onClick={this.onPersonSpeakingThumbsUpClick}
-                      isDisabled={this.state.opinionThumbsDownClicked} icon={faThumbsUp} />
-                    <ReactionButton isActive={this.state.opinionThumbsDownClicked} 
-                      onClick={this.onPersonSpeakingThumbsDownClick}
-                      isDisabled={this.state.opinionThumbsUpClicked} icon={faThumbsDown} />
-                    <ReactionButton isActive={this.state.opinionRecommendingEndingClicked} 
-                      onClick={this.onPersonSpeakingRecommendingEndingClicked}
-                      icon={faSync}/>
-                  </SubjectReactionsContainer>
-                </InteractionsContainer>
-            }
-          </Card>
+      <CardContainer
+        key={this.props.key}
+        isTalking={this.props.isParticipantTalking}
+        isInteractive={this.props.interactive}
+        height={this.getCardHeight()}
+        width={this.getCardWidth()}
+      >
+        <UserAvatar isTalking={this.props.isParticipantTalking}/>
+        <CardInfoContainer>
+          <CardName isInteractive={this.props.interactive}> Federico Magdalena Lopez Fonseca </CardName>
+          <ParticipantCounter interactive={this.props.interactive} key={this.props.key} estadoOrador={this.estadoOrador()} />
+          {
+            this.props.interactive
+            && <CardInteractionsContainer>
+              <ReactionsContainer height={4.5} >
+                <ReactionButton isActive={this.state.opinionThumbsUpClicked}
+                                onClick={this.onPersonSpeakingThumbsUpClick}
+                                isDisabled={this.state.opinionThumbsDownClicked} icon={faThumbsUp} />
+                <ReactionButton isActive={this.state.opinionThumbsDownClicked}
+                                onClick={this.onPersonSpeakingThumbsDownClick}
+                                isDisabled={this.state.opinionThumbsUpClicked} icon={faThumbsDown} />
+                <ReactionButton isActive={this.state.opinionRecommendingEndingClicked}
+                                onClick={this.onPersonSpeakingRecommendingEndingClicked}
+                                icon={faSync}/>
+              </ReactionsContainer>
+            </CardInteractionsContainer>
+          }
+        </CardInfoContainer>
+      </CardContainer>
     );
   }
 }
