@@ -1,10 +1,9 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import backend from '../api/backend';
 import VistaTemas from './VistaTemas';
-import { toast } from 'react-toastify';
 
 class TemasHandler extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +46,6 @@ class TemasHandler extends React.Component {
       default: return null;
     }
   }
-
 }
 
 export default TemasHandler;
