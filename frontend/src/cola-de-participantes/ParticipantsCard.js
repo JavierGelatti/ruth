@@ -56,14 +56,14 @@ class ParticipantsCard extends React.Component {
   }
 
   getCardHeight() {
-    if (this.props.interactive) return '21rem';
-    if (this.props.isParticipantTalking) return '18rem';
-    return '16rem';
+    if (this.props.interactive) return '17em';
+    if (this.props.isParticipantTalking) return '15em';
+    return '13em';
   }
 
   getCardWidth() {
-    if (this.props.isParticipantTalking) return '15rem';
-    return '13rem';
+    if (this.props.isParticipantTalking) return '13em';
+    return '11em';
   }
 
   render() {
