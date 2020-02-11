@@ -15,6 +15,8 @@ import {
 import { ReactionButton } from '../mobile/ReactionButton';
 import { ReactionsContainer } from '../components/SubjectReactionsContainer.styled';
 
+const userInteractionsEnabled = false;
+
 class ParticipantsCard extends React.Component {
   state = {
     opinionThumbsUpClicked: false,
@@ -80,7 +82,7 @@ class ParticipantsCard extends React.Component {
           <CardName isInteractive={this.props.interactive}> Federico Magdalena Lopez Fonseca </CardName>
           <ParticipantCounter interactive={this.props.interactive} key={this.props.key} estadoOrador={this.estadoOrador()} />
           {
-            this.props.interactive
+            this.props.interactive && userInteractionsEnabled
             && <CardInteractionsContainer>
               <ReactionsContainer height={4.5} >
                 <ReactionButton isActive={this.state.opinionThumbsUpClicked}
