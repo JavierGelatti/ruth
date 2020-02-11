@@ -35,8 +35,8 @@ const talkButtonStyle = (pressed) => ({
     : 'linear-gradient(145deg, rgb(230, 230, 230), rgb(200, 200, 200)',
 });
 
-const logoImage = 'https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_' +
-  '256,f_auto,q_auto:eco/wuhk5weer0fkhmh2oyhv';
+const logoImage = 'https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_'
+  + '256,f_auto,q_auto:eco/wuhk5weer0fkhmh2oyhv';
 
 const getFontSizeForWindow = () => {
   const { innerHeight } = window;
