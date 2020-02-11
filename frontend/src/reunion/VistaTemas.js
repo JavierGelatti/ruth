@@ -10,7 +10,6 @@ import Temario from '../temario/Temario';
 class VistaTemas extends React.Component {
   constructor(props) {
     super(props);
-    this.socket = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? window.location.host : 'localhost:8760'}/ws`);
     this.state = {
       selectedElement: 'Tema Actual',
       indiceTemaAMostrar: this.indiceTemaATratar(),
