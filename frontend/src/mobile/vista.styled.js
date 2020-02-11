@@ -1,51 +1,56 @@
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
 
-export const MobileContainer = styled.div`
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    background: silver;
-`;
-
-export const MobileUsableArea = styled.div`
+export const MobileUsableArea = styled.div(({ fontSize }) => `
     width: 100%;
     overflow-y: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: white;
+    align-items: center;
+    background-color: #DDDDDD;
+    font-size: ${fontSize}px;
+`);
+
+export const TopSectionContainer = styled.div`
+    min-height: 14em;
 `;
 
-export const SubjectContainer = styled.div`
+export const LogoHeader = styled.div`
+    width: 100%;
+    height: 2em;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    height: 30%;
-    background-image: url(https://images.assetsdelivery.com/compings_v2/lexanda/lexanda1704/lexanda170400030.jpg);
+    background-color: #DDDDDD;
+`;
+
+export const Logo = styled.img`
+    height: 5em;
+    width: 5em;
+    margin-right: 0.5em;
+    object-fit: contain;
+`;
+
+export const LogoLabel = styled.div`
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
 `;
 
 export const ParticipantsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid grey;
-    padding-top: 2rem;
-    background-image: url(https://i.pinimg.com/originals/03/19/d9/0319d925a9df9a2f2bdb58604f300710.jpg);
-    height: 65%;
-`;
-
-export const HeaderContainer = styled.div`
-    background: black;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 5%;
+    justify-content: center;
+    min-height: 20em;
+    width: 95%;
+    height: 100%;
+    border-radius: 40px;
+    max-width: 30em;
+    //background: #BBBBBB;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBvqFqZpJ08P0JcheadQG6O7Cln-SZauMu9CiqKJzHRKmcOEkY");
+    box-shadow: inset 4px 4px 8px #6b6b6b, inset -4px -4px 6px #d4d2d2;
 `;
 
 export const ActionContainerStyle = styled.div`
@@ -53,37 +58,20 @@ export const ActionContainerStyle = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgb(0, 0, 0, 0.5);
-    padding-top: 1rem;
+    padding-top: 0.5em;
     width: 100%;
-    margin-top: 1rem;
-    border-top: 1px solid silver;
-    height: 25%;
+    min-height: 8em;
 `;
 
 export const SubjectTitle = styled.div`
-    color: white; 
-    font-size: 2.5rem; 
-    font-weight: 700; 
-    padding-top: 2rem; 
+    color: grey; 
+    font-size: 2em;
+    font-weight: 200; 
+    padding-bottom: 0.5em;
     text-align: center;
-`;
-
-export const TitleName = styled.span`
-    color: white;
-    padding-left: 1rem;
-`;
-
-export const StyledButton = styled(Button)`
-    && {
-        width: 14rem; 
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between;
-        margin: 0.5rem;
-    }
+    font-family: 'Poppins', sans-serif;
 `;
 
 export const ActionText = styled.span`
-    margin-right: 1rem;
+    margin-right: 1em;
 `;

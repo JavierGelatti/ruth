@@ -7,5 +7,5 @@ export const CardInteractionsContainer = styled.div`
     justify-content: space-between;
     height: ${(props) => props.height};
     width: ${(props) => props.width};
-    background-image: ${(props) => props.imgURL};
+    background-color: #DDDDDD;
 `;
