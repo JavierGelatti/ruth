@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import ParticipantCounter from './ParticipantCounter';
 import { CardSubcontainer, cardContainerStyle, CardName, UserAvatar } from './ParticipantsCard.styled';
+import getGravatarUrlFor from '../api/gravatar';
 
 class ParticipantsCard extends React.Component {
 
@@ -24,11 +25,12 @@ class ParticipantsCard extends React.Component {
     return this.props.participant.inicio === null;
   }
 
+
   render() {
     return (
           <Card key={this.props.key} style={cardContainerStyle(this.props.isParticipantTalking)}>
             <CardSubcontainer>
-              <UserAvatar isTalking={this.props.isParticipantTalking}/>
+              <UserAvatar isTalking={this.props.isParticipantTalking} avatar={getGravatarUrlFor('alen.munoz@10pines.co')}/>
               <CardName>
                 {this.props.participant.nombre}
               </CardName>

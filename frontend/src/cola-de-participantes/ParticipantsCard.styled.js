@@ -17,13 +17,11 @@ export const cardContainerStyle = (isTalking) => ({
   width: !isTalking ? '10rem' : '12rem',
   cursor: isTalking ? 'pointer' : '',
 });
-
-export const UserAvatar = styled.div(({ isTalking }) => `
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9QRApUFMY11IHznfAbkthPa7HYm6bE1qlZbZTHV8EIK7_FAlx&s');
+export const UserAvatar = styled.div(({ isTalking, avatar }) => `
+  background-image: url('${avatar}');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  margin: ${!isTalking ? '-2rem 0rem 1rem 0rem' : '-3rem -2rem 1rem -2rem'};
   height: 10rem;
   width: ${!isTalking ? '10rem' : '12rem'};
 `);
