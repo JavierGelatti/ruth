@@ -1,83 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import DebateView from './DebateView';
 import { colors } from '../styles/theme';
 
-export function oradores(state, evento) {
-  // TODO: Ver qué hacer cuando se vuelve a encolar una misma persona
-  switch (evento.data.tipo) {
-    case 'Quiero Hablar':
-      if (state.length === 0) {
-        return [...state, { nombre: evento.autor, inicio: evento.fecha, fin: null }];
-      }
-      return [...state, { nombre: evento.autor, inicio: null, fin: null }];
-
-    case 'Quiero Desencolarme':
-      if (state.some((orador) => orador.nombre === evento.autor && orador.inicio != null)) return state;
-      return state.filter((orador) => orador.nombre !== evento.autor);
-    case 'Quiero Dejar de Hablar':
-      let proximoOrador = null;
-      return state.map((orador, index) => {
-        if (index === proximoOrador) {
-          return { ...orador, inicio: evento.fecha };
-        }
-        if (orador.nombre === evento.autor) {
-          proximoOrador = index + 1;
-          return { ...orador, fin: evento.fecha };
-        }
-        return orador;
-      });
-    default: return state;
-  }
-}
-
-export function reacciones(state, evento) {
-  switch (evento.data.tipo) {
-    case 'Reiniciar reacciones':
-      return [];
-    case 'Reaccionar':
-      const { reaccion: eventReaction } = evento.data;
-      if (state.some((stateReaction) => stateReaction.name === eventReaction)) {
-        return state.map((stateReaction) => {
-          if (stateReaction.name === eventReaction) {
-            return { ...stateReaction, value: stateReaction.value + 1 };
-          }
-          return stateReaction;
-        });
-      }
-      return state.concat([{ name: eventReaction, value: 1 }]);
-
-    default: return state;
-  }
-}
+const isTalking = (participant) => participant.inicio !== null && participant.fin === null;
 
 class DebateHandler extends React.Component {
-  dataBar = () => ({
-    data: this.props.eventos.reduce(reacciones, []),
-    color: colors.primary,
-  });
-
-  debateData =() => {
-    return {
-      participants: this.props.eventos.reduce(oradores, []),
-      dataBar: this.dataBar(),
-      dataLine: { data: [] },
-    }
-  };
-
-  isTalking = (participant) => {
-    return participant.inicio !== null && participant.fin === null;
-  }
-
   render() {
     return (
         <DebateView
-          debateData={this.debateData()}
+          debateData={this.props.debateData}
           segundosRestantes={this.props.segundosRestantes}
           temaActivo={this.props.temaActivo}
           tema={this.props.tema}
-          isTalking={this.isTalking}/>
+          isTalking={isTalking}/>
     );
   }
 }
 
-export default DebateHandler;
+const mapStateToProps = (state) => {
+  let temaActual = null;
+  temaActual = state.temas.find((tema) => tema.fin === null && tema.inicio !== null);
+  if (!temaActual) {
+    const temasTratados = state.temas.filter((tema) => tema.fin !== null && tema.inicio !== null);
+    temasTratados.sort((t1, t2) => t1.fin.localeCompare(t2.fin));
+    temaActual = temasTratados[0];
+  }
+
+  if (!temaActual) {
+    temaActual = {};
+  }
+
+  return ({
+    debateData: {
+      participants: temaActual.oradores,
+      dataBar: {
+        data: temaActual.reacciones,
+        color: colors.primary,
+      },
+      dataLine: { data: [] },
+    },
+  });
+};
+
+export default connect(mapStateToProps)(DebateHandler);

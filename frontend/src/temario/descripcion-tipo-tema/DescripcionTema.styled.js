@@ -15,7 +15,8 @@ export const Titulo = styled.h1`
   font-family: ${font.h1};
 `;
 
-export const Descripcion = styled.p`
+export const Descripcion = styled.div`
+  display: block;
   font-family: ${font.p};
   font-size:  ${font.sizeP};
   @media (min-width: ${sizeBreakpoint.bigWidth}), @media (min-height: ${sizeBreakpoint.bigHeight})  {
