@@ -20,8 +20,8 @@ export default class TemasRepo {
   guardarTemas(reunion, temas) {
     return models.Tema.bulkCreate(temas.map((tema) => {
       const temaSanitizado = pick(tema, ['tipo', 'titulo', 'descripcion', 'duracion', 'autor', 'obligatoriedad',
-        'linkDePresentacion', 'propuestas', 'temasParaRepasar', 'cantidadDeMinutosDelTema','prioridad']);
-
+        'linkDePresentacion', 'propuestas', 'temasParaRepasar', 'cantidadDeMinutosDelTema','prioridad', 'mailDelAutor']);
+      console.log(temaSanitizado , "TEMA SANITIZADO!!!!!!!!")
       return { ...temaSanitizado, reunionId: reunion.id };
     }));
   }

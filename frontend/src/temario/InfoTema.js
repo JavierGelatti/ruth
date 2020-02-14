@@ -30,11 +30,11 @@ class InfoTema extends React.Component {
 
   render() {
     const {
-      autor, duracion, obligatoriedad, cantidadDeMinutosDelTema, emailDelAutor = '',
+      autor, duracion, obligatoriedad, cantidadDeMinutosDelTema, mailDelAutor = '',
     } = this.props.tema;
     return (
       <InfoTemaContainer>
-        <InfoItem src={getGravatarUrlFor(emailDelAutor)} altText="Usuarie" descripcion={autor} isAvatar={true}/>
+        <InfoItem src={getGravatarUrlFor(mailDelAutor)} altText="Usuarie" descripcion={autor} isAvatar={true}/>
         <InfoItem src={this.imagenTipoDuracion(duracion)} altText="Pino" descripcion={`${cantidadDeMinutosDelTema} min.`}/>
         <InfoItem src={this.imagenObligatoriedad(obligatoriedad)} altText="Obligatorio" descripcion={diccObligatoriedad[obligatoriedad]}/>
       </InfoTemaContainer>
