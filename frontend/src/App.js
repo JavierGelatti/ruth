@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { toast, Slide } from 'react-toastify';
-import { Provider } from 'react-redux';
+import { Slide, toast } from 'react-toastify';
 import GlobalStyle from './GlobalStyle.styled';
 import EmpezarReunion from './empezar-reunion/EmpezarReunion';
 import backend from './api/backend';
 import './toast.css';
-import TemasHandler from './reunion/TemasHandler';
-import createStore from './store';
+import { ReduxWebSocketWrapper } from './ReduxWebSocketWrapper';
 
 const App = ({ location }) => {
   const [temas, setTemas] = useState();
@@ -28,6 +25,7 @@ const App = ({ location }) => {
     autoClose: 5000,
     transition: Slide,
   });
+
   if (!reunion || !temas) {
     return <div>Cargando</div>;
   }
@@ -41,53 +39,8 @@ const App = ({ location }) => {
 
   return <>
     <GlobalStyle/>
-    <Coso reunion={reunion} temas={temas}/>
+    <ReduxWebSocketWrapper reunion={reunion} temas={temas}/>
   </>;
-};
-
-const Coso = (props) => {
-  const [store, setStore] = useState();
-
-  useEffect(() => {
-    // const ws = new WebSocket(`ws://${window.location.host || 'localhost:8761'}/ws`);
-    const ws = new WebSocket('ws://localhost:8760/ws');
-    const newStore = createStore(ws);
-    const { reunion, temas } = props;
-    newStore.dispatch({
-      type: 'Empezar Reunion', comesFromWS: true, reunion, temas,
-    });
-
-    ws.onmessage = (mensaje) => {
-      console.log(mensaje);
-      JSON.parse(mensaje.data).forEach((rawEvento) => {
-        const { data, ...evento } = JSON.parse(rawEvento);
-        const { tipo, ...rawEvent } = data;
-        const nextEvent = {
-          ...evento, ...rawEvent, comesFromWS: true, type: tipo,
-        };
-        console.log(nextEvent);
-        newStore.dispatch(nextEvent);
-      });
-      window.store = newStore;
-      window.temas = temas;
-    };
-    setStore(newStore);
-    newStore.subscribe(() => {
-      console.log('nuevo evento');
-    });
-  }, [props]);
-
-  if (!store) {
-    return <div>Cargando</div>;
-  }
-
-
-  return (
-    <Provider store={store}>
-      <GlobalStyle/>
-      <TemasHandler/>
-    </Provider>
-  );
 };
 
 
