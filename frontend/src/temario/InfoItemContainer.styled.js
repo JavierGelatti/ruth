@@ -22,13 +22,14 @@ export const InfoImageContainer = styled.div`
   overflow: hidden;
   background: ${colors.white};
   box-sizing: border-box;
+  ${(props) => props.withPadding && 'padding: 1.25rem;'}
 `;
 
 export const InfoImage = styled.img`
   src: '${(props) => props.src}';
   max-width: 100%;
   max-height: 100%;
-  border-radius: 50%;
+  ${(props) => props.rounded && 'border-radius: 50%;'}
 `;
 
 export const Texto = styled.p`
