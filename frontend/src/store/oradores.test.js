@@ -1,7 +1,7 @@
 import oradores from './oradores';
 
-const orador = (nombre, inicio, fin) => ({
-  nombre, inicio: inicio || null, fin: fin || null,
+const orador = (nombre, inicio, fin, email) => ({
+  nombre, inicio: inicio || null, fin: fin || null, email,
 });
 
 describe('#oradores reducer', () => {
@@ -13,9 +13,10 @@ describe('#oradores reducer', () => {
     const evento = {
       type: 'Quiero Hablar',
       fecha: 1,
-      autor: 'Alguien',
+      nombre: 'Alguien',
+      email: 'unEmail',
     };
 
-    expect(oradores([], evento)).toEqual([orador('Alguien', 1)]);
+    expect(oradores([], evento)).toEqual([orador('Alguien', 1, null, 'unEmail')]);
   });
 });
