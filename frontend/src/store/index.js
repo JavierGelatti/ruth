@@ -24,7 +24,7 @@ export function reaccionesReducer(state = [], evento) {
   }
 }
 
-export const temaReducer = (state, action) => produce(state, (draft) => {
+export const temaReducer = (state = { oradores: [], reacciones: [] }, action) => produce(state, (draft) => {
   draft.oradores = oradoresReducer(state.oradores, action);
   draft.reacciones = reaccionesReducer(state.reacciones, action);
 });

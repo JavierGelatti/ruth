@@ -7,9 +7,13 @@ export default function oradoresReducer(state = [], evento) {
   switch (evento.type) {
     case 'Quiero Hablar':
       if (hayAlguienHablando(state)) {
-        return [...state, { nombre: evento.nombre, email: evento.email, inicio: evento.fecha, fin: null }];
+        return [...state, {
+          nombre: evento.nombre, email: evento.email, inicio: evento.fecha, fin: null,
+        }];
       }
-      return [...state, { nombre: evento.nombre, email: evento.email, inicio: null, fin: null }];
+      return [...state, {
+        nombre: evento.nombre, email: evento.email, inicio: null, fin: null,
+      }];
 
     case 'Quiero Desencolarme':
       if (state.some((orador) => orador.nombre === evento.nombre && orador.inicio != null)) return state;

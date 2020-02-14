@@ -1,5 +1,5 @@
 import React from 'react';
-import {InfoTemaContainer} from './InfoTema.styled';
+import { InfoTemaContainer } from './InfoTema.styled';
 import InfoItem from './InfoItem';
 import getGravatarUrlFor from '../api/gravatar';
 
@@ -30,7 +30,7 @@ class InfoTema extends React.Component {
 
   render() {
     const {
-      autor, duracion, obligatoriedad, cantidadDeMinutosDelTema, emailDelAutor = ''
+      autor, duracion, obligatoriedad, cantidadDeMinutosDelTema, emailDelAutor = '',
     } = this.props.tema;
     return (
       <InfoTemaContainer>

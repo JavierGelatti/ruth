@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserHistory } from 'history';
 import {
-  Redirect, Route, Router, Switch,
+  Route, Router, Switch,
 } from 'react-router-dom';
 import App from './App';
 import Backend from './api/backend';

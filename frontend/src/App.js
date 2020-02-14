@@ -28,8 +28,6 @@ const App = ({ location }) => {
     autoClose: 5000,
     transition: Slide,
   });
-  console.log(JSON.stringify(reunion));
-  console.log(JSON.stringify(temas));
   if (!reunion || !temas) {
     return <div>Cargando</div>;
   }
