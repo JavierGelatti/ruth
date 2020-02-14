@@ -22,7 +22,7 @@ export default class Authenticator extends React.Component {
       .then((usuario) => this.setState({ usuario }))
       .catch((error) => {
         if (error.response.status === 403) {
-          global.window.location.href = `https://${process.env.REACT_APP_BACKOFFICE_URL}/auth/sign_in?redirect_url=${process.env.REACT_APP_BACKOFFICE_REDIRECT_URL}/api/auth/callback&app_id=ruth-app`;
+          global.window.location.href = `https://${process.env.REACT_APP_BACKOFFICE_URL}/auth/sign_in?redirect_url=${window.location.origin}/api/auth/callback&app_id=ruth-app`;
         }
       })
       .finally(() => this.setState({ cargando: false }));
