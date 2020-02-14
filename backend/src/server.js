@@ -15,7 +15,7 @@ app.use(morgan('combined', { stream: logger.stream }));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 // TODO: Express sessions esta usando un memory store, deberiamos mandar en la cookie directamente el valor (a la JWT) sino cada reset de heroku invalida las sesiones anteriores.
-app.use(session({ secret: 'keyboard cat' }))
+app.use(session({ secret: 'keyboard cat' }));
 
 app.ws('/ws', webSocketRouter(expressWs.getWss()));
 app.use('/api', indexRouter);

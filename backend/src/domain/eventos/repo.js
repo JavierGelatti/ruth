@@ -10,19 +10,16 @@ export default class EventosRepo {
     });
   }
 
-  findEventosUltimaReunion(){
+  findEventosUltimaReunion() {
     return models.Reunion.findAll()
       .then((reuniones) => getLastElement(reuniones))
-      .then(reunion => {
-        return models.Evento.findAll({
-          include: [{
-            model: models.Tema,
-            as: 'tema',
-            where: {reunionId: reunion.id}
-           }]
-        });
-      }
-      );
+      .then((reunion) => models.Evento.findAll({
+        include: [{
+          model: models.Tema,
+          as: 'tema',
+          where: { reunionId: reunion.id },
+        }],
+      }));
   }
 
   findAllEventos() {

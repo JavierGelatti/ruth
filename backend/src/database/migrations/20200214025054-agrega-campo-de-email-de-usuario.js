@@ -1,9 +1,6 @@
-'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) =>
-    queryInterface.addColumn('Temas', 'mailDelAutor', { type: Sequelize.STRING }),
+  up: (queryInterface, Sequelize) => queryInterface.addColumn('Temas', 'mailDelAutor', { type: Sequelize.STRING }),
 
-  down: (queryInterface, Sequelize) =>
-    queryInterface.removeColumn('Temas', 'mailDelAutor')
+  down: (queryInterface, Sequelize) => queryInterface.removeColumn('Temas', 'mailDelAutor'),
 };
