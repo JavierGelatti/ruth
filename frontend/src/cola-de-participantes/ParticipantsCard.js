@@ -4,6 +4,7 @@ import ParticipantCounter from './ParticipantCounter';
 import {
   CardSubcontainer, cardContainerStyle, CardName, UserAvatar,
 } from './ParticipantsCard.styled';
+import getGravatarUrlFor from '../api/gravatar';
 
 class ParticipantsCard extends React.Component {
   estadoOrador() {
@@ -24,11 +25,12 @@ class ParticipantsCard extends React.Component {
     return this.props.participant.inicio === null;
   }
 
+
   render() {
     return (
           <Card style={cardContainerStyle(this.props.isParticipantTalking)}>
             <CardSubcontainer>
-              <UserAvatar isTalking={this.props.isParticipantTalking}/>
+              <UserAvatar isTalking={this.props.isParticipantTalking} avatar={getGravatarUrlFor(this.props.participant.email)}/>
               <CardName>
                 {this.props.participant.nombre}
               </CardName>

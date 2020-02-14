@@ -10,13 +10,13 @@ import logger from '~/logger';
 const router = Router({ promise: true });
 
 router.use('/auth', loginRouter);
-router.use('*', (req,res,next) => {
-  if (estaLogueado(req)){
-    next()
+router.use('*', (req, res, next) => {
+  if (estaLogueado(req)) {
+    next();
   } else {
-    res.status(403).send("No estas logueado")
+    res.status(403).send('No estas logueado');
   }
-})
+});
 
 /* GET home page. */
 router.get('/', (req, res) => {

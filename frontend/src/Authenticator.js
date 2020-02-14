@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserHistory } from 'history';
 import {
-  Redirect, Route, Router, Switch,
+  Route, Router, Switch,
 } from 'react-router-dom';
 import App from './App';
 import Backend from './api/backend';
@@ -38,7 +38,7 @@ export default class Authenticator extends React.Component {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={App}/>
-          <Route exact path="/mobile" component={Mobile}/>
+          <Route exact path="/mobile" component={() => <Mobile usuario={usuario}/>}/>
           <Route exact path="/oradores" component={Oradores}/>
           <Route exact path="/chart" component={TestChart}/>
         </Switch>

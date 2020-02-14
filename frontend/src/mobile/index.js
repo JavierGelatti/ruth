@@ -8,7 +8,8 @@ function temas(state, evento) {
       return evento.idTema;
     case 'Terminar Tema':
       return null;
-    default: return state;
+    default:
+      return state;
   }
 }
 
@@ -25,7 +26,8 @@ class Mobile extends React.Component {
 
   dispatch = (data) => {
     const evento = {
-      autor: this.state.nombre,
+      nombre: this.props.usuario.nombre,
+      email: this.props.usuario.email,
       fecha: Date.now(),
       idTema: this.state.tema,
       data,
@@ -36,6 +38,7 @@ class Mobile extends React.Component {
 
   state = {
     nombre: '',
+    email: '',
     tema: null,
   }
 
@@ -46,9 +49,9 @@ class Mobile extends React.Component {
   render() {
     return (
       <>
-              <TextField value={this.state.nombre} onChange={this.handleNameChange} />
-              <div> <br></br> Tema actual: {this.state.tema}</div>
-              <Vista dispatch={this.dispatch}/>
+        <TextField value={this.props.usuario.nombre} onChange={this.handleNameChange}/>
+        <div><br></br> Tema actual: {this.state.tema}</div>
+        <Vista dispatch={this.dispatch}/>
       </>
     );
   }

@@ -9,21 +9,9 @@ import ChartBar from '../chart/chartBar';
 import ParticipantsQueue from '../cola-de-participantes/ParticipantsQueue';
 
 class DebateView extends React.Component {
-    
     mensaje = 'Pagina en desarrollo';
 
     render() {
-      if (process.env.NODE_ENV === 'production') {
-        return (
-          <DebateContainer>
-            <SidebarIzquierdo/>
-            <WorkInProgressContainer>
-              <Titulo>{this.mensaje}</Titulo>
-              <ImagenContainer src='./working.png'/>
-            </WorkInProgressContainer>
-          </DebateContainer>
-        );
-      }
       return (
           <DebateContainer>
             <SubDebateContainer>
