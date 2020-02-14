@@ -30,7 +30,7 @@ class ParticipantsCard extends React.Component {
     return (
           <Card style={cardContainerStyle(this.props.isParticipantTalking)}>
             <CardSubcontainer>
-              <UserAvatar isTalking={this.props.isParticipantTalking} avatar={getGravatarUrlFor('alen.munoz@10pines.co')}/>
+              <UserAvatar isTalking={this.props.isParticipantTalking} avatar={getGravatarUrlFor(this.props.participant.email)}/>
               <CardName>
                 {this.props.participant.nombre}
               </CardName>

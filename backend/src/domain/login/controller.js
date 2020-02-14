@@ -10,6 +10,7 @@ const BackofficeController = () => ({
         }
 
         req.session.usuario = { nombre: query.full_name,
+                                email: query.email,
                                 root: query.root === 'true'
                             };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import {TextField} from '@material-ui/core';
 import Vista from './vista';
 
 function temas(state, evento) {
@@ -8,7 +8,8 @@ function temas(state, evento) {
       return evento.idTema;
     case 'Terminar Tema':
       return null;
-    default: return state;
+    default:
+      return state;
   }
 }
 
@@ -19,36 +20,38 @@ class Mobile extends React.Component {
     this.socket = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? window.location.host : 'localhost:8760'}/ws`);
     this.socket.onmessage = (mensaje) => {
       const listaEventos = JSON.parse(mensaje.data).map((evento) => JSON.parse(evento));
-      this.setState((state) => ({ tema: listaEventos.reduce(temas, state.tema) }));
+      this.setState((state) => ({tema: listaEventos.reduce(temas, state.tema)}));
     };
   }
 
   dispatch = (data) => {
     const evento = {
-      autor: this.state.nombre,
+      nombre: this.props.usuario.nombre,
+      email: this.props.usuario.email,
       fecha: Date.now(),
       idTema: this.state.tema,
       data,
     };
     this.socket.send(JSON.stringify(evento));
-    this.setState({ nombre: '' });
+    this.setState({nombre: ''});
   }
 
   state = {
     nombre: '',
+    email: '',
     tema: null,
   }
 
   handleNameChange = (event) => {
-    this.setState({ nombre: event.target.value });
+    this.setState({nombre: event.target.value});
   }
 
   render() {
     return (
       <>
-              <TextField value={this.state.nombre} onChange={this.handleNameChange} />
-              <div> <br></br> Tema actual: {this.state.tema}</div>
-              <Vista dispatch={this.dispatch}/>
+        <TextField value={this.props.usuario.nombre} onChange={this.handleNameChange}/>
+        <div><br></br> Tema actual: {this.state.tema}</div>
+        <Vista dispatch={this.dispatch}/>
       </>
     );
   }
