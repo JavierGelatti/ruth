@@ -14,7 +14,7 @@ export default function oradoresReducer(state = [], evento) {
     case 'Quiero Desencolarme':
       if (state.some((orador) => orador.nombre === evento.autor && orador.inicio != null)) return state;
       return state.filter((orador) => orador.nombre !== evento.autor);
-    case 'Quiero Dejar de Hablar':
+    case 'Quiero Dejar de Hablar': {
       let proximoOrador = null;
       return state.map((orador, index) => {
         if (index === proximoOrador) {
@@ -26,6 +26,7 @@ export default function oradoresReducer(state = [], evento) {
         }
         return orador;
       });
+    }
     default:
       return state;
   }
