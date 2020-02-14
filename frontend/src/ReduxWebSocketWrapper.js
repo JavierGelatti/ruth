@@ -23,7 +23,7 @@ export const ReduxWebSocketWrapper = (props) => {
 
     ws.onmessage = (mensaje) => {
       JSON.parse(mensaje.data).forEach((rawEvento) => {
-        const { data, ...evento } = JSON.parse(rawEvento);
+        const { data, ...evento } = rawEvento;
         const { tipo, ...rawEvent } = data;
         const nextEvent = {
           ...evento, ...rawEvent, comesFromWS: true, type: tipo,

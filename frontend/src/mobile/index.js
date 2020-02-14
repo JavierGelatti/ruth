@@ -19,7 +19,7 @@ class Mobile extends React.Component {
 
     this.socket = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? window.location.host : 'localhost:8760'}/ws`);
     this.socket.onmessage = (mensaje) => {
-      const listaEventos = JSON.parse(mensaje.data).map((evento) => JSON.parse(evento));
+      const listaEventos = JSON.parse(mensaje.data);
       this.setState((state) => ({ tema: listaEventos.reduce(temas, state.tema) }));
     };
   }

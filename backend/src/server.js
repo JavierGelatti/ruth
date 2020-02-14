@@ -18,7 +18,7 @@ app.use(urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat' }));
 
 app.ws('/ws', webSocketRouter(expressWs.getWss()));
-app.use('/api', indexRouter);
+app.use('/api', indexRouter(expressWs.getWss()));
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, './frontend')));
   app.use('*', (req, res) => {

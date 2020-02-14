@@ -7,6 +7,10 @@ const Backend = {
     return requester.get('/reunionActual');
   },
 
+  publicarEvento(evento) {
+    return requester.post('/eventos', evento);
+  },
+
   empezarReunion() {
     return requester.post('/reunionDeRoots', { abierta: true });
   },

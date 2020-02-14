@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import produce from 'immer';
 import oradoresReducer from './oradores';
+import Backend from "../api/backend";
 
 export function reaccionesReducer(state = [], evento) {
   switch (evento.type) {
@@ -90,7 +91,13 @@ const wsForwarder = (ws) => (store) => (next) => (action) => {
   if (!action.comesFromWS) {
     // We don't dispatch actions that we send to the ws since we'll
     // see them twice, in the future we could be smarter.
-    ws.send(JSON.stringify(action));
+    Backend.publicarEvento(action)
+      .then(() => {
+        console.log("el backend me respondio bien");
+      })
+      .catch(() => {
+        console.error("el backend fallo");
+      });
   } else {
     next(action);
   }
