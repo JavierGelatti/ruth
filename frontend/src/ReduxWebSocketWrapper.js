@@ -5,7 +5,7 @@ import GlobalStyle from './GlobalStyle.styled';
 import TemasHandler from './reunion/TemasHandler';
 
 function getWebSocket() {
-  const protocol = window.protocol === 'https:' ? 'wss' : 'ws';
+  const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
   const host = process.env.NODE_ENV === 'production' ? window.location.host : 'localhost:8760';
   return new WebSocket(`${protocol}://${host}/ws`);
 }
