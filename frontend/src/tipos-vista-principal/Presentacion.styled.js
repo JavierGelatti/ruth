@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors, translucid} from '../styles/theme';
+import { colors, translucid } from '../styles/theme';
 
 export const SidebarIzquierdo = styled.div`
   background: url('./fondo-pino.png');

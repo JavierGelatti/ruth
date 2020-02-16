@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  DebateContainer,
   GraphsContainer,
   ParticipantsContainer,
   SubDebateContainer,
@@ -13,7 +12,6 @@ import ChartBar from '../chart/chartBar';
 import ParticipantsQueue from '../cola-de-participantes/ParticipantsQueue';
 
 class DebateView extends React.Component {
-
   render() {
     return (
       <SubDebateContainer>
