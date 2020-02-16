@@ -41,8 +41,7 @@ export const ReduxWebSocketWrapper = (props) => {
 
   return (
     <Provider store={store}>
-      <GlobalStyle/>
-      <TemasHandler/>
+      {props.children}
     </Provider>
   );
 };

@@ -8,4 +8,4 @@ export default (wss) => {
 
   router.post('/', asyncMiddleware(controller.publicar));
   return router;
-}
+};

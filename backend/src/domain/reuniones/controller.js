@@ -1,5 +1,4 @@
 import VotacionDeRoots from '../votacionDeRoots/votacionDeRoots';
-import logger from '~/logger';
 
 const ReunionController = ({ reunionesRepo: repoReuniones, temasRepo: repoTemas }) => ({
   reunion: () => repoReuniones.findLastCreated(),

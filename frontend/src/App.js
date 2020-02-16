@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Slide, toast } from 'react-toastify';
+import { Route, Switch } from 'react-router-dom';
 import GlobalStyle from './GlobalStyle.styled';
 import EmpezarReunion from './empezar-reunion/EmpezarReunion';
 import backend from './api/backend';
 import './toast.css';
 import { ReduxWebSocketWrapper } from './ReduxWebSocketWrapper';
+import Mobile from './mobile';
+import Oradores from './oradores';
+import TestChart from './chart';
+import TemasHandler from './reunion/TemasHandler';
 
-const App = ({ location }) => {
+const App = ({ location, usuario }) => {
   const [temas, setTemas] = useState();
   const [reunion, setReunion] = useState();
 
@@ -33,13 +38,20 @@ const App = ({ location }) => {
   if (reunion.abierta !== true) {
     return <>
       <GlobalStyle/>
-      <EmpezarReunion {...reunion} location={location}/>)}/>
+      <EmpezarReunion {...reunion}/>)}/>
     </>;
   }
 
   return <>
     <GlobalStyle/>
-    <ReduxWebSocketWrapper reunion={reunion} temas={temas}/>
+    <ReduxWebSocketWrapper reunion={reunion} temas={temas} usuario={usuario}>
+      <Switch>
+        <Route exact path="/mobile" component={() => <Mobile usuario={usuario}/>}/>
+        <Route exact path="/oradores" component={Oradores}/>
+        <Route exact path="/chart" component={TestChart}/>
+        <Route exact path="/" component={TemasHandler} />
+      </Switch>
+    </ReduxWebSocketWrapper>
   </>;
 };
 

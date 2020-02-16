@@ -1,32 +1,17 @@
 import models from '~/database/models';
-import { getLastElement } from '../helpers/listHelper';
 
 export default class EventosRepo {
-  findEventosDeTema(id) {
-    return models.Evento.findAll({
-      where: {
-        temaId: id,
-      },
-    });
+  async conseguirUltimoEventoId() {
+    const ultimaReunionId = await models.Reunion.max('id');
+    return ultimaReunionId && models.Evento.max('id', { where: { reunionId: ultimaReunionId } });
   }
 
-  findEventosUltimaReunion() {
-    return models.Reunion.findAll()
-      .then((reuniones) => getLastElement(reuniones))
-      .then((reunion) => models.Evento.findAll({
-        include: [{
-          model: models.Tema,
-          as: 'tema',
-          where: { reunionId: reunion.id },
-        }],
-      }));
+  async findEventosUltimaReunion() {
+    const reunionId = await models.Reunion.max('id');
+    return models.Evento.findAll({ where: { reunionId } });
   }
 
-  findAllEventos() {
-    return models.Evento.findAll();
-  }
-
-  guardarEvento(evento, temaId) {
-    return models.Evento.create({ evento, temaId });
+  guardarEvento({ evento, temaId, reunionId }) {
+    return models.Evento.create({ evento, temaId, reunionId });
   }
 }

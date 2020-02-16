@@ -5,9 +5,6 @@ import {
 } from 'react-router-dom';
 import App from './App';
 import Backend from './api/backend';
-import Oradores from './oradores';
-import Mobile from './mobile';
-import TestChart from './chart';
 
 const history = createBrowserHistory();
 
@@ -36,12 +33,7 @@ export default class Authenticator extends React.Component {
 
     return (
       <Router history={history}>
-        <Switch>
-          <Route exact path="/" component={App}/>
-          <Route exact path="/mobile" component={() => <Mobile usuario={usuario}/>}/>
-          <Route exact path="/oradores" component={Oradores}/>
-          <Route exact path="/chart" component={TestChart}/>
-        </Switch>
+        <App usuario={usuario}/>
       </Router>
     );
   }
