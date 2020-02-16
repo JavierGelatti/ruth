@@ -7,3 +7,7 @@ export const ReunionContainer = styled.div`
   align-items: stretch;
   height: 100%;
 `;
+export const Vista = styled.div`
+  display: flex;
+  flex: 1;
+`;

@@ -1,13 +1,10 @@
 import React from 'react';
-import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  TemaActualContainer, VistaDelMedioContainer, Botonera,
-  BotoneraNavegacionTemas, BotoneraCerrarReunion,
-} from './TemaActual.styled';
+import {faCaretLeft, faCaretRight} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {Botonera, BotoneraCerrarReunion, BotoneraNavegacionTemas, VistaDelMedioContainer,} from './TemaActual.styled';
 import InfoTema from '../temario/InfoTema';
 import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
-import { Button, SecondaryButton } from '../components/Button.styled';
+import {Button, SecondaryButton} from '../components/Button.styled';
 import Countdown from '../reunion/Countdown';
 
 class TemaActual extends React.Component {
@@ -16,7 +13,7 @@ class TemaActual extends React.Component {
   render() {
     const { tema } = this.props;
     return (
-      <TemaActualContainer>
+      <>
         <InfoTema tema={tema} />
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(tema)}
@@ -43,7 +40,7 @@ class TemaActual extends React.Component {
             </BotoneraCerrarReunion>
           </Botonera>
         </VistaDelMedioContainer>
-      </TemaActualContainer>
+      </>
     );
   }
 }

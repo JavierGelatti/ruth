@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import Sidebar from '../sidebar-reunion/Sidebar';
-import { ReunionContainer } from './Reunion.styled';
+import {ReunionContainer, Vista} from './Reunion.styled';
 import TemaActual from '../tipos-vista-principal/TemaActual';
 import Presentacion from '../tipos-vista-principal/Presentacion';
 import Debate from '../tipos-vista-principal/Debate';
@@ -116,7 +116,8 @@ class VistaTemas extends React.Component {
           <ReunionContainer>
             <Temario temas={this.props.temas}
               seleccionarTema={this.seleccionarTema} />
-            <VistaSeleccionada tema={this.temaSeleccionado()}
+            <Vista>
+              <VistaSeleccionada tema={this.temaSeleccionado()}
               terminarTema={this.terminarTema}
               empezarTema={this.empezarTema}
               segundosRestantes={this.segundosRestantes()}
@@ -125,7 +126,8 @@ class VistaTemas extends React.Component {
               retrocederTema= {this.retrocederTema}
               temaATratar= {this.esElSiguienteTemaATratar()}
               handleCerrarReunion= {this.handleCerrarReunion} />
-            <Sidebar handleSelection={this.handleSelection}
+            </Vista>
+              <Sidebar handleSelection={this.handleSelection}
               selectedElement={this.state.selectedElement}
               link={this.temaSeleccionado().linkDePresentacion} />
           </ReunionContainer>

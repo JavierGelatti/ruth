@@ -1,17 +1,5 @@
 import styled from 'styled-components';
-import { font, translucid } from '../styles/theme';
-
-export const SidebarIzquierdo = styled.div`
-  background: url('./fondo-pino.png');
-  width: 22%;
-  background: linear-gradient(${translucid.green}, ${translucid.green}),
-              url('./fondo-pino.png');
-`;
-
-export const DebateContainer = styled.div`  
-    display: flex;
-    flex: 1;
-`;
+import {font} from '../styles/theme';
 
 export const SubDebateContainer = styled.div`  
     display: flex;
