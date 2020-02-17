@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactGoogleSlides from 'react-google-slides';
+import { useSpring } from 'react-spring';
 import { SidebarIzquierdo, SlidesContainer } from './Presentacion.styled';
 import Countdown from '../reunion/Countdown';
-import {useSpring} from 'react-spring'
-import {AnimatedContainer} from "../reunion/Reunion.styled";
+import { AnimatedContainer } from '../reunion/Reunion.styled';
 
 const Presentacion = (props) => {
-  const fade = useSpring({opacity: 1, from: {opacity: 0}});
-    return (
+  const fade = useSpring({ opacity: 1, from: { opacity: 0 } });
+  return (
       <AnimatedContainer style={fade}>
         <SidebarIzquierdo/>
         <SlidesContainer>
@@ -16,7 +16,7 @@ const Presentacion = (props) => {
                       segundos={props.segundosRestantes}/>
         </SlidesContainer>
       </AnimatedContainer>
-    );
+  );
 };
 
 export default Presentacion;

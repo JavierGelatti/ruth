@@ -2,10 +2,10 @@ import React from 'react';
 import { CountdownContainer } from './Countdown.styled';
 import Clock from '../clock/Clock';
 
-export default class Countdown extends React.Component {
-  constructor(props) {
+class Countdown  extends React.Component{
+  constructor(props){
     super(props);
-    this.state = {
+  this.state = {
       activo: this.props.activo,
       segundos: this.props.segundos,
     };
@@ -53,3 +53,5 @@ export default class Countdown extends React.Component {
     );
   }
 }
+
+export default Countdown;

@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {toast} from 'react-toastify';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { useSpring } from 'react-spring';
 import Sidebar from '../sidebar-reunion/Sidebar';
-import { ReunionContainer} from './Reunion.styled';
+import { ReunionContainer } from './Reunion.styled';
 import TemaActual from '../tipos-vista-principal/TemaActual';
 import Temario from '../temario/Temario';
-import Presentacion from "../tipos-vista-principal/Presentacion";
-import Debate from "../tipos-vista-principal/Debate";
-import {useSpring} from 'react-spring'
+import Presentacion from '../tipos-vista-principal/Presentacion';
+import Debate from '../tipos-vista-principal/Debate';
 
 
 const VistaTemas = (props) => {
-
   const esElSiguienteTemaATratar = () => indiceTemaAMostrar === indiceTemaATratar();
   const indiceTemaATratar = () => {
     const indiceTemaSinFinalizar = props.temas.findIndex((tema) => tema.fin === null);
@@ -23,8 +22,8 @@ const VistaTemas = (props) => {
   const [temaSeleccionado, setTemaSeleccionado] = useState(props.temas[indiceTemaAMostrar]);
 
   useEffect(() => {
-    setTemaSeleccionado(props.temas[indiceTemaAMostrar])
-  }, [indiceTemaAMostrar]);
+    setTemaSeleccionado(props.temas[indiceTemaAMostrar]);
+  }, [indiceTemaAMostrar, props.temas]);
   const empezarTema = () => {
     if (temaSeleccionado.inicio !== null) {
       return toast.error('No se puede iniciar un tema que ya fue iniciado');
@@ -78,7 +77,7 @@ const VistaTemas = (props) => {
   };
 
   const segundosRestantes = () => {
-    const {inicio, fin, cantidadDeMinutosDelTema} = temaSeleccionado;
+    const { inicio, fin, cantidadDeMinutosDelTema } = temaSeleccionado;
     if (inicio === null) {
       return cantidadDeMinutosDelTema * 60;
     }
@@ -88,11 +87,11 @@ const VistaTemas = (props) => {
   };
 
   const temaActivo = () => {
-    const {inicio, fin} = temaSeleccionado;
+    const { inicio, fin } = temaSeleccionado;
     return inicio !== null && fin === null;
   };
   const VistaSeleccionada = vistas.findByName(selectedElement);
-  const fade = useSpring({opacity: 1, from: {opacity: 0}});
+  const fade = useSpring({ opacity: 1, from: { opacity: 0 } });
   return (
     <ReunionContainer style={fade}>
       <Temario temas={props.temas}
@@ -119,10 +118,10 @@ const VistaTemas = (props) => {
 
 const vistas = {
   'Tema Actual': TemaActual,
-  'Presentación': Presentacion,
-  'Debate': Debate,
-  findByName(name){
+  Presentación: Presentacion,
+  Debate,
+  findByName(name) {
     return this[name] || TemaActual;
-  }
-}
+  },
+};
 export default VistaTemas;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSpring } from 'react-spring';
 import {
   Botonera, BotoneraCerrarReunion, BotoneraNavegacionTemas, VistaDelMedioContainer,
 } from './TemaActual.styled';
@@ -8,14 +9,12 @@ import InfoTema from '../temario/InfoTema';
 import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
 import { Button, SecondaryButton } from '../components/Button.styled';
 import Countdown from '../reunion/Countdown';
-import {AnimatedContainer} from "../reunion/Reunion.styled";
-import {useSpring} from 'react-spring'
+import { AnimatedContainer } from '../reunion/Reunion.styled';
 
 const TemaActual = (props) => {
-
-    const fade = useSpring({opacity: 1, from: {opacity: 0}});
-    const { tema } = props;
-    return (
+  const fade = useSpring({ opacity: 1, from: { opacity: 0 } });
+  const { tema } = props;
+  return (
       <AnimatedContainer style={fade}>
         <InfoTema tema={tema} />
         <VistaDelMedioContainer>
@@ -44,7 +43,7 @@ const TemaActual = (props) => {
           </Botonera>
         </VistaDelMedioContainer>
       </AnimatedContainer>
-    );
+  );
 };
 
 export default TemaActual;

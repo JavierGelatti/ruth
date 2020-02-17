@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 import { font } from '../styles/theme';
-import { animated } from 'react-spring'
 
 export const SubDebateContainer = styled(animated.div)`  
     display: flex;
