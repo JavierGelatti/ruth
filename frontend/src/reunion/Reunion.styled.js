@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import {animated} from 'react-spring'
 
-// eslint-disable-next-line import/prefer-default-export
-export const ReunionContainer = styled.div`
+export const ReunionContainer = styled(animated.div)`
   display:flex;
   justify-content: space-between;
   align-items: stretch;
   height: 100%;
 `;
-export const Vista = styled.div`
+
+export const AnimatedContainer = styled(animated.div)`
   display: flex;
   flex: 1;
 `;

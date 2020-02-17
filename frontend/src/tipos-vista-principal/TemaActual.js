@@ -8,43 +8,43 @@ import InfoTema from '../temario/InfoTema';
 import HandlerTipoTema from '../temario/handler-temas/HandlerTipoTema';
 import { Button, SecondaryButton } from '../components/Button.styled';
 import Countdown from '../reunion/Countdown';
+import {AnimatedContainer} from "../reunion/Reunion.styled";
+import {useSpring} from 'react-spring'
 
-class TemaActual extends React.Component {
-  static canHandleView = (view) => view === 'Tema Actual'
+const TemaActual = (props) => {
 
-  render() {
-    const { tema } = this.props;
+    const fade = useSpring({opacity: 1, from: {opacity: 0}});
+    const { tema } = props;
     return (
-      <>
+      <AnimatedContainer style={fade}>
         <InfoTema tema={tema} />
         <VistaDelMedioContainer>
           {(new HandlerTipoTema()).handleTipoTema(tema)}
           <Botonera>
-            <Countdown activo={this.props.temaActivo}
-                        segundos={this.props.segundosRestantes}/>
+            <Countdown activo={props.temaActivo}
+                        segundos={props.segundosRestantes}/>
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon
               icon={faCaretLeft}
               size="4x"
               cursor={'pointer'}
-              onClick={this.props.retrocederTema}/>
-              <Button disabled={this.props.tema.inicio || !this.props.temaATratar}
-              onClick={this.props.empezarTema}>Empezar Tema</Button>
-              <Button disabled={!this.props.temaActivo} onClick={this.props.terminarTema}>Terminar Tema</Button>
+              onClick={props.retrocederTema}/>
+              <Button disabled={props.tema.inicio || !props.temaATratar}
+              onClick={props.empezarTema}>Empezar Tema</Button>
+              <Button disabled={!props.temaActivo} onClick={props.terminarTema}>Terminar Tema</Button>
               <FontAwesomeIcon
               icon={faCaretRight}
               size="4x"
-              onClick={this.props.avanzarTema}
+              onClick={props.avanzarTema}
               cursor={'pointer'}/>
             </BotoneraNavegacionTemas>
             <BotoneraCerrarReunion>
-              <SecondaryButton disabled={false} onClick={this.props.handleCerrarReunion}>Cerrar Reunión</SecondaryButton>
+              <SecondaryButton disabled={false} onClick={props.handleCerrarReunion}>Cerrar Reunión</SecondaryButton>
             </BotoneraCerrarReunion>
           </Botonera>
         </VistaDelMedioContainer>
-      </>
+      </AnimatedContainer>
     );
-  }
-}
+};
 
 export default TemaActual;

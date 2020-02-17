@@ -2,7 +2,6 @@ import React from 'react';
 import DebateSocket from '../debate-handler/DebateSocket';
 
 class Debate extends React.Component {
-    static canHandleView = (view) => view === 'Debate'
 
     render() {
       return (
