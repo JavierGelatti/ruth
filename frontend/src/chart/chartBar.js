@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import { ChartlineContainer } from './Chart.styled';
 
 class ChartBar extends React.Component {
     graphOptions = () => ({
@@ -25,7 +26,7 @@ class ChartBar extends React.Component {
           },
         ],
       },
-    })
+    });
 
     formattedData = () => ({
       labels: (this.props.data.data || []).map((bar) => bar.name),
@@ -35,16 +36,16 @@ class ChartBar extends React.Component {
         borderColor: this.props.data.color,
       },
       ],
-    })
+    });
 
     render() {
       return (
-        <div style={{ width: '50rem' }}>
-            <Bar
-              data={this.formattedData()}
-              options={this.graphOptions()}
-            />
-        </div>
+        <ChartlineContainer>
+          <Bar
+            data={this.formattedData()}
+            options={this.graphOptions()}
+          />
+        </ChartlineContainer>
       );
     }
 }

@@ -38,3 +38,7 @@ export const sizeBreakpoint = {
   bigWidth: '1920px',
   bigHeight: '1080px',
 };
+
+export const sidebar = {
+  width: '18%',
+};
