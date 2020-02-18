@@ -1,5 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import color from '@material-ui/core/colors/amber';
+import { createGlobalStyle } from 'styled-components';
 import { colors, font } from './styles/theme';
 
 
