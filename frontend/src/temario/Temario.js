@@ -3,6 +3,7 @@ import {
   Arrow, TemarioContainer, Temas, Titulo, LeyendaEmpresa, ExtensionLeyendaEmpresa, ContenidoTemario,
 } from './Temario.styled';
 import ListaTemario from './ListaTemario';
+import {SecondaryButton} from "../components/Button.styled";
 
 class Temario extends React.Component {
   constructor(props) {
@@ -22,8 +23,9 @@ class Temario extends React.Component {
           <ContenidoTemario>
             <Titulo> Temario </Titulo>
             <ListaTemario temas = {this.props.temas}
-                        seleccionarTema = {this.props.seleccionarTema}/>
+                          seleccionarTema = {this.props.seleccionarTema}/>
           </ContenidoTemario>
+          <SecondaryButton style={{ marginBottom: '2rem', marginTop: 'auto', padding: '0.5em 0',  width: '100%' }} disabled={false} onClick={this.props.cerrarReunion}>Cerrar Reunión</SecondaryButton>
         </Temas>
       </TemarioContainer>
     );
