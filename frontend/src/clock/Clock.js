@@ -2,14 +2,7 @@ import React from 'react';
 
 class Clock extends React.Component {
   getMinutes = () => {
-    let seconds = this.props.seconds
-    if(seconds >= 0){
-      return Math.floor(seconds / 60);
-    } else if (seconds > -60) {
-      return '-0'
-    } else {
-      return Math.ceil(seconds / 60);
-    }
+    return Math.floor(Math.abs(this.props.seconds) / 60);
   }
 
   getSeconds = () => {

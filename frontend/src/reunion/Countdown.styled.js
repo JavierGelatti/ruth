@@ -30,7 +30,7 @@ export const CountdownContainer = styled.div`
   text-align: center;
 
   animation-name: ${(props) => (props.negative ? timeIsUpAlarm : noAnimation)};
-  animation-duration: 4s;
+  animation-duration: 2s;
   animation-timing-function: ease;
   animation-delay: 0s;
   animation-iteration-count: infinite;
