@@ -31,13 +31,9 @@ export default class Countdown extends React.Component {
   runCountdown = () => {
     this.myInterval = setInterval(() => {
       const { segundos } = this.state;
-      if (segundos > 0) {
         this.setState({
           segundos: segundos - 1,
         });
-      } else {
-        this.parar();
-      }
     }, 1000);
   }
 
