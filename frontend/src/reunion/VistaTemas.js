@@ -115,7 +115,8 @@ class VistaTemas extends React.Component {
     return (
           <ReunionContainer>
             <Temario temas={this.props.temas}
-              seleccionarTema={this.seleccionarTema} />
+              seleccionarTema={this.seleccionarTema}
+              cerrarReunion={this.handleCerrarReunion}/>
             <VistaSeleccionada tema={this.temaSeleccionado()}
               terminarTema={this.terminarTema}
               empezarTema={this.empezarTema}

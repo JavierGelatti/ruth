@@ -17,6 +17,8 @@ export const Temas = styled.div`
   border-right-style: solid;
   border-width: 10px;
   border-color: ${colors.viridian};
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Arrow = styled.img`
