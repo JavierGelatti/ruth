@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import createStore from './store';
-import GlobalStyle from './GlobalStyle.styled';
-import TemasHandler from './reunion/TemasHandler';
 
 function getWebSocket() {
   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
@@ -16,9 +14,9 @@ export const ReduxWebSocketWrapper = (props) => {
   useEffect(() => {
     const ws = getWebSocket();
     const newStore = createStore(ws);
-    const { reunion, temas } = props;
+    const { reunion } = props;
     newStore.dispatch({
-      type: 'Empezar Reunion', comesFromWS: true, reunion, temas,
+      type: 'Empezar Reunion', comesFromWS: true, reunion, temas: reunion.temas,
     });
 
     ws.onmessage = (mensaje) => {

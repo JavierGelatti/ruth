@@ -32,9 +32,11 @@ class EmpezarReunion extends React.Component {
 
   requestEmpezarReunion = () => {
     backend.empezarReunion()
-      .then(() => {
+      .then((reunion) => {
         toast.success('Reunión iniciada');
-        this.setState({ redirect: true });
+        if (this.props.handleReunionIniciada) {
+          this.props.handleReunionIniciada(reunion);
+        }
       })
       .catch(() => {
         this.setState({ cargando: false });
