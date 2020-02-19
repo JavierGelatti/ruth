@@ -25,18 +25,17 @@ class TemaActual extends React.Component {
                        segundos={this.props.segundosRestantes}/>
             <BotoneraNavegacionTemas>
               <FontAwesomeIcon
-              icon={faCaretLeft}
-              size="4x"
-              cursor={'pointer'}
-              onClick={this.props.retrocederTema}/>
-              <Button disabled={this.props.tema.inicio || !this.props.temaATratar}
-              onClick={this.props.empezarTema}>Empezar Tema</Button>
-              <Button disabled={!this.props.temaActivo} onClick={this.props.terminarTema}>Terminar Tema</Button>
+                icon={faCaretLeft}
+                size="4x"
+                cursor={'pointer'}
+                onClick={this.props.retrocederTema}/>
+              {!this.props.tema.inicio && <Button disabled={!this.props.temaATratar} onClick={this.props.empezarTema}>Empezar Tema</Button>}
+              {this.props.tema.inicio && <Button disabled={!this.props.temaActivo} onClick={this.props.terminarTema}>Terminar Tema</Button>}
               <FontAwesomeIcon
-              icon={faCaretRight}
-              size="4x"
-              onClick={this.props.avanzarTema}
-              cursor={'pointer'}/>
+                icon={faCaretRight}
+                size="4x"
+                onClick={this.props.avanzarTema}
+                cursor={'pointer'}/>
             </BotoneraNavegacionTemas>
           </Botonera>
         </VistaDelMedioContainer>

@@ -26,5 +26,5 @@ export const BotoneraNavegacionTemas = styled.div`
     color: ${colors.black30};
     justify-content: space-evenly;
     align-items: center;
-    padding-bottom: 0.5rem;
+    padding-bottom: 2rem;
 `;
