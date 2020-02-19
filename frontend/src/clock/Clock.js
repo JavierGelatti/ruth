@@ -5,6 +5,8 @@ class Clock extends React.Component {
     let seconds = this.props.seconds
     if(seconds >= 0){
       return Math.floor(seconds / 60);
+    } else if (seconds > -60) {
+      return '-0'
     } else {
       return Math.ceil(seconds / 60);
     }

@@ -43,7 +43,7 @@ export default class Countdown extends React.Component {
 
   render() {
     return (
-            <CountdownContainer>
+            <CountdownContainer negative={this.state.segundos < 0 && this.props.activo}>
                 <Clock seconds={this.state.segundos}/>
             </CountdownContainer>
     );
