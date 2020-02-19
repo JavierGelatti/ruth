@@ -40,5 +40,9 @@ export const sizeBreakpoint = {
 };
 
 export const sidebar = {
-  width: '18%',
+  width: '18rem',
+};
+
+export const temario = {
+  width: '18rem',
 };
