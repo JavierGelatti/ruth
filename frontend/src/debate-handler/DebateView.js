@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  DebateContainer, SidebarIzquierdo, WorkInProgressContainer, Titulo, ImagenContainer,
-  TitleContainer, SubDebateContainer, GraphsContainer, ParticipantsContainer,
+  DebateContainer, Titulo, TitleContainer, SubDebateContainer,
+  GraphsContainer, ParticipantsContainer,
 } from './Debate.styled';
 import Countdown from '../reunion/Countdown';
 import ChartLine from '../chart/chartLine';
@@ -9,10 +9,8 @@ import ChartBar from '../chart/chartBar';
 import ParticipantsQueue from '../cola-de-participantes/ParticipantsQueue';
 
 class DebateView extends React.Component {
-    mensaje = 'Pagina en desarrollo';
-
-    render() {
-      return (
+  render() {
+    return (
           <DebateContainer>
             <SubDebateContainer>
               <TitleContainer>
@@ -29,8 +27,8 @@ class DebateView extends React.Component {
               </ParticipantsContainer>
             </SubDebateContainer>
           </DebateContainer>
-      );
-    }
+    );
+  }
 }
 
 export default DebateView;

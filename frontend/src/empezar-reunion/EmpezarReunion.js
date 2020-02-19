@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   EmpezarRootsContainer, Title, TitleAndButton, HomeImage, FlexContainer,

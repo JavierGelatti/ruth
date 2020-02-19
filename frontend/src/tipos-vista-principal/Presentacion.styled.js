@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, font, translucid } from '../styles/theme';
+import { colors, translucid } from '../styles/theme';
 
 
 export const SidebarIzquierdo = styled.div`

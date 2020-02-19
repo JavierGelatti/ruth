@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { font, translucid } from '../styles/theme';
+import { font, sidebar, translucid } from '../styles/theme';
 
 export const SidebarIzquierdo = styled.div`
   background: url('./fondo-pino.png');
@@ -11,6 +11,7 @@ export const SidebarIzquierdo = styled.div`
 export const DebateContainer = styled.div`  
     display: flex;
     flex: 1;
+    width: calc(100% - ${sidebar.width});
 `;
 
 export const SubDebateContainer = styled.div`  

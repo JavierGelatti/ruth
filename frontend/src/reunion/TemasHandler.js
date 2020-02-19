@@ -1,6 +1,5 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import backend from '../api/backend';
 import VistaTemas from './VistaTemas';
