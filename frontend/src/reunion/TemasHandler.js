@@ -1,6 +1,5 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import backend from '../api/backend';
 import VistaTemas from './VistaTemas';
@@ -26,14 +25,8 @@ class TemasHandler extends React.Component {
   };
 
   requestActualizarTema = (datosTema) => {
-    backend.actualizarTema(datosTema)
-      .then(() => {
-        this.dispatchTema({ tipo: datosTema.fin ? 'Terminar Tema' : 'Empezar Tema', idTema: datosTema.id });
-      })
-      .catch(() => {
-        toast.error('No se pudo actualizar el tema');
-      });
-  }
+    this.dispatchTema({ tipo: datosTema.fin ? 'Terminar Tema' : 'Empezar Tema', idTema: datosTema.id });
+  };
 
   cerrarReunion = () => {
     backend.cerrarReunion()
