@@ -1,14 +1,23 @@
 import VotacionDeRoots from '../votacionDeRoots/votacionDeRoots';
-import logger from '~/logger';
 
 const ReunionController = ({ reunionesRepo: repoReuniones, temasRepo: repoTemas }) => ({
-  reunion: () => repoReuniones.findLastCreated(),
+  reunion: async () => {
+    const reunion = await repoReuniones.findLastCreated();
+    if (!reunion) {
+      return { abierta: false };
+    }
+
+    const temas = await repoTemas.findTemasDeReunion(reunion.id);
+
+    return { ...(reunion.toJSON()), temas: temas.map((t) => t.toJSON()) };
+  },
 
   crear: async (req) => {
     const { abierta } = req.body;
     const temas = await VotacionDeRoots.getTemasRoots();
     const reunion = await repoReuniones.create({ abierta });
-    await repoTemas.guardarTemas(reunion, temas);
+    const temasNuevos = await repoTemas.guardarTemas(reunion, temas);
+    return { ...(reunion.toJSON()), temas: temasNuevos.map((t) => t.toJSON()) };
   },
 
   actualizar: async (req) => {

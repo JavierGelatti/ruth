@@ -31,17 +31,18 @@ class EmpezarReunion extends React.Component {
   };
 
   requestEmpezarReunion = () => {
-    backend.empezarReunion().then(() => {
-      toast.success('Reunión iniciada');
-      this.setState({ redirect: true });
-      this.props.history.push('/reunionDeRoots');
-    })
+    backend.empezarReunion()
+      .then((reunion) => {
+        toast.success('Reunión iniciada');
+        if (this.props.handleReunionIniciada) {
+          this.props.handleReunionIniciada(reunion);
+        }
+      })
       .catch(() => {
         this.setState({ cargando: false });
         toast.error('Error al iniciar la reunión');
-        this.props.history.push('/');
       });
-  }
+  };
 
   render() {
     return (

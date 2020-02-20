@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import produce from 'immer';
 import oradoresReducer from './oradores';
-import Backend from "../api/backend";
+import Backend from '../api/backend';
 
 export function reaccionesReducer(state = [], evento) {
   switch (evento.type) {
@@ -21,11 +21,22 @@ export function reaccionesReducer(state = [], evento) {
       return state.concat([{ name: eventReaction, value: 1 }]);
     }
 
-    default: return state;
+    default:
+      return state;
   }
 }
 
-export const temaReducer = (state = { oradores: [], reacciones: [] }, action) => produce(state, (draft) => {
+const TEMA_INCIAL_STATE = {
+  oradores: [],
+  reacciones: [],
+  inicio: null,
+  fin: null,
+};
+
+export const temaReducer = (state = TEMA_INCIAL_STATE, action) => produce(state, (draft) => {
+  draft.inicio = draft.inicio || null;
+  draft.fin = draft.fin || null;
+
   draft.oradores = oradoresReducer(state.oradores, action);
   draft.reacciones = reaccionesReducer(state.reacciones, action);
 });
@@ -33,7 +44,8 @@ export const temaReducer = (state = { oradores: [], reacciones: [] }, action) =>
 function compareTemaByPriority(tema1, tema2) {
   if (tema2.prioridad === null) {
     return -1;
-  } if (tema1.prioridad === null) {
+  }
+  if (tema1.prioridad === null) {
     return 1;
   }
   return tema2.prioridad - tema1.prioridad;
@@ -46,13 +58,21 @@ function compareTema(tema1, tema2) {
 
   if (tema1.obligatoriedad === 'OBLIGATORIO') {
     return -1;
-  } if (tema2.obligatoriedad === 'OBLIGATORIO') {
+  }
+  if (tema2.obligatoriedad === 'OBLIGATORIO') {
     return 1;
   }
   return compareTemaByPriority(tema1, tema2);
 }
 
-export const reducer = (state = { temas: null, reunion: null }, action) => produce(state, (draft) => {
+const INITIAL_STATE = {
+  temas: null,
+  reunion: null,
+  ultimoEventoId: null,
+};
+
+export const reducer = (state = INITIAL_STATE, action) => produce(state, (draft) => {
+  draft.ultimoEventoId = action.id;
   switch (action.type) {
     case 'Empezar Reunion': {
       draft.temas = action.temas.map((tema) => temaReducer(tema, action)).sort(compareTema);
@@ -91,12 +111,13 @@ const wsForwarder = (ws) => (store) => (next) => (action) => {
   if (!action.comesFromWS) {
     // We don't dispatch actions that we send to the ws since we'll
     // see them twice, in the future we could be smarter.
-    Backend.publicarEvento(action)
+    const state = store.getState();
+    Backend.publicarEvento({ reunionId: state.reunion.id, ultimoEventoId: state.ultimoEventoId, ...action })
       .then(() => {
-        console.log("el backend me respondio bien");
+        console.log('el backend me respondio bien');
       })
       .catch(() => {
-        console.error("el backend fallo");
+        console.error('el backend fallo');
       });
   } else {
     next(action);

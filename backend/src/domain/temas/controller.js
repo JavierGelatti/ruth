@@ -2,11 +2,12 @@
 const TemaController = ({ reunionesRepo, temasRepo }) => ({
   obtener: async () => {
     const reunion = await reunionesRepo.findLastCreated();
-    try {
-      return await temasRepo.findTemasDeReunion(reunion.id);
-    } catch (e) {
-      return null;
+
+    if (!reunion.id) {
+      return [];
     }
+
+    return temasRepo.findTemasDeReunion(reunion.id);
   },
 
   actualizar: (req) => {

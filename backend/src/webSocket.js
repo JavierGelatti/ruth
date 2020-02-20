@@ -10,7 +10,7 @@ export default function (wss) {
     });
     context.eventosRepo.findEventosUltimaReunion()
       .then((data) => {
-        ws.send(JSON.stringify(data.map((eventData) => JSON.parse(eventData.evento))));
+        ws.send(JSON.stringify(data.map((eventData) => ({ ...eventData.evento, id: eventData.id, reunionId: eventData.reunionId }))));
       });
   };
 }

@@ -9,7 +9,6 @@ import logger from '~/logger';
 import eventosRouter from './domain/eventos/router';
 
 export default (wss) => {
-
   const router = Router({ promise: true });
 
   router.use('/auth', loginRouter);
@@ -46,4 +45,4 @@ export default (wss) => {
       .send('Not found');
   });
   return router;
-}
+};
