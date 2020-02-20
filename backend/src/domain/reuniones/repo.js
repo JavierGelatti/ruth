@@ -19,7 +19,10 @@ export default class ReunionesRepo {
   }
 
   async findLastCreated() {
-    const ultimaReunionId = await models.Reunion.max('id')
+    const ultimaReunionId = await models.Reunion.max('id');
+    if (!ultimaReunionId) {
+      return null;
+    }
     return models.Reunion.findByPk(ultimaReunionId);
   }
 }
