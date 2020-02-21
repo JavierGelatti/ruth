@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  faThumbsUp, faThumbsDown, faHashtag, faSync, faMicrophoneAlt,
+  faThumbsUp, faThumbsDown, faHashtag, faSync, faMicrophoneAlt, faMicrophoneAltSlash, faMale,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ParticipantsCard from '../cola-de-participantes/ParticipantsCard';
@@ -13,7 +13,7 @@ import {
   LogoHeader,
   LogoLabel,
   Logo,
-  TopSectionContainer,
+  TopSectionContainer, QueuedParticipantsDesc, QueuedParticipants,
 } from './vista.styled';
 import { ReactionsContainer } from '../components/SubjectReactionsContainer.styled';
 import { CardInteractionsContainer } from '../components/InteractionsContainer.styled';
@@ -22,18 +22,26 @@ const hardcodedParticipant = { inicio: Date.now(), fin: null, nombre: 'Ari Habla
 
 const getTemaById = (id) => 'Aumento para todos';
 
-const talkButtonStyle = (pressed) => ({
-  height: '6em',
-  width: '6em',
-  borderRadius: '50%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginBottom: '1em',
-  boxShadow: pressed ? '2px 2px 2px #558c55, -10px -10px 10px #cbffc' : '4px 4px 10px #828282, -4px -4px 10px #ffffff',
-  background: pressed ? 'linear-gradient(145deg, rgb(114, 181, 114), rgb(205, 255, 205))'
-    : 'linear-gradient(145deg, rgb(230, 230, 230), rgb(200, 200, 200)',
-});
+const talkButtonStyle = (pressed, talking) => {
+  let background;
+
+  background = 'linear-gradient(145deg, rgb(230, 230, 230), rgb(200, 200, 200)';
+  if (pressed) background = 'linear-gradient(145deg, rgb(114, 181, 114), rgb(205, 255, 205))';
+  if (talking) background = 'linear-gradient(145deg, rgb(114, 181, 114), rgb(205, 255, 205))';
+
+  return {
+    height: '6em',
+    width: '6em',
+    borderRadius: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: '1em',
+    boxShadow: 'rgb(130, 130, 130) 4px 4px 10px, rgb(255, 255, 255) -4px -4px 10px',
+    background,
+  };
+};
 
 const logoImage = 'https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_'
   + '256,f_auto,q_auto:eco/wuhk5weer0fkhmh2oyhv';
@@ -128,10 +136,20 @@ class Vista extends React.Component {
           {
             !this.state.wannaTalk
               ? <div style={talkButtonStyle(false)} onClick={this.onWannaTalkClick}>
-                <FontAwesomeIcon icon={faMicrophoneAlt} color={'silver'} size={'3x'} />
+                <FontAwesomeIcon icon={faMicrophoneAlt} color={'silver'} size={'2x'} />
               </div>
-              : <div style={talkButtonStyle(true)} onClick={this.onWannaStopTalkClick}>
-                <FontAwesomeIcon icon={faMicrophoneAlt} color={'black'} size={'3x'} />
+              : <div style={{
+                display: 'flex', flexDirection: '', alignItems: 'center', justifyContent: 'center',
+              }}>
+                  <div style={talkButtonStyle(true, false)} onClick={this.onWannaStopTalkClick}>
+                    <FontAwesomeIcon icon={faMicrophoneAltSlash} color={'black'} size={'2x'} />
+                  </div>
+                  <QueuedParticipants>
+                    <span style={{
+                      color: 'silver', fontSize: '0.9em', marginRight: '0.3em', fontFamily: "'Poppins', sans-serif",
+                    }}> 3 </span>
+                    <FontAwesomeIcon icon={faMale} color={'silver'} size={'1x'} />
+                  </QueuedParticipants>
               </div>
           }
         </ActionContainerStyle>
